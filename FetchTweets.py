@@ -29,14 +29,17 @@ usersList = [
 ]
 
 def limits(l):
+    if len(l)==0:
+        return []
     maxId = l[0].id
     minId = l[0].id
     for status in l:
+        print(status.id)
         if status.id > maxId:
             maxId = status.id
         if status.id < minId:
             minId = status.id
-    return (minId, maxId)
+    return [minId, maxId]
 
 
 for user in usersList:
@@ -44,54 +47,42 @@ for user in usersList:
     print(user)
     print("\n")
     tweets = []
-    # time.sleep(15*60)
     tl = api.user_timeline(screen_name=user, count=20)
     tweets = tweets + tl
-    (minId,maxId) = limits(tl) 
+    l = limits(tl) 
     print("Se lograron obtener 20 tweets del usuario")
     i = 0
     while(i < 50):
         try :
-            tl = api.user_timeline(screen_name=user, count=20, since_id=maxId, max_id=minId)
-            print("entre")
+            #Arreglar esta llamada para retornar twwts diferents, posiblemente con max_id y since_id
+            tl = api.user_timeline(screen_name=user, count=20, max_id= l[0])
+            # time.sleep(5)
+            # print("Se hizo el request correctamente..")
+            print (len(tl))
             i += 1
-            print("entre2")
-            
-            (minId,maxId) = limits(tl)    
-            print("entre3")
-            
+            l = limits(tl)
+            print(l)
             tweets = tweets + tl 
             print("Se lograron obtener 20 tweets del usuario")
         except:
             print('Error al hacer request a Twitter.Esperando..')
-            # time.sleep(15*60)
+            time.sleep(60*60)
             pass
-    try:
-        f = open('tweets.txt','a')
-        f.write(user)
+    
+    f = open('tweets.txt','a')
+    f.write(user)
+    f.write(":\n")
+    for tweet in tweets:
+        f.write("[")
+        f.write(str(tweet.created_at))
+        f.write("]")
+        f.write("[")
+        f.write(tweet.text.encode('utf-8'))
+        f.write("]")
+        f.write("[")
+        f.write(str(tweet.retweet_count))
+        f.write("]")
         f.write("\n")
-        for tweet in tweets:
-            f.write(tweet.created_at)
-            f.write("\n")
-            f.write(tweet.hashtags)
-            f.write("\n")
-            f.write(tweet.text)
-            f.write("\n")
-            f.write(tweet.retweet_count)
-            f.write(",")
-            f.write("\n")
-        f.write("-\n")
-        f.close()
-    except:
-        print 'Error al tratar de guardar los datos en el archivo'
-
-# print('Pidiendo tweets del usuario:')
-# print("\n")
-# tweets = []
-# # time.sleep(15*60)
-# tl = api.user_timeline(screen_name=usersList[0], count=20)
-# tweets = tweets + tl
-# (minId,maxId) = limits(tl) 
-# print("Se lograron obtener 20 tweets del usuario")
-# tl = api.user_timeline(screen_name=usersList[0], count=20, since_id=maxId, max_id=minId)
-# tweets = tweets + tl 
+    f.write("-\n")
+    f.close()
+   
