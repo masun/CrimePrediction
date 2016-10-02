@@ -24,6 +24,39 @@ regex_str = [
     r'(?:[\w_]+)', # other words
     r'(?:\S)' # anything else
 ]
+
+def parseString(string):
+  newString = ""
+  for char in string:
+    print char
+    if (char == u"Á"):
+      newString += "A"
+    elif (char == u"á"):
+      newString += "a"
+    elif (char == u"É"):
+      newString += "E"
+    elif (char == u"é"):
+      newString += "e"
+    elif (char == u"Í"):
+      newString += "I"
+    elif (char == u"í"):
+      newString += "i"
+    elif (char == u"Ó"):
+      newString += "O"
+    elif (char == u"ó"):
+      newString += "o"
+    elif (char == u"Ú"):
+      newString += "U"
+    elif (char == u"ú"):
+      newString += "u"
+    elif (char == u"Ñ"):
+      newString += "N"
+    elif (char == u"ñ"):
+      newString += "n"
+    else:
+      newString += char
+  print newString
+  return newString
     
 def read_tweets(name):
   try:
