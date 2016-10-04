@@ -78,7 +78,7 @@ def read_tweets(name):
         info[1] = info[1].decode("utf-8")
         info[2] = info[2][:-1] # Removing "\n"
         info[2] = info[2][:-1] # Removing "]"
-        info[1] = parseString(info[1])
+        # info[1] = parseString(info[1])
         elem = {
           'owner':account,
           'date':info[0],
@@ -96,7 +96,7 @@ def tokenize(s):
     return tokens_re.findall(s)
  
 def preprocess(s, lowercase=False):
-    tokens = tokenize(s)
+    tokens = word_tokenize(s)
     if lowercase:
         tokens = [token if emoticon_re.search(token) else token.lower() for token in tokens]
     return tokens
@@ -128,11 +128,11 @@ if __name__ == "__main__":
     all_tokens.append(tweet['tokens'])
 
     # print stopwords.words('spanish')
-    # for token in tweet['tokens']:
-    #   print("token "+ token.encode('utf-8'))
+    for token in tweet['tokens']:
+      print("token "+ token.encode('utf-8'))
     # print tweet['date'] 
     # print tweet['text'] 
-    print tweet['tokens'] 
+    # print tweet['tokens'] 
 
   # bigrams = ngrams(all_tokens,2)
   # for gram in bigrams:
