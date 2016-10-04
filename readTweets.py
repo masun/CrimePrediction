@@ -1,7 +1,11 @@
+# -*- coding: utf-8 -*-
 import re
+import csv
 import sys
 from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
 import codecs
+from nltk.util import ngrams
 
 
  
@@ -28,7 +32,6 @@ regex_str = [
 def parseString(string):
   newString = ""
   for char in string:
-    print char
     if (char == u"Á"):
       newString += "A"
     elif (char == u"á"):
@@ -55,7 +58,6 @@ def parseString(string):
       newString += "n"
     else:
       newString += char
-  print newString
   return newString
     
 def read_tweets(name):
@@ -76,6 +78,7 @@ def read_tweets(name):
         info[1] = info[1].decode("utf-8")
         info[2] = info[2][:-1] # Removing "\n"
         info[2] = info[2][:-1] # Removing "]"
+        info[1] = parseString(info[1])
         elem = {
           'owner':account,
           'date':info[0],
@@ -98,6 +101,11 @@ def preprocess(s, lowercase=False):
         tokens = [token if emoticon_re.search(token) else token.lower() for token in tokens]
     return tokens
 
+def dump_csv(tweets):
+  with open('data.csv', 'wb') as csvfile:
+    spamwriter = csv.writer(csvfile, delimiter=':',)
+    for tweet in tweets:
+      spamwriter.writerow([tweet.owner, tweet.date, tweet.text, tweet.retweets, tweet.tokens])
 
 if __name__ == "__main__":
   reload(sys)
@@ -108,9 +116,24 @@ if __name__ == "__main__":
   emoticon_re = re.compile(r'^'+emoticons_str+'$', re.VERBOSE | re.IGNORECASE | re.UNICODE)
   
   tweets = read_tweets("tweets.txt")
+  all_tokens = []
   for tweet in tweets:
     tweet['tokens'] = preprocess(tweet['text'])
-    # print(tweet['tokens'])
+    important_words=[]
     for token in tweet['tokens']:
-      print("token "+ token.encode('utf-8'))
+      if token not in stopwords.words('spanish'):
+          important_words.append(token)
 
+    tweet['tokens'] = important_words
+    all_tokens.append(tweet['tokens'])
+
+    # print stopwords.words('spanish')
+    # for token in tweet['tokens']:
+    #   print("token "+ token.encode('utf-8'))
+    # print tweet['date'] 
+    # print tweet['text'] 
+    print tweet['tokens'] 
+
+  # bigrams = ngrams(all_tokens,2)
+  # for gram in bigrams:
+  #   print gram
