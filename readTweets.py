@@ -6,7 +6,8 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 import codecs
 from nltk.util import ngrams
-
+from nltk import bigrams
+from collections import Counter
 
  
 emoticons_str = r"""
@@ -107,6 +108,24 @@ def dump_csv(tweets):
     for tweet in tweets:
       spamwriter.writerow([tweet.owner, tweet.date, tweet.text, tweet.retweets, tweet.tokens])
 
+def freqCount(ngram, tweets):
+  freq_list = []
+  for gram in ngram:
+    c = 0
+    sentence = ""
+    n = len(gram)
+    for word in gram:
+      sentence += (word + " ") if (n != 1) else word
+      n -= 1
+    for tweet in tweets:
+      if sentence in tweet['text']:
+        c += 1
+    freq_list.append((gram,c))
+  return freq_list
+
+def ngramFreq(ngram):
+  return ngram[1]
+
 if __name__ == "__main__":
   reload(sys)
   sys.setdefaultencoding('utf8')
@@ -117,23 +136,57 @@ if __name__ == "__main__":
   
   tweets = read_tweets("tweets.txt")
   all_tokens = []
+  all_tokens_wstops = []
   for tweet in tweets:
     tweet['tokens'] = preprocess(tweet['text'])
+    all_tokens_wstops  = all_tokens_wstops + tweet['tokens']
     important_words=[]
     for token in tweet['tokens']:
       if token not in stopwords.words('spanish'):
           important_words.append(token)
 
     tweet['tokens'] = important_words
-    all_tokens.append(tweet['tokens'])
+    all_tokens = all_tokens + tweet['tokens']
 
     # print stopwords.words('spanish')
-    for token in tweet['tokens']:
-      print("token "+ token.encode('utf-8'))
+    # for token in tweet['tokens']:
+    #   print("token "+ token.encode('utf-8'))
     # print tweet['date'] 
     # print tweet['text'] 
     # print tweet['tokens'] 
 
-  # bigrams = ngrams(all_tokens,2)
+  # print all_tokens
+  unigrams = list(ngrams(all_tokens,1))
+  bigrams = list(ngrams(all_tokens,2))
+  trigrams = list(ngrams(all_tokens_wstops,3))
   # for gram in bigrams:
   #   print gram
+
+
+  freq = freqCount(unigrams,tweets)
+  freq2 = freqCount(bigrams,tweets)
+  freq3 = freqCount(trigrams,tweets)
+
+  ordered_grams = sorted(set(freq), key=ngramFreq)[::-1]
+  print "UNIGRAM(300):\n"
+  i = 1
+  for item in ordered_grams[:300]:
+    print str(i)+":",item
+    i = i + 1 
+ 
+  ordered_grams = sorted(set(freq2), key=ngramFreq)[::-1]
+  print "BIGRAM(150):\n"
+  i = 1
+  for item in ordered_grams[:150]:
+    print str(i)+":",item
+    i = i + 1 
+ 
+  ordered_grams = sorted(set(freq3), key=ngramFreq)[::-1]
+  print "TRIGRAM(150)\n"
+  i = 1
+  for item in ordered_grams[:150]:
+    print str(i)+":",item
+    i = i + 1 
+ 
+
+
