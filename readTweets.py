@@ -7,7 +7,9 @@ from nltk.corpus import stopwords
 import codecs
 from nltk.util import ngrams
 from nltk import bigrams
-from collections import Counter
+import nltk
+from nltk.collocations import *
+from operator import itemgetter
 
  
 emoticons_str = r"""
@@ -138,6 +140,16 @@ if __name__ == "__main__":
   all_tokens = []
   all_tokens_wstops = []
   for tweet in tweets:
+    tweet['text'] = re.sub(r',','',tweet['text'])
+    tweet['text'] = re.sub(r'\[','',tweet['text'])
+    tweet['text'] = re.sub(r'\]','',tweet['text'])
+    tweet['text'] = re.sub(r"'",'',tweet['text'])
+    tweet['text'] = re.sub(r"\(",'',tweet['text'])
+    tweet['text'] = re.sub(r"\)",'',tweet['text'])
+    tweet['text'] = re.sub(r'\&','',tweet['text'])
+    tweet['text'] = re.sub(r"''",'',tweet['text'])
+    tweet['text'] = re.sub(r"`",'',tweet['text'])
+    tweet['text'] = re.sub(r"_",'',tweet['text'])
     tweet['tokens'] = preprocess(tweet['text'])
     all_tokens_wstops  = all_tokens_wstops + tweet['tokens']
     important_words=[]
@@ -171,22 +183,33 @@ if __name__ == "__main__":
   print "UNIGRAM(300):\n"
   i = 1
   for item in ordered_grams[:300]:
-    print str(i)+":",item
+    #print str(i)+":",item
     i = i + 1 
  
   ordered_grams = sorted(set(freq2), key=ngramFreq)[::-1]
   print "BIGRAM(150):\n"
   i = 1
   for item in ordered_grams[:150]:
-    print str(i)+":",item
+    #print str(i)+":",item
     i = i + 1 
  
   ordered_grams = sorted(set(freq3), key=ngramFreq)[::-1]
   print "TRIGRAM(150)\n"
   i = 1
   for item in ordered_grams[:150]:
-    print str(i)+":",item
+    #print str(i)+":",item
     i = i + 1 
  
 
+trigram_measures = nltk.collocations.TrigramAssocMeasures()
+finder = TrigramCollocationFinder.from_words(all_tokens)
+tri=finder.score_ngrams(trigram_measures.pmi)
+finder = BigramCollocationFinder.from_words(all_tokens)
+Bi=finder.score_ngrams(trigram_measures.pmi)
+Bi = [k for k in Bi if k[1]>9]
+tri = [k for k in tri if k[1]>9]
 
+TOT=tri+Bi
+TOT=sorted(TOT,key=itemgetter(1))
+for i in range(len(TOT)):
+    print(TOT[i])
