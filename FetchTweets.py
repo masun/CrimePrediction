@@ -14,19 +14,42 @@ auth.set_access_token(access_token, access_secret)
 api = tweepy.API(auth)
 
 usersList = [
+"CCSTheaterClub",
+"noticias24",
 "laguiadecaracas",
-"ElNacionalWeb",
-"culturachacao",
-"ExpoGastronomia",
-"ElUniversal",
-"LaGuiaDelDia",
-"TICKETMUNDO",
-"trasnochocult",
-"CCulturalBOD",
-"ElHatillo",
-"UrbanCuple",
-"hoyquehay"
+"VenezuelainJpn",
+"EmbaFrancia",
+"usembassyve",
+"EmbCanVenezuela",
+"ConsEspCaracas",
+"EmbajadaRusaVen",
+"UKinVenezuela",
+"EmbamexVen",
+"minculturave",
+"teresacarreno",
+"LaPatanaCcs",
+"EvenVenezuela",
+"VzlaExpoTattoo",
+"vzlasinfonica",
+"elsistema",
+"expodato",
+"SuperEventosVE"
 ]
+
+# usersList = [
+# "laguiadecaracas",
+# "ElNacionalWeb",
+# "culturachacao",
+# "ExpoGastronomia",
+# "ElUniversal",
+# "LaGuiaDelDia",
+# "TICKETMUNDO",
+# "trasnochocult",
+# "CCulturalBOD",
+# "ElHatillo",
+# "UrbanCuple",
+# "hoyquehay"
+# ]
 
 def limits(l):
     if len(l)==0:
