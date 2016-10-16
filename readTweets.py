@@ -17,6 +17,8 @@ from operator import itemgetter
 from nltk.corpus import cess_esp as cess
 from nltk import UnigramTagger as ut
 from nltk import BigramTagger as bt
+
+from nltk.tag import StanfordNERTagger
  
 emoticons_str = r"""
     (?:
@@ -37,37 +39,6 @@ regex_str = [
     r'(?:[\w_]+)', # other words
     r'(?:\S)' # anything else
 ]
-
-def parseString(string):
-  newString = ""
-  for char in string:
-    if (char == u"Á"):
-      newString += "A"
-    elif (char == u"á"):
-      newString += "a"
-    elif (char == u"É"):
-      newString += "E"
-    elif (char == u"é"):
-      newString += "e"
-    elif (char == u"Í"):
-      newString += "I"
-    elif (char == u"í"):
-      newString += "i"
-    elif (char == u"Ó"):
-      newString += "O"
-    elif (char == u"ó"):
-      newString += "o"
-    elif (char == u"Ú"):
-      newString += "U"
-    elif (char == u"ú"):
-      newString += "u"
-    elif (char == u"Ñ"):
-      newString += "N"
-    elif (char == u"ñ"):
-      newString += "n"
-    else:
-      newString += char
-  return newString
     
 def read_tweets(name):
   try:
@@ -87,7 +58,6 @@ def read_tweets(name):
         info[1] = info[1].decode("utf-8")
         info[2] = info[2][:-1] # Removing "\n"
         info[2] = info[2][:-1] # Removing "]"
-        # info[1] = parseString(info[1])
         elem = {
           'owner':account,
           'date':info[0],
@@ -142,11 +112,18 @@ if __name__ == "__main__":
   tokens_re = re.compile(r'('+'|'.join(regex_str)+')', re.VERBOSE | re.IGNORECASE | re.UNICODE )
   emoticon_re = re.compile(r'^'+emoticons_str+'$', re.VERBOSE | re.IGNORECASE | re.UNICODE)
   
-
-  tweets = read_tweets("tweets.txt")
+  #Paths for the ner tagger
+  PATH_TO_MODEL = "/home/francisco/Downloads/stanford-ner-2015-04-20/classifiers/spanish.ancora.distsim.s512.crf.ser.gz"
+  PATH_TO_JAR = "/home/francisco/Downloads/stanford-ner-2015-04-20/stanford-ner.jar"
+  
+  tagger = StanfordNERTagger(model_filename=PATH_TO_MODEL, path_to_jar=PATH_TO_JAR)
+  
+  tweets = read_tweets("tweetDatasets/tweets12k.txt")
   all_tokens = []
   all_tokens_wstops = []
   for tweet in tweets:
+    
+    #Text clean up 
     tweet['text'] = re.sub(r"(?:\#+[\w_]+[\w\'_\-]*[\w_]+)", "", tweet['text'])
     tweet['text'] = re.sub(r'http[s]?://(?:[a-z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-f][0-9a-f]))+', "", tweet['text'])
     tweet['text'] = re.sub(r'(?:(?:\d+,?)+(?:\.?\d+)?)', "",tweet['text'])
@@ -172,8 +149,14 @@ if __name__ == "__main__":
     tweet['text'] = re.sub(r"\.",' ',tweet['text'])
     tweet['text'] = re.sub(r"/",' ',tweet['text'])
     tweet['text'] = re.sub(r"-",' ',tweet['text'])
-    tweet['text'] = tweet['text'].lower()
+    
+    # tweet['text'] = tweet['text'].lower()
+    #Tokenization
     tweet['tokens'] = preprocess(tweet['text'])
+    print tweet['tokens']
+    #Tagging
+    tweet['tags'] = tagger.tag(tweet['tokens'])
+    print tweet['tags']
     all_tokens_wstops  = all_tokens_wstops + tweet['tokens']
     important_words=[]
     for token in tweet['tokens']:
@@ -183,26 +166,19 @@ if __name__ == "__main__":
     tweet['tokens'] = important_words
     all_tokens = all_tokens + tweet['tokens']
 
-    # print stopwords.words('spanish')
-    # for token in tweet['tokens']:
-    #   print("token "+ token.encode('utf-8'))import regex as re
-
-    # print tweet['date'] 
-    # print tweet['text'] 
-    # print tweet['tokens'] 
-
-# print all_tokens
+# Gram calculation
 # unigrams = list(ngrams(all_tokens,1))
 # bigrams = list(ngrams(all_tokens,2))
 # trigrams = list(ngrams(all_tokens_wstops,3))
 # for gram in bigrams:
 #   print gram
 
-
+# Gram freq Calculation
 # freq = freqCount(unigrams,tweets)
 # freq2 = freqCount(bigrams,tweets)
 # freq3 = freqCount(trigrams,tweets)
 
+#Gram sorting
 # ordered_grams = sorted(set(freq), key=ngramFreq)[::-1]
 # print "UNIGRAM(300):\n"
 # i = 1
@@ -226,40 +202,16 @@ if __name__ == "__main__":
  
 
 # PMI calculius 
-trigram_measures = nltk.collocations.TrigramAssocMeasures()
-finder = TrigramCollocationFinder.from_words(all_tokens)
-tri=finder.score_ngrams(trigram_measures.pmi)
-finder = BigramCollocationFinder.from_words(all_tokens)
-Bi=finder.score_ngrams(trigram_measures.pmi)
-Bi = [k for k in Bi if k[1]>9]
-tri = [k for k in tri if k[1]>9]
+# trigram_measures = nltk.collocations.TrigramAssocMeasures()
+# finder = TrigramCollocationFinder.from_words(all_tokens)
+# tri=finder.score_ngrams(trigram_measures.pmi)
+# finder = BigramCollocationFinder.from_words(all_tokens)
+# Bi=finder.score_ngrams(trigram_measures.pmi)
+# Bi = [k for k in Bi if k[1]>9]
+# tri = [k for k in tri if k[1]>9]
 
-TOT=tri+Bi
-TOT=sorted(TOT,key=itemgetter(1),reverse=True)
-for i in range(len(TOT)):
-    print TOT[i][0][0],TOT[i][0][1],TOT[i][1] 
+# TOT=tri+Bi
+# TOT=sorted(TOT,key=itemgetter(1),reverse=True)
+# for i in range(len(TOT)):
+#     print TOT[i][0][0],TOT[i][0][1],TOT[i][1] 
 
-
-# Read the corpus into a list, 
-# each entry in the list is one sentence.
-# cess_sents = [ list(ngrams(tweet['tokens'],2)) for tweet in tweets]
-# print cess_sents[:10]
-# print cess.tagged_sents()[:10]
-
-# # Train the unigram tagger
-# uni_tag = ut(cess_sents)
-
-# # Tagger reads a list of tokens.
-# uni_tag.tag(tweets[0]['tokens'])
-
-# # Split corpus into training and testing set.
-# train = int(len(cess_sents)*90/100) # 90%
-
-# # Train a bigram tagger with only training data.
-# bi_tag = bt(cess_sents[:train])
-
-# # Evaluates on testing data remaining 10%
-# print bi_tag.evaluate(cess_sents[train+1:])
-
-# # Using the tagger.
-# print bi_tag.tag(tweets[0]['tokens'])
