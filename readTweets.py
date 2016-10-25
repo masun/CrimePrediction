@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import re
 import regex
+import random
 import csv
 import sys
 import string
@@ -119,52 +120,65 @@ if __name__ == "__main__":
   tagger = StanfordNERTagger(model_filename=PATH_TO_MODEL, path_to_jar=PATH_TO_JAR)
   
   tweets = read_tweets("tweetDatasets/tweets12k.txt")
-  all_tokens = []
-  all_tokens_wstops = []
-  for tweet in tweets:
-    
-    #Text clean up 
-    tweet['text'] = re.sub(r"(?:\#+[\w_]+[\w\'_\-]*[\w_]+)", "", tweet['text'])
-    tweet['text'] = re.sub(r'http[s]?://(?:[a-z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-f][0-9a-f]))+', "", tweet['text'])
-    tweet['text'] = re.sub(r'(?:(?:\d+,?)+(?:\.?\d+)?)', "",tweet['text'])
-    tweet['text'] = re.sub(r',',' ',tweet['text'])
-    tweet['text'] = re.sub(r'\[',' ',tweet['text'])
-    tweet['text'] = re.sub(r'\]',' ',tweet['text'])
-    tweet['text'] = re.sub(r"'",' ',tweet['text'])
-    tweet['text'] = re.sub(r"\.",' ',tweet['text'])
-    tweet['text'] = re.sub(r"\(",' ',tweet['text'])
-    tweet['text'] = re.sub(r"\)",' ',tweet['text'])
-    tweet['text'] = re.sub(r'\&',' ',tweet['text'])
-    tweet['text'] = re.sub(r"\'\'",' ',tweet['text'])
-    tweet['text'] = re.sub(r"`",' ',tweet['text'])
-    tweet['text'] = re.sub(r"_",' ',tweet['text']) 
-    tweet['text'] = re.sub(r":",' ',tweet['text'])
-    tweet['text'] = re.sub(r"\?",' ',tweet['text'])
-    tweet['text'] = re.sub(r";",' ',tweet['text'])
-    tweet['text'] = re.sub(r"¿",' ',tweet['text'])
-    tweet['text'] = re.sub(r"!",' ',tweet['text'])
-    tweet['text'] = re.sub(r"¡",' ',tweet['text'])
-    tweet['text'] = re.sub(r"\"",' ',tweet['text'])
-    tweet['text'] = re.sub(r"‘",' ',tweet['text'])
-    tweet['text'] = re.sub(r"\.",' ',tweet['text'])
-    tweet['text'] = re.sub(r"/",' ',tweet['text'])
-    tweet['text'] = re.sub(r"-",' ',tweet['text'])
-    
-    # tweet['text'] = tweet['text'].lower()
-    #Tokenization
-    tweet['tokens'] = preprocess(tweet['text'])
-    print tweet['tokens']
-    #Tagging
-    tweet['tags'] = tagger.tag(tweet['tokens'])
-    print tweet['tags']
-    all_tokens_wstops  = all_tokens_wstops + tweet['tokens']
-    important_words=[]
-    for token in tweet['tokens']:
-      if token not in stopwords.words('spanish'):
-          important_words.append(token)
+  with open('tweets.csv', 'wb') as csvfile:
+    spamwriter = csv.writer(csvfile, delimiter=',',
+                            quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
-    tweet['tokens'] = important_words
-    all_tokens = all_tokens + tweet['tokens']
+    all_tokens = []
+    all_tokens_wstops = []
+    for tweet in tweets:
+      
+      tweet['text'] = re.sub(r"\"", '\'', tweet['text'])
+
+      #Write csv   
+      if random.random() > 0.5:
+        spamwriter.writerow([tweet['text'],"yes"])
+      else:
+        spamwriter.writerow([tweet['text'],"no"])
+      print tweet['text']
+
+      #Text clean up 
+      tweet['text'] = re.sub(r"(?:\#+[\w_]+[\w\'_\-]*[\w_]+)", "", tweet['text'])
+      tweet['text'] = re.sub(r'http[s]?://(?:[a-z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-f][0-9a-f]))+', "", tweet['text'])
+      tweet['text'] = re.sub(r'(?:(?:\d+,?)+(?:\.?\d+)?)', "",tweet['text'])
+      tweet['text'] = re.sub(r',',' ',tweet['text'])
+      tweet['text'] = re.sub(r'\[',' ',tweet['text'])
+      tweet['text'] = re.sub(r'\]',' ',tweet['text'])
+      tweet['text'] = re.sub(r"'",' ',tweet['text'])
+      tweet['text'] = re.sub(r"\.",' ',tweet['text'])
+      tweet['text'] = re.sub(r"\(",' ',tweet['text'])
+      tweet['text'] = re.sub(r"\)",' ',tweet['text'])
+      tweet['text'] = re.sub(r'\&',' ',tweet['text'])
+      tweet['text'] = re.sub(r"\'\'",' ',tweet['text'])
+      tweet['text'] = re.sub(r"`",' ',tweet['text'])
+      tweet['text'] = re.sub(r"_",' ',tweet['text']) 
+      tweet['text'] = re.sub(r":",' ',tweet['text'])
+      tweet['text'] = re.sub(r"\?",' ',tweet['text'])
+      tweet['text'] = re.sub(r";",' ',tweet['text'])
+      tweet['text'] = re.sub(r"¿",' ',tweet['text'])
+      tweet['text'] = re.sub(r"!",' ',tweet['text'])
+      tweet['text'] = re.sub(r"¡",' ',tweet['text'])
+      tweet['text'] = re.sub(r"\"",' ',tweet['text'])
+      tweet['text'] = re.sub(r"‘",' ',tweet['text'])
+      tweet['text'] = re.sub(r"\.",' ',tweet['text'])
+      tweet['text'] = re.sub(r"/",' ',tweet['text'])
+      tweet['text'] = re.sub(r"-",' ',tweet['text'])
+      
+      # tweet['text'] = tweet['text'].lower()
+      #Tokenization
+      tweet['tokens'] = preprocess(tweet['text'])
+      print tweet['tokens']
+      #Tagging
+      tweet['tags'] = tagger.tag(tweet['tokens'])
+      print tweet['tags']
+      all_tokens_wstops  = all_tokens_wstops + tweet['tokens']
+      important_words=[]
+      for token in tweet['tokens']:
+        if token not in stopwords.words('spanish'):
+            important_words.append(token)
+
+      tweet['tokens'] = important_words
+      all_tokens = all_tokens + tweet['tokens']
 
 # Gram calculation
 # unigrams = list(ngrams(all_tokens,1))
