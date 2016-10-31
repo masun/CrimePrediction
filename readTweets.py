@@ -13,6 +13,7 @@ from nltk import bigrams
 import nltk
 from nltk.collocations import *
 from operator import itemgetter
+from readWekaRes import read_weka_res
 
 
 from nltk.corpus import cess_esp as cess
@@ -237,3 +238,21 @@ if __name__ == "__main__":
 # for i in range(len(TOT)):
 #     print TOT[i][0][0],TOT[i][0][1],TOT[i][1] 
 
+what = []
+when = []
+how = []
+
+for tweet in tweets: 
+  yes = False
+  for w in what:
+    if w in tweet['text']:
+      yes = True
+      break
+  for w in how:
+    if w in tweet['text']:
+      yes = True
+      break
+  if yes:
+    tweet['crime'] = 'yes'
+  else:
+    tweet['crime'] = 'no'
