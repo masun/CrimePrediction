@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import re
-import regex
 import random
 import csv
 import sys
@@ -164,11 +163,11 @@ if __name__ == "__main__":
       tweet['text'] = re.sub(r"@\w*",' ',tweet['text'])
 
       #Write csv   
-      if random.random() > 0.5:
-        spamwriter.writerow([tweet['text'],"yes"])
-      else:
-        spamwriter.writerow([tweet['text'],"no"])
-      print tweet['text']
+      # if random.random() > 0.5:
+      #   spamwriter.writerow([tweet['text'],"yes"])
+      # else:
+      #   spamwriter.writerow([tweet['text'],"no"])
+      # print tweet['text']
 
       #Text clean up 
       # tweet['text'] = re.sub(r"(?:\#+[\w_]+[\w\'_\-]*[\w_]+)", "", tweet['text'])
@@ -238,10 +237,13 @@ if __name__ == "__main__":
 # for i in range(len(TOT)):
 #     print TOT[i][0][0],TOT[i][0][1],TOT[i][1] 
 
-what = []
-when = []
-how = []
+what = read_weka_res('list_trigram_bigram_what.arff') + read_weka_res('list_unigram_what.arff')
+when = read_weka_res('list_trigram_bigram_when.arff') + read_weka_res('list_unigram_when.arff')
+how = read_weka_res('list_trigram_bigram_how.arff') + read_weka_res('list_unigram_how.arff')
 
+num_yes = 0
+num_no = 0
+# Esto clasifica los tweets en base a las palabras obtenidas con la herramienta de WEKA.
 for tweet in tweets: 
   yes = False
   for w in what:
@@ -254,5 +256,10 @@ for tweet in tweets:
       break
   if yes:
     tweet['crime'] = 'yes'
+    num_yes += 1
   else:
     tweet['crime'] = 'no'
+    num_no += 1
+
+print "% de yes: ", (num_yes/float(len(tweets)))*100
+print "% de no: ", (num_no/float(len(tweets)))*100
