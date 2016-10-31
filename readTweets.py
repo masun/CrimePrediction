@@ -128,6 +128,7 @@ if __name__ == "__main__":
     all_tokens_wstops = []
     for tweet in tweets:
       
+      tweet['text'] = tweet['text'].lower()
       tweet['text'] = re.sub(r'(?:(?:\d+,?)+(?:\.?\d+)?)', "",tweet['text'])
       tweet['text'] = re.sub(r'http[s]?://(?:[a-z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-f][0-9a-f]))+', "", tweet['text'])
       tweet['text'] = re.sub(r"\n",' ',tweet['text'])
@@ -237,9 +238,102 @@ if __name__ == "__main__":
 # for i in range(len(TOT)):
 #     print TOT[i][0][0],TOT[i][0][1],TOT[i][1] 
 
-what = read_weka_res('list_trigram_bigram_what.arff') + read_weka_res('list_unigram_what.arff')
-when = read_weka_res('list_trigram_bigram_when.arff') + read_weka_res('list_unigram_when.arff')
-how = read_weka_res('list_trigram_bigram_how.arff') + read_weka_res('list_unigram_how.arff')
+what = [
+"secuestro",
+"secuestrar",
+"secuestraron",
+"asesinar",
+"asesino",
+"asesinaron",
+"asesinó",
+"violación",
+"violaron",
+"robo",
+"robaron",
+"secuestró",
+"asesinato",
+"extorsión",
+"violación",
+"violaron",
+"mataron",
+"mató"]
+
+when = [
+"madrugada",
+"noche",
+"día",
+"mañana",
+"tarde",
+"mediodía",
+"anoche"
+]
+
+how = [
+"quemado",
+"quemaron",
+"quemo",
+"armados",
+"golpes",
+"golpe",
+"golpearon",
+"golpeó",
+"droga",
+"drogas",
+"bombas",
+"tiro",
+"tiros",
+"tiroteado",
+"tiroteados",
+"tirotearon",
+"tiroteo",
+"revolver",
+"puñaladas",
+"puñaladas",
+"pistola",
+"pistolas",
+"plomo",
+"lacrimógenas",
+"lacrimógena",
+"escopeta",
+"escopetas",
+"dispara",
+"disparan",
+"disparando",
+"disparó",
+"dispararon",
+"disparos",
+"cuchillo",
+"cocaína",
+"bomba",
+"bala",
+"balas",
+"armamento",
+"armado",
+"armas",
+"tiroteo",
+"fusil",
+"cuchillo",
+"cuchillos",
+"disparo",
+"fusiles",
+"granada",
+"navaja",
+"ametralladora",
+"bisturí",
+"proyectil",
+"arma blanca",
+"arma de fuego",
+"acuchillado",
+"explosión",
+"cuchilladas",
+"armados",
+"gasolina",
+"incendio"
+]
+
+what += read_weka_res('list_trigram_bigram_what.arff') + read_weka_res('list_unigram_what.arff')
+when += read_weka_res('list_trigram_bigram_when.arff') + read_weka_res('list_unigram_when.arff')
+how += read_weka_res('list_trigram_bigram_how.arff') + read_weka_res('list_unigram_how.arff')
 
 num_yes = 0
 num_no = 0

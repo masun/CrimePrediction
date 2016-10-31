@@ -2,8 +2,8 @@ import codecs
 
 def read_weka_res(name):
   try:
-    f = open(name, 'r') 
-    # f = codecs.open(name, encoding='utf-8')
+    # f = open(name, 'r') 
+    f = codecs.open(name, encoding='utf-8')
     data = f.readlines()
     i = 0
     res = []
