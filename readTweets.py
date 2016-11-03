@@ -119,6 +119,105 @@ if __name__ == "__main__":
   
   tagger = StanfordNERTagger(model_filename=PATH_TO_MODEL, path_to_jar=PATH_TO_JAR)
   
+  what = [
+  "secuestro",
+  "secuestrar",
+  "secuestraron",
+  "asesinar",
+  "asesino",
+  "asesinaron",
+  "asesinó",
+  "violación",
+  "violaron",
+  "robo",
+  "robaron",
+  "secuestró",
+  "asesinato",
+  "extorsión",
+  "violación",
+  "violaron",
+  "mataron",
+  "mató"]
+
+  when = [
+  "madrugada",
+  "noche",
+  "día",
+  "mañana",
+  "tarde",
+  "mediodía",
+  "anoche"
+  ]
+
+  how = [
+  "quemado",
+  "quemaron",
+  "quemo",
+  "armados",
+  "golpes",
+  "golpe",
+  "golpearon",
+  "golpeó",
+  "droga",
+  "drogas",
+  "bombas",
+  "tiro",
+  "tiros",
+  "tiroteado",
+  "tiroteados",
+  "tirotearon",
+  "tiroteo",
+  "revolver",
+  "puñaladas",
+  "puñaladas",
+  "pistola",
+  "pistolas",
+  "plomo",
+  "lacrimógenas",
+  "lacrimógena",
+  "escopeta",
+  "escopetas",
+  "dispara",
+  "disparan",
+  "disparando",
+  "disparó",
+  "dispararon",
+  "disparos",
+  "cuchillo",
+  "cocaína",
+  "bomba",
+  "bala",
+  "balas",
+  "armamento",
+  "armado",
+  "armas",
+  "tiroteo",
+  "fusil",
+  "cuchillo",
+  "cuchillos",
+  "disparo",
+  "fusiles",
+  "granada",
+  "navaja",
+  "ametralladora",
+  "bisturí",
+  "proyectil",
+  "arma blanca",
+  "arma de fuego",
+  "acuchillado",
+  "explosión",
+  "cuchilladas",
+  "armados",
+  "gasolina",
+  "incendio"
+  ]
+
+  what += read_weka_res('list_trigram_bigram_what.arff') + read_weka_res('list_unigram_what.arff')
+  when += read_weka_res('list_trigram_bigram_when.arff') + read_weka_res('list_unigram_when.arff')
+  how += read_weka_res('list_trigram_bigram_how.arff') + read_weka_res('list_unigram_how.arff')
+
+  num_yes = 0
+  num_no = 0
   tweets = read_tweets("tweets.txt")
   with open('tweets.csv', 'wb') as csvfile:
     spamwriter = csv.writer(csvfile, delimiter=',',
@@ -163,11 +262,27 @@ if __name__ == "__main__":
       tweet['text'] = re.sub(r"\|",' ',tweet['text'])
       tweet['text'] = re.sub(r"@\w*",' ',tweet['text'])
 
+      yes = False
+      for w in what:
+        if w in tweet['text']:
+          yes = True
+          break
+      for w in how:
+        if w in tweet['text']:
+          yes = True
+          break
+      if yes:
+        tweet['crime'] = 'yes'
+        num_yes += 1
+      else:
+        tweet['crime'] = 'no'
+        num_no += 1
+
       #Write csv   
       # if random.random() > 0.5:
-      #   spamwriter.writerow([tweet['text'],"yes"])
+      spamwriter.writerow([tweet['text'],tweet['crime']])
       # else:
-      #   spamwriter.writerow([tweet['text'],"no"])
+        # spamwriter.writerow([tweet['text'],tweet['crime']])
       # print tweet['text']
 
       #Text clean up 
@@ -238,122 +353,7 @@ if __name__ == "__main__":
 # for i in range(len(TOT)):
 #     print TOT[i][0][0],TOT[i][0][1],TOT[i][1] 
 
-what = [
-"secuestro",
-"secuestrar",
-"secuestraron",
-"asesinar",
-"asesino",
-"asesinaron",
-"asesinó",
-"violación",
-"violaron",
-"robo",
-"robaron",
-"secuestró",
-"asesinato",
-"extorsión",
-"violación",
-"violaron",
-"mataron",
-"mató"]
-
-when = [
-"madrugada",
-"noche",
-"día",
-"mañana",
-"tarde",
-"mediodía",
-"anoche"
-]
-
-how = [
-"quemado",
-"quemaron",
-"quemo",
-"armados",
-"golpes",
-"golpe",
-"golpearon",
-"golpeó",
-"droga",
-"drogas",
-"bombas",
-"tiro",
-"tiros",
-"tiroteado",
-"tiroteados",
-"tirotearon",
-"tiroteo",
-"revolver",
-"puñaladas",
-"puñaladas",
-"pistola",
-"pistolas",
-"plomo",
-"lacrimógenas",
-"lacrimógena",
-"escopeta",
-"escopetas",
-"dispara",
-"disparan",
-"disparando",
-"disparó",
-"dispararon",
-"disparos",
-"cuchillo",
-"cocaína",
-"bomba",
-"bala",
-"balas",
-"armamento",
-"armado",
-"armas",
-"tiroteo",
-"fusil",
-"cuchillo",
-"cuchillos",
-"disparo",
-"fusiles",
-"granada",
-"navaja",
-"ametralladora",
-"bisturí",
-"proyectil",
-"arma blanca",
-"arma de fuego",
-"acuchillado",
-"explosión",
-"cuchilladas",
-"armados",
-"gasolina",
-"incendio"
-]
-
-what += read_weka_res('list_trigram_bigram_what.arff') + read_weka_res('list_unigram_what.arff')
-when += read_weka_res('list_trigram_bigram_when.arff') + read_weka_res('list_unigram_when.arff')
-how += read_weka_res('list_trigram_bigram_how.arff') + read_weka_res('list_unigram_how.arff')
-
-num_yes = 0
-num_no = 0
 # Esto clasifica los tweets en base a las palabras obtenidas con la herramienta de WEKA.
-for tweet in tweets: 
-  yes = False
-  for w in what:
-    if w in tweet['text']:
-      yes = True
-      break
-  for w in how:
-    if w in tweet['text']:
-      yes = True
-      break
-  if yes:
-    tweet['crime'] = 'yes'
-    num_yes += 1
-  else:
-    tweet['crime'] = 'no'
-    num_no += 1
 
 print "% de yes: ", (num_yes/float(len(tweets)))*100
 print "% de no: ", (num_no/float(len(tweets)))*100
