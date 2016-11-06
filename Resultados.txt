@@ -29,27 +29,27 @@ Weighted Avg.    0.949    0.051    0.949      0.949    0.949      0.898    0.961
 Neural network-1/3 gramas, sin duplicados, clase balanceada
 === Summary ===
 
-Correctly Classified Instances        3840.2431          95.1298 %
-Incorrectly Classified Instances       196.6045           4.8702 %
-Kappa statistic                          0.9026
-Mean absolute error                      0.0834
-Root mean squared error                  0.2009
-Relative absolute error                 16.6802 %
-Root relative squared error             40.1732 %
+Correctly Classified Instances        3830.3204          94.8839 %
+Incorrectly Classified Instances       206.5272           5.1161 %
+Kappa statistic                          0.8977
+Mean absolute error                      0.087 
+Root mean squared error                  0.205 
+Relative absolute error                 17.4085 %
+Root relative squared error             40.9924 %
 Total Number of Instances             4036.8476
 
 === Detailed Accuracy By Class ===
 
                  TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
-                 0.976    0.073    0.930      0.976    0.952      0.904    0.983     0.977     no
-                 0.927    0.024    0.975      0.927    0.950      0.904    0.983     0.987     yes
-Weighted Avg.    0.951    0.048    0.952      0.951    0.951      0.904    0.983     0.982     
+                 0.978    0.080    0.924      0.978    0.950      0.899    0.983     0.976     no
+                 0.920    0.022    0.977      0.920    0.948      0.899    0.983     0.986     yes
+Weighted Avg.    0.949    0.051    0.950      0.949    0.949      0.899    0.983     0.981     
 
 === Confusion Matrix ===
 
     a       b      <-- classified as
- 1956.73   48.35 |       a = no
-  148.26 1883.51 |       b = yes
+ 1960.28   44.79 |       a = no
+  161.73 1870.04 |       b = yes
 
 
 
@@ -78,3 +78,29 @@ Weighted Avg.    0.948    0.052    0.949      0.948    0.948      0.897    0.983
     a       b      <-- classified as
  1955.31   49.77 |       a = no
   161.73 1870.04 |       b = yes
+
+Neural network-2/3 gramas, sin duplicados, clase balanceada
+
+=== Summary ===
+
+Correctly Classified Instances        3385.3378          83.8609 %
+Incorrectly Classified Instances       651.5098          16.1391 %
+Kappa statistic                          0.6778
+Mean absolute error                      0.2073
+Root mean squared error                  0.3526
+Relative absolute error                 41.4572 %
+Root relative squared error             70.5235 %
+Total Number of Instances             4036.8476
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.969    0.290    0.767      0.969    0.856      0.702    0.899     0.857     no
+                 0.710    0.031    0.959      0.710    0.816      0.702    0.899     0.924     yes
+Weighted Avg.    0.839    0.160    0.864      0.839    0.836      0.702    0.899     0.891     
+
+=== Confusion Matrix ===
+
+    a       b      <-- classified as
+ 1943.22   61.86 |       a = no
+  589.65 1442.12 |       b = yes  
