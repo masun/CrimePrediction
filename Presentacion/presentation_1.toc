@@ -1,0 +1,27 @@
+\beamer@endinputifotherversion {3.33pt}
+\beamer@sectionintoc {1}{Introducci\'{o}n}{4}{0}{1}
+\beamer@sectionintoc {2}{Descripci\'{o}n del Problema}{5}{0}{2}
+\beamer@sectionintoc {3}{Objetivos}{6}{0}{3}
+\beamer@subsectionintoc {3}{1}{Objetivo General}{6}{0}{3}
+\beamer@subsectionintoc {3}{2}{Objetivos Especificos}{7}{0}{3}
+\beamer@sectionintoc {4}{Metodologia}{8}{0}{4}
+\beamer@subsectionintoc {4}{1}{Obtencion de datos}{8}{0}{4}
+\beamer@subsectionintoc {4}{2}{Preprocesamiento}{9}{0}{4}
+\beamer@subsubsectionintoc {4}{2}{1}{Stopwords}{10}{0}{4}
+\beamer@subsubsectionintoc {4}{2}{2}{N-Grams para determinar conceptos relevantes}{11}{0}{4}
+\beamer@subsubsectionintoc {4}{2}{3}{Etiquetacion de tweets}{12}{0}{4}
+\beamer@subsubsectionintoc {4}{2}{4}{TF-IDF}{13}{0}{4}
+\beamer@subsectionintoc {4}{3}{Clasificacion de los tweets}{14}{0}{4}
+\beamer@subsubsectionintoc {4}{3}{1}{KNN}{14}{0}{4}
+\beamer@subsubsectionintoc {4}{3}{2}{Arbol de decision(j48)}{15}{0}{4}
+\beamer@subsubsectionintoc {4}{3}{3}{Convolution NN(Deep Learning)}{16}{0}{4}
+\beamer@subsectionintoc {4}{4}{Evaluacion}{17}{0}{4}
+\beamer@subsubsectionintoc {4}{4}{1}{Matriz de confusion}{17}{0}{4}
+\beamer@subsubsectionintoc {4}{4}{2}{Sensibilidad(Recall)}{18}{0}{4}
+\beamer@subsubsectionintoc {4}{4}{3}{Sepecificidad}{19}{0}{4}
+\beamer@subsubsectionintoc {4}{4}{4}{F-Score}{20}{0}{4}
+\beamer@sectionintoc {5}{Resultados}{21}{0}{5}
+\beamer@subsectionintoc {5}{1}{Resultados del preprocesamiento}{21}{0}{5}
+\beamer@subsectionintoc {5}{2}{Resultados de la clasificacion}{22}{0}{5}
+\beamer@sectionintoc {6}{Conclusiones}{23}{0}{6}
+\beamer@sectionintoc {7}{Trabajos Futuros}{24}{0}{7}
