@@ -265,7 +265,7 @@ En el algoritmo C4.5 se genera un árbol utilizando la entropía de la informaci
 %------------------------------------------------
 \begin{frame}
 \frametitle{Convolution NN(Deep Learning)}
-Este algoritmo funciona similar a una red neuronal donde alimenta datos a traves de las capas y tiene como objetivo reducir el error del resultado calculado en la red a traves de cada iteracion, a diferencia de sus contrapartes las redes neuronales convolucionales tienen un arreglo distinto de las neuronas, donde las capas de neuronas se llaman campos receptivos donde distintas capas poseen trabajos diferentes, siendo una capa convolucional que se encarga de extraer las caracteristicas, otra que se ocupa de la reduccion de muestreo que sirve para generalizar caracteristicas de manera tal que haya una tolerancia a ruido en los datos y finalmente una capa de clasificacion que se encarga de poner la muestra en su etiqueta correcta luego de la depuracion de la informacion. Aunque este algoritmo tiene aplicaciones mas que todo graficas, se ha demostrado que tiene buenos resultados para el procesamiento de lenguaje natural, para el analisis de juego (Go), descubrimiento de drogas entre otras aplicaciones que se alejan del campo de imagenes.
+Este algoritmo funciona similar a una red neuronal donde alimenta datos a través de las capas y tiene como objetivo reducir el error del resultado calculado en la red a través de cada iteración, a diferencia de sus contrapartes las redes neuronales convolucionales tienen un arreglo distinto de las neuronas, donde las capas de neuronas se llaman campos receptivos donde distintas capas poseen trabajos diferentes, siendo una capa convolucional que se encarga de extraer las caracteristicas, otra que se ocupa de la reducción de muestreo que sirve para generalizar características de manera tal que haya una tolerancia a ruido en los datos y finalmente una capa de clasificación que se encarga de poner la muestra en su etiqueta correcta luego de la depuración de la información. Aunque este algoritmo tiene aplicaciones más que todo gráficas, se ha demostrado que tiene buenos resultados para el procesamiento de lenguaje natural, para el análisis de juego (Go), descubrimiento de drogas entre otras aplicaciones que se alejan del campo de imagenes.
 \end{frame}
 %------------------------------------------------
 \subsection{Evaluacion}
@@ -273,27 +273,50 @@ Este algoritmo funciona similar a una red neuronal donde alimenta datos a traves
 %------------------------------------------------
 \begin{frame}
 \frametitle{Matriz de confusion}
-KNN (IBK con Unigramas,Bigramas y Trigramas)
-=== Confusion Matrix ===
+\item KNN (IBK con Unigramas,Bigramas y Trigramas)
 
-    a       b      <-- classified as
- 1906.25   98.83 |       a = no
-  988.93 1042.84 |       b = yes
+\begin{table}
+\begin{center}
+\begin{tabular}{ | p{2 cm} | p{2 cm} | }
+\toprule
+\textbf{No} & \textbf{Yes}\\
+\midrule
+1906.25 & 98.83\\ \hline
+988.93 & 1042.84\\ \hline
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table}
 
-C4.5 (J48 con Unigramas, Bigramas y Trigramas)
-=== Confusion Matrix ===
+\item C4.5 (J48 con Unigramas, Bigramas y Trigramas)
 
-    a       b      <-- classified as
- 1959.57   45.51 |       a = no
-  133.09 1898.68 |       b = yes
+\begin{table}
+\begin{center}
+\begin{tabular}{ | p{2 cm} | p{2 cm} | }
+\toprule
+\textbf{No} & \textbf{Yes}\\
+\midrule
+1959.57 & 45.51\\ \hline
+133.09 & 1898.68\\ \hline
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table}
 
-CNN (con Unigramas, Bigramas y Trigramas)
-=== Confusion Matrix ===
+\item CNN (con Unigramas, Bigramas y Trigramas)
 
-    a       b      <-- classified as
- 1960.28   44.79 |       a = no
-  161.73 1870.04 |       b = yes
-
+\begin{table}
+\begin{center}
+\begin{tabular}{ | p{2 cm} | p{2 cm} | }
+\toprule
+\textbf{No} & \textbf{Yes}\\
+\midrule
+1960.28 & 44.79\\ \hline
+161.73 & 1870.04\\ \hline
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table}
 
 \end{frame}
 %------------------------------------------------
@@ -301,27 +324,27 @@ CNN (con Unigramas, Bigramas y Trigramas)
 %------------------------------------------------
 \begin{frame}
 \frametitle{Sensibilidad}
-KNN (IBK con Unigramas, Bigramas y Trigramas): 0.731
-C4.5 (J48 con Unigramas, Bigramas y Trigramas): 0.956
-CNN (con Unigramas, Bigramas y Trigramas): 0.949 
+\item KNN (IBK con Unigramas, Bigramas y Trigramas): 0.731
+\item C4.5 (J48 con Unigramas, Bigramas y Trigramas): 0.956
+\item CNN (con Unigramas, Bigramas y Trigramas): 0.949 
 \end{frame}
 %------------------------------------------------
 \subsubsection{Especificidad}
 %------------------------------------------------
 \begin{frame}
 \frametitle{Especificidad}
-KNN (IBK con Unigramas, Bigramas y Trigramas): 0.787
-C4.5 (J48 con Unigramas, Bigramas y Trigramas): 0.957
-CNN (con Unigramas, Bigramas y Trigramas): 0.950
+\item KNN (IBK con Unigramas, Bigramas y Trigramas): 0.787
+\item C4.5 (J48 con Unigramas, Bigramas y Trigramas): 0.957
+\item CNN (con Unigramas, Bigramas y Trigramas): 0.950
 \end{frame}
 %------------------------------------------------
 \subsubsection{F-Score}
 %------------------------------------------------
 \begin{frame}
 \frametitle{F-Score}
-KNN (IBK con Unigramas,Bigramas y Trigramas): 0.717
-C4.5 (J48 con Unigramas, Bigramas y Trigramas): 0.956
-CNN (con Unigramas, Bigramas y Trigramas):0.949
+\item KNN (IBK con Unigramas,Bigramas y Trigramas): 0.717
+\item C4.5 (J48 con Unigramas, Bigramas y Trigramas): 0.956
+\item CNN (con Unigramas, Bigramas y Trigramas):0.949
 \end{frame}
 %------------------------------------------------
 
@@ -353,6 +376,9 @@ CNN (con Unigramas, Bigramas y Trigramas):0.949
 %------------------------------------------------
 \begin{frame}
 \frametitle{Conclusiones}
+Concluimos que los resultados obtenidos son lo suficientemente buenos para ser utilizados en una aplicación de uso masivo, siendo estos consistentes desde el punto de vista de aprendizaje de máquina, y que estamos preparados para los siguientes pasos los cuales se discutirán en el siguiente punto de este documento, pero de forma general se pueden listar como el desarrollo de la aplicación, una definición de los usuarios, el trabajo de enlazar el modelo de inteligencia artificial en la aplicación, y la graficación de la data. 
+Es relevante recalcar que el proceso de aprendizaje de máquina aún no se ha terminado, pues la subclasificación de los crímenes por tipo, tipo de armas utilizadas, lugar del evento al igual como el momento del evento son objetivos futuros que se desean ampliar y trabajar para ser reflejados en una experiencia para el usuario más rica y enriquecedora. 
+También es bueno mencionar que nos sentimos satisfechos de lograr observar los frutos de esta subdisciplina de la ciencia de la computación, ya que trabajar con ideas, algoritmos, herramientas y personas en el campo nos hace apreciar de las capacidades del área, ayudándonos a comprender cómo podemos apoyar a la sociedad a tomar decisiones más inteligentes, estar mas protegidos, y utilizar la información de forma provechosa. 
 \end{frame}
 %------------------------------------------------
 
