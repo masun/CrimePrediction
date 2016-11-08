@@ -1,0 +1,45 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.lazy.IBk -K 1 -W 0 -A "weka.core.neighboursearch.LinearNNSearch -A \"weka.core.EuclideanDistance -R first-last\""
+Relation:     tweets-weka.filters.unsupervised.instance.RemoveDuplicates-weka.filters.unsupervised.attribute.StringToWordVector-R1-W1000-prune-rate-1.0-T-I-N0-stemmerweka.core.stemmers.NullStemmer-stopwords-handlerweka.core.stopwords.Null-M1-tokenizerweka.core.tokenizers.NGramTokenizer -max 3 -min 2 -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.supervised.instance.ClassBalancer
+Instances:    20129
+Attributes:   1756
+              [list of attributes omitted]
+Test mode:    split 80.0% train, remainder test
+
+=== Classifier model (full training set) ===
+
+IB1 instance-based classifier
+using 1 nearest neighbour(s) for classification
+
+
+Time taken to build model: 0.02 seconds
+
+=== Evaluation on test split ===
+
+Time taken to test model on training split: 13.38 seconds
+
+=== Summary ===
+
+Correctly Classified Instances        2904.8631          71.9587 %
+Incorrectly Classified Instances      1131.9845          28.0413 %
+Kappa statistic                          0.4406
+Mean absolute error                      0.3151
+Root mean squared error                  0.4728
+Relative absolute error                 63.0223 %
+Root relative squared error             94.5633 %
+Total Number of Instances             4036.8476
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.918    0.476    0.656      0.918    0.765      0.480    0.762     0.697     no
+                 0.524    0.082    0.866      0.524    0.653      0.480    0.762     0.802     yes
+Weighted Avg.    0.720    0.278    0.761      0.720    0.708      0.480    0.762     0.750     
+
+=== Confusion Matrix ===
+
+    a       b      <-- classified as
+ 1840.12  164.96 |       a = no
+  967.03 1064.74 |       b = yes
+

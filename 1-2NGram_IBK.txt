@@ -1,0 +1,44 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.lazy.IBk -K 1 -W 0 -A "weka.core.neighboursearch.LinearNNSearch -A \"weka.core.EuclideanDistance -R first-last\""
+Relation:     tweets-weka.filters.unsupervised.instance.RemoveDuplicates-weka.filters.unsupervised.attribute.StringToWordVector-R1-W1000-prune-rate-1.0-T-I-N0-stemmerweka.core.stemmers.SnowballStemmer -S spanish-stopwords-handlerweka.core.stopwords.WordsFromFile -stopwords C:\Users\Gabriel\Desktop\MiniProyectoInteligencia\stopwords-M1-tokenizerweka.core.tokenizers.NGramTokenizer -max 2 -min 1 -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.supervised.instance.ClassBalancer
+Instances:    20129
+Attributes:   1468
+              [list of attributes omitted]
+Test mode:    split 80.0% train, remainder test
+
+=== Classifier model (full training set) ===
+
+IB1 instance-based classifier
+using 1 nearest neighbour(s) for classification
+
+
+Time taken to build model: 0.02 seconds
+
+=== Evaluation on test split ===
+
+Time taken to test model on training split: 29.7 seconds
+
+=== Summary ===
+
+Correctly Classified Instances        2925.4237          72.468  %
+Incorrectly Classified Instances      1111.4239          27.532  %
+Kappa statistic                          0.451 
+Mean absolute error                      0.2792
+Root mean squared error                  0.491 
+Relative absolute error                 55.8334 %
+Root relative squared error             98.2043 %
+Total Number of Instances             4036.8476
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.953    0.501    0.653      0.953    0.775      0.507    0.788     0.717     no
+                 0.499    0.047    0.915      0.499    0.646      0.507    0.788     0.822     yes
+Weighted Avg.    0.725    0.272    0.785      0.725    0.710      0.507    0.788     0.770     
+
+=== Confusion Matrix ===
+
+    a       b      <-- classified as
+ 1911.22   93.85 |       a = no
+ 1017.57 1014.2  |       b = yes
