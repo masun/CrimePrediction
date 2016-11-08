@@ -25,7 +25,7 @@
 
 %\usetheme{default}
 % \usetheme{AnnArbor}
-\usetheme{Antibes}
+% \usetheme{Antibes}
 %\usetheme{Bergen}
 %\usetheme{Berkeley}
 %\usetheme{Berlin}
@@ -43,13 +43,13 @@
 %\usetheme{Madrid}
 %\usetheme{Malmoe}
 %\usetheme{Marburg}
-%% \usetheme{Montpellier}
+% \usetheme{Montpellier}
 %\usetheme{PaloAlto}
 %\usetheme{Pittsburgh}
-%%\usetheme{Rochester}
+% \usetheme{Rochester}
 % \usetheme{Singapore}
 % \usetheme{Szeged}
-% \usetheme{Warsaw}
+\usetheme{Warsaw}
 
 % As well as themes, the Beamer class has a number of color themes
 % for any slide theme. Uncomment each of these in turn to see how it
@@ -78,6 +78,8 @@
 
 \usepackage{graphicx} % Allows including images
 \usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\newcommand\Fontvi{\fontsize{10}{7.2}\selectfont}
 
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
@@ -114,17 +116,19 @@ Universidad Sim\'{o}n Bol\'{i}var \\ % Your institution for the title page
 %------------------------------------------------
 \begin{frame}
 \frametitle{Introducci\'{o}n}
-Este mini-proyecto pretende desarrollar una aplicaci\'{o}n m\'{o}vil para visualizar en forma gráfica los eventos ocurridos referentes a crimen en la ciudad de Caracas. En este documento explicaremos el trabajo realizado para extraer los datos que vienen como texto en forma de tweets utilizando el API de Twitter, el preprocesamiento realizado para la obtención de términos relevantes y representantes del tema de crimen como también los pasos, algoritmos y tareas necesarias para entrenar los algoritmos para la correcta clasificación de los tweets de manera tal que se puedan identificar tweets nuevos y en tiempo real acerca del tema. Finalmente se hablarán de los resultados encontrados, los cuales consideramos como suficientemente exitosos para seguir en los siguientes pasos a trabajar, que serán la subclasificación de los tweets en tipos de crimen ( asesinato, robo, pelea, etc.), la visualización gráfica de los mismos en un mapa digital de Caracas y finalmente la conglomeración de todas las partes envueltas en una aplicación móvil que pueda ser utilizada de forma masiva para así brindar beneficios a la comunidad e instituciones que puedan utilizar estos datos para un fin. 
+\Fontvi
+Este mini-proyecto pretende desarrollar una aplicaci\'{o}n m\'{o}vil para visualizar en forma gr\'{a}fica los eventos ocurridos referentes a crimen en la ciudad de Caracas. Se explicar\'{a} el trabajo realizado para extraer los datos que vienen como texto en forma de tweets utilizando el API de Twitter, el preprocesamiento realizado para la obtenci\'{o}n de t\'{e}rminos relevantes y representantes del tema de crimen como tambi\'{e}n los pasos, algoritmos y tareas necesarias para entrenar los algoritmos para la correcta clasificaci\'{o}n de los tweets de manera tal que se puedan identificar tweets nuevos y en tiempo real acerca del tema. Finalmente se hablar\'{a}n de los resultados encontrados, los cuales consideramos como suficientemente exitosos para seguir en los siguientes pasos a trabajar.
 \end{frame}
 %------------------------------------------------
 \section{Descripci\'{o}n del Problema} 
 \begin{frame}
 \frametitle{Descripci\'{o}n del Problema}
 El problema a trabajar posee varios subtareas que deben ser resueltas para el cumplimiento de los objetivos: 
-\item La obtención de datos.
+\begin{itemize}
+\item La obtenci\'{o}n de datos.
 \item El preprocesamiento del texto.
-\item La clasificación de los tweets.
-
+\item La clasificaci\'{o}n de los tweets.
+\end{itemize}
 \end{frame}
 %------------------------------------------------
 \section{Objetivos} 
@@ -133,23 +137,23 @@ El problema a trabajar posee varios subtareas que deben ser resueltas para el cu
 \begin{frame}
 \frametitle{Objetivo General}
 \begin{itemize}
-\item Diseñar e implementar una aplicación móvil para visualizar los eventos ocurridos en la ciudad de Caracas
+\item Dise\~{n}ar e implementar una aplicaci\'{o}n m\'{o}vil para visualizar los eventos ocurridos en la ciudad de Caracas
 \end{itemize}
 \end{frame}
 
-\subsection{Objetivos Especificos}
+\subsection{Objetivos Espec\'{i}ficos}
 \begin{frame}
-\frametitle{Objetivos Especificos}
+\frametitle{Objetivos Espec\'{i}ficos}
 \begin{itemize}
 \item Aplicar los algoritmos de procesamiento de lenguaje natural para la limpieza del texto fuente
 (Twitters).
-\item Desarrollar la base de datos para llevar el control de los usuarios de la aplicación.
+\item Desarrollar la base de datos para llevar el control de los usuarios de la aplicaci\'{o}n.
 \item Analizar y procesar el texto para detectar patrones relacionados a eventos.
-\item Usar algoritmos avanzados de visualización de datos.
-\item Modelar el usuario para brindarle una lista de eventos cercanas a su interés.
+\item Usar algoritmos avanzados de visualizaci\'{o}n de datos.
+\item Modelar el usuario para brindarle una lista de eventos cercanas a su inter\'{e}s.
 \item Hallar visualmente las relaciones entre diferentes eventos.
 \item Implementar la interfaz del sistema.
-\item Presentar el sistema a través de una interfaz web amigable para el usuario.
+\item Presentar el sistema a trav\'{e}s de una interfaz web amigable para el usuario.
 \end{itemize}
 
 \end{frame}
@@ -157,15 +161,16 @@ El problema a trabajar posee varios subtareas que deben ser resueltas para el cu
 
 
 
-\section{Metodologia}
+\section{Metodolog\'{i}a}
 
 \subsection{Obtencion de datos}
 %------------------------------------------------
 \begin{frame}
 \frametitle{Obtencion de datos}
-La obtención de los datos fue utilizando el API de twitter y el lenguaje de programación Python, a través del API de twitter se pudo especificar las cuentas de las cuales se iban a obtener los tweets y la cantidad de tweets que se iban a utilizar, alrededor de 33000 tweets. Estas cuentas fueron las que más relacionadas estuviesen con los crímenes en el área de Caracas.
-
+La obtenci\'{o}n de los datos fue utilizando el API de twitter y el lenguaje de programaci\'{o}n Python, a trav\'{e}s del API de twitter se pudo especificar las cuentas de las cuales se iban a obtener los tweets y la cantidad de tweets que se iban a utilizar, alrededor de 33000 tweets. Estas cuentas fueron las que m\'{a}s relacionadas estuviesen con los cr\'{i}menes en el \'{a}rea de Caracas.
+\begin{itemize}
 \item La libreria tweepy
+\end{itemize}
 \end{frame}
 %------------------------------------------------
 
@@ -174,13 +179,16 @@ La obtención de los datos fue utilizando el API de twitter y el lenguaje de pro
 %------------------------------------------------
 \begin{frame}
 \frametitle{Preprocesamiento}
-El preprocesamiento consistió en eliminar los signos de puntuación de los tweets, menciones, signos de exclamación, signos de interrogación, corchetes, parentesis y links. También se transformó todo el texto a minúscula. Este filtro fue realizado debido a que estos elementos no presentaban información relevante para los crímenes. Luego, se utilizó la herramienta WEKA, la cual posee una variedad de opciones para el procesamiento del lenguaje natural, así como algoritmos de clasificación. En este caso, los pasos, de forma general, a seguir fueron los siguientes:
+El preprocesamiento consisti\'{o} en eliminar los signos de puntuaci\'{o}n de los tweets, menciones, signos de exclamaci\'{o}n, signos de interrogaci\'{o}n, corchetes, parentesis y links. Tambi\'{e}n se transform\'{o} todo el texto a minúscula. Este filtro fue realizado debido a que estos elementos no presentaban informaci\'{o}n relevante para los cr\'{i}menes. Luego, se utiliz\'{o} la herramienta WEKA, la cual posee una variedad de opciones para el procesamiento del lenguaje natural, as\'{i} como algoritmos de clasificaci\'{o}n. En este caso, los pasos, de forma general, a seguir fueron los siguientes:
+\end{frame}
 
-
-Se cargó el archivo de los tweets, con el formato de WEKA. Este archivo en un principio se le colocó de manera aleatoria las etiquetas de yes/no.
-Una vez cargado el conjunto de datos, se procedió a obtener los unigramas, bigramas y trigramas. Utilizando las opciones de IDF y TF, junto con stopwords y stemming para el caso de los unigramas.
-Luego de obtener los resultados, se procedió a filtrar manualmente los mismos. Dejando sólo los unigramas, bigramas y trigramas que más relacionados estuviesen con crímenes.
-Una vez obtenida esta información, así como unas palabras extras ofrecidas por la profesora, se procedió a etiquetar correctamente el conjunto de datos.
+\begin{frame}
+\frametitle{Preprocesamiento}
+\Fontvi
+Se carg\'{o} el archivo de los tweets, con el formato de WEKA. Este archivo en un principio se le coloc\'{o} de manera aleatoria las etiquetas de yes/no.
+Una vez cargado el conjunto de datos, se procedi\'{o} a obtener los unigramas, bigramas y trigramas. Utilizando las opciones de IDF y TF, junto con stopwords y stemming para el caso de los unigramas.
+Luego de obtener los resultados, se procedi\'{o} a filtrar manualmente los mismos. Dejando s\'{o}lo los unigramas, bigramas y trigramas que m\'{a}s relacionados estuviesen con cr\'{i}menes.
+Una vez obtenida esta informaci\'{o}n, as\'{i} como unas palabras extras ofrecidas por la profesora, se procedi\'{o} a etiquetar correctamente el conjunto de datos.
 \end{frame}
 %------------------------------------------------
 
@@ -189,7 +197,7 @@ Una vez obtenida esta información, así como unas palabras extras ofrecidas por
 %------------------------------------------------
 \begin{frame}
 \frametitle{Stopwords}
-Los stopwords son las palabras más comunes dentro del lenguaje, generalmente los artículos, estas palabras fueron eliminadas para la obtención de los unigramas ya que no aportan información. En este caso, se utilizó la opción de “WordsFromFile” de WEKA. En esta opción se le debe proporcionar un archivo con la lista de palabras que serán utilizadas para la eliminación de stopwords, en nuestro caso se utilizó una lista de stopwords en español. 
+Los stopwords son las palabras m\'{a}s comunes dentro del lenguaje, generalmente los art\'{i}culos, estas palabras fueron eliminadas para la obtenci\'{o}n de los unigramas ya que no aportan informaci\'{o}n. En este caso, se utiliz\'{o} la opci\'{o}n de “WordsFromFile” de WEKA. En esta opci\'{o}n se le debe proporcionar un archivo con la lista de palabras que ser\'{a}n utilizadas para la eliminaci\'{o}n de stopwords, en nuestro caso se utiliz\'{o} una lista de stopwords en espa\~{n}ol. 
 
 \end{frame}
 %------------------------------------------------
@@ -199,24 +207,27 @@ Los stopwords son las palabras más comunes dentro del lenguaje, generalmente lo
 %------------------------------------------------
 \begin{frame}
 \frametitle{Determinacion para conceptos relevantes (NGram)}
-Para determinar los términos relevantes para el tema de crimen, utilizando la herramienta Weka se uso un proceso el cual dado un texto ya libre de datos irrelevantes como signos de puntuación, enlaces, numeros, llaves, corchetes, signos matemáticos, referencias a otras cuentas de Twitter, saltos de línea, y otros caracteres que no brindan información en lo que respecta a un  tema ( una coma por ejemplo no me dice si un tema es de crimen, o no, al igual que los otros elementos mencionados),  se divide y se crean gramas de tamaños específicos. Un grama viene siendo un conjunto de tamaño específico de palabras consecutivas en el texto, para que quede de forma clara se ejemplifica a continuación : 
+Para determinar los t\'{e}rminos relevantes para el tema de crimen, utilizando la herramienta Weka se uso un proceso el cual dado un texto ya libre de datos irrelevantes como signos de puntuaci\'{o}n, enlaces, numeros, llaves, corchetes, signos matem\'{a}ticos, referencias a otras cuentas de Twitter, saltos de l\'{i}nea, y otros caracteres que no brindan informaci\'{o}n en lo que respecta a un  tema ( una coma por ejemplo no me dice si un tema es de crimen, o no, al igual que los otros elementos mencionados),  se divide y se crean gramas de tama\~{n}os espec\'{i}ficos. Un grama viene siendo un conjunto de tama\~{n}o espec\'{i}fico de palabras consecutivas en el texto, para que quede de forma clara se ejemplifica a continuaci\'{o}n : 
+\end{frame}
 
-
+\begin{frame}
 Dado el texto : “ El asesinato en las Mercedes” 
 
 
-Dependiendo del tamaño buscado se pueden generar distintas listas de gramas:
+Dependiendo del tama\~{n}o buscado se pueden generar distintas listas de gramas:
  
-Unigramas: (“El”, ”asesinato”, ”en”, “las”, “Mercedes”) 
-Bigramas : (“El asesinato”, “asesinato en”, “en las” ,”las Mercedes”) 
-Trigramas : (“El asesinato en”, “asesinato en las”, “en las Mercedes”) 
+Unigramas: (“El”, ”asesinato”, ”en”, “las”, “Mercedes”) \\
+Bigramas : (“El asesinato”, “asesinato en”, “en las” ,”las Mercedes”) \\  
+Trigramas : (“El asesinato en”, “asesinato en las”, “en las Mercedes”) \\
+\end{frame}
 
-
-Se puede observar como el n-grama es la aglomeración de palabras que pueden representar conceptos donde además pueden ser de cualquier tamaño y aunque se ejemplifico hasta el trigrama, es posible sacar tetragramas, pentagramas y en general cualquier n-grama, pero para nuestro proyecto se decidió sacar desde unigramas hasta trigramas, para así dar prioridad a los conceptos que sean representados con pocas palabras ya que al tratarse de una búsqueda en tweets la brevedad es fundamental al momento de expresarse. En el caso de los unigramas sacados se eliminaron los stopwords como ya fue mencionado, pero para el caso de bigramas y trigramas este no fue el caso, ya que es sumamente común conectar palabras relevantes a través de artículos y palabras auxiliares.
- 
-Al obtener la lista de los distintos gramas cada lista fue filtrada de conceptos irrelevantes, para explicar cuáles de estos términos fueron los eliminados hay que poner en contexto que las cuentas de Twitter utilizadas no hablan únicamente de crímenes, ya que también pueden hablar de noticias económicas, tecnológicas, culturales, y sobre todo un tema recurrente es de la política, términos como Mesa de la Unidad, Capriles, biotecnología, felicidad, entre otros, que terminan siendo irrelevantes para nuestros objetivos, asi que cada lista fue filtrada por separado para finalmente tener un solo conjunto de términos resultantes que provienen de la unión de estos distintos conjuntos de gramas.
- 
-Ahora es necesario explicar como un grama dado llega a estar en la listas de gramas creadas, para esto hay que entender que no todas las palabras de la lengua española se utilizan con la misma frecuencia (como en la mayoría de los idiomas), ya que palabras como “la”, “el”, “del” entre otras son usadas de manera sumamente frecuente, a diferencia de palabras clave como “crimen”, “asesinato”, “arma”, y por esto no es suficiente que la lista de de gramas sea basado únicamente en la frecuencia de aparición de las palabras en el texto, para resolver este problema se realiza una normalización de la frecuencia que toma en cuenta que tan frecuente es esa palabra en el texto para así darle más importancia a palabras relevantes en vez de articulos y conectores, dicha transformación se llama TF-IDF (term frequency–inverse document frequency) , en la cual se toma en cuenta la frecuencia de aparición de las palabras pero dándole un poco mas de peso a las palabras menos frecuente, como puede ser la palabra “robo” en vez de palabras como “en”, o “del”, esto nos permite crear listas que posean gramas que representen conceptos relevantes en esas cuentas de Twitter, para luego filtrar los temas no deseados y asi obtener como producto final los terminos relevantes a nuestro tema especifico.
+\begin{frame}
+\frametitle{Determinacion para conceptos relevantes (NGram)}
+Al obtener la lista de los distintos gramas cada lista fue filtrada de conceptos irrelevantes, para explicar cu\'{a}les de estos t\'{e}rminos fueron los eliminados hay que poner en contexto que las cuentas de Twitter utilizadas no hablan únicamente de cr\'{i}menes, ya que tambi\'{e}n pueden hablar de noticias econ\'{o}micas, tecnol\'{o}gicas, culturales, y sobre todo un tema recurrente es de la pol\'{i}tica, t\'{e}rminos como Mesa de la Unidad, Capriles, biotecnolog\'{i}a, felicidad, entre otros, que terminan siendo irrelevantes para nuestros objetivos, asi que cada lista fue filtrada por separado para finalmente tener un solo conjunto de t\'{e}rminos resultantes que provienen de la uni\'{o}n de estos distintos conjuntos de gramas.
+\end{frame}
+\begin{frame} 
+\frametitle{Determinacion para conceptos relevantes (NGram)}
+Ahora es necesario explicar como un grama dado llega a estar en la listas de gramas creadas, para esto hay que entender que no todas las palabras de la lengua espa\~{n}ola se utilizan con la misma frecuencia (como en la mayor\'{i}a de los idiomas), ya que palabras como “la”, “el”, “del” entre otras son usadas de manera sumamente frecuente, a diferencia de palabras clave como “crimen”, “asesinato”, “arma”, y por esto no es suficiente que la lista de de gramas sea basado únicamente en la frecuencia de aparici\'{o}n de las palabras en el texto, para resolver este problema se realiza una normalizaci\'{o}n de la frecuencia llamada TF-IDF.
 \end{frame}
 %------------------------------------------------
 
@@ -225,7 +236,8 @@ Ahora es necesario explicar como un grama dado llega a estar en la listas de gra
 %------------------------------------------------
 \begin{frame}
 \frametitle{Etiquetacion de tweets}
-Para etiquetar los tweets, se utilizaron los términos más relevantes, obtenidos en el punto anterior. El proceso utilizado fue el siguiente: De los unigramas, bigramas y trigramas obtenidos, se generaron tres listas, en una de ellas se guardaron los términos que mejor explicaran qué sucedió, en otra se guardaron los términos que tuviesen que ver con el tiempo y en la última los términos que mejor explicaran el cómo sucedió, Estas listas fueron denominadas como “What”, “When” y “How”, respectivamente. Luego para etiquetar los tweets se utilizaron la lista de “What” y “How”, la lista “When” no fue utilizada porque por sí sola no aportaba información referente a crímenes; sí los tweets poseían términos de alguna de estas dos listas, entonces eran considerados como tweets de crimen y eran etiquetados con un “Yes”, en caso contrario se etiquetaban con un “No”. 
+\Fontvi
+Para etiquetar los tweets, se utilizaron los t\'{e}rminos m\'{a}s relevantes, obtenidos en el punto anterior. El proceso utilizado fue el siguiente: De los unigramas, bigramas y trigramas obtenidos, se generaron tres listas, en una de ellas se guardaron los t\'{e}rminos que mejor explicaran qu\'{e} sucedi\'{o}, en otra se guardaron los t\'{e}rminos que tuviesen que ver con el tiempo y en la última los t\'{e}rminos que mejor explicaran el c\'{o}mo sucedi\'{o}, Estas listas fueron denominadas como “What”, “When” y “How”, respectivamente. Luego para etiquetar los tweets se utilizaron la lista de “What” y “How”, la lista “When” no fue utilizada porque por s\'{i} sola no aportaba informaci\'{o}n referente a cr\'{i}menes; s\'{i} los tweets pose\'{i}an t\'{e}rminos de alguna de estas dos listas, entonces eran considerados como tweets de crimen y eran etiquetados con un “Yes”, en caso contrario se etiquetaban con un “No”. 
 
 \end{frame}
 %------------------------------------------------
@@ -235,9 +247,15 @@ Para etiquetar los tweets, se utilizaron los términos más relevantes, obtenido
 %------------------------------------------------
 \begin{frame}
 \frametitle{TF-IDF}
-En la obtención de información tf–idf ( term frequency–inverse document frequency), es un valor estadístico que busca reflejar la importancia de un término en un texto dado,  esta normalización busca darle más peso a aquellas palabras que son usadas de manera poco común, y castigar a aquellas que son utilizadas de manera extensiva. Por ejemplo en la frase “la casa azul” quiere ser buscado en un conjunto de documentos y devolver el documento que sea más relevante en relación a esa frase, directamente se podría contar la cantidad de frecuencia de cada término, y devolver el documento que tenga el mayor valor para la suma de estas frecuencias, pero esto devolverá documentos que utilicen más intensivamente el término “la” en vez de los terminos más relevantes “casa” y “azul”, esto sucede ya que la mayoría de los terminos más repetidos llegan a ser articulos y conectores en vez de palabras de conceptos más complicados, asi que esta transformación ayuda obtener los documentos más relevantes para la frase castigando el término “la” y premiando a “casa” y “azul”. Matemáticamente, TF-IDF es el producto de la frecuencia del término y la frecuencia inversa del término, la frecuencia inversa del término viene siendo el logaritmo de la cantidad de documentos entre la cantidad de documentos que poseen el término.
+En la obtenci\'{o}n de informaci\'{o}n tf–idf ( term frequency–inverse document frequency), es un valor estad\'{i}stico que busca reflejar la importancia de un t\'{e}rmino en un texto dado,  esta normalizaci\'{o}n busca darle m\'{a}s peso a aquellas palabras que son usadas de manera poco común, y castigar a aquellas que son utilizadas de manera extensiva. \\
+\end{frame}
+\begin{frame}
+Por ejemplo en la frase “la casa azul” quiere ser buscado en un conjunto de documentos y devolver el documento que sea m\'{a}s relevante en relaci\'{o}n a esa frase, directamente se podr\'{i}a contar la cantidad de frecuencia de cada t\'{e}rmino, y devolver el documento que tenga el mayor valor para la suma de estas frecuencias, pero esto devolver\'{a} documentos que utilicen m\'{a}s intensivamente el t\'{e}rmino "la" en vez de los terminos m\'{a}s relevantes "casa" y "azul", esto sucede ya que la mayor\'{i}a de los terminos m\'{a}s repetidos llegan a ser articulos y conectores en vez de palabras de conceptos m\'{a}s complicados. \\
+\end{frame}
+\begin{frame}
+Matem\'{a}ticamente, TF-IDF es el producto de la frecuencia del t\'{e}rmino y la frecuencia inversa del t\'{e}rmino, la frecuencia inversa del t\'{e}rmino viene siendo el logaritmo de la cantidad de documentos entre la cantidad de documentos que poseen el t\'{e}rmino.
  
-Esta técnica fue la utilizada para obtener los terminos relevantes a través de los miles de tweets que se poseen como datos en el preprocesamiento del texto. 
+Esta t\'{e}cnica fue la utilizada para obtener los terminos relevantes a trav\'{e}s de los miles de tweets que se poseen como datos en el preprocesamiento del texto. 
  
 Para apreciar mas en detalle el hecho de una mayor frecuencia de ciertos terminos en los lenguajes naturales  revisar la Ley de Zipf.
 \end{frame}
@@ -246,34 +264,44 @@ Para apreciar mas en detalle el hecho de una mayor frecuencia de ciertos termino
 
 
 
-\subsection{Clasificacion de los tweets}
+\subsection{Clasificaci\'{o}n de los tweets}
 \subsubsection{KNN}
 %------------------------------------------------
 \begin{frame}
 \frametitle{KNN}
-De las siglas en inglés k-nearest neighbors, este algoritmo en la fase de entrenamiento consiste en colocar todos los vectores del conjunto de entrenamiento en el espacio con su respectiva clase y para clasificar un nuevo vector el proceso es el siguiente: se obtienen los k vecinos más cercanos a ese vector, y el vector es etiquetado con la clase que más aparezca en sus k vecinos. El proceso para determinar los k vecinos varía en la implementación, aunque comúnmente se utiliza la distancia euclidiana para el caso de variables continuas y la distancia de Hamming para las variables discretas. El algoritmo utilizado fue el de IBK de la herramienta de WEKA, el mejor resultado obtenido fue de 73% de ejemplos clasificados correctamente.
+De las siglas en ingl\'{e}s k-nearest neighbors, este algoritmo en la fase de entrenamiento consiste en colocar todos los vectores del conjunto de entrenamiento en el espacio con su respectiva clase y para clasificar un nuevo vector el proceso es el siguiente: se obtienen los k vecinos m\'{a}s cercanos a ese vector, y el vector es etiquetado con la clase que m\'{a}s aparezca en sus k vecinos. El proceso para determinar los k vecinos var\'{i}a en la implementaci\'{o}n, aunque comúnmente se utiliza la distancia euclidiana para el caso de variables continuas y la distancia de Hamming para las variables discretas. El algoritmo utilizado fue el de IBK de la herramienta de WEKA, el mejor resultado obtenido fue de 73% de ejemplos clasificados correctamente.
 \end{frame}
 %------------------------------------------------
 \subsubsection{Arbol de decision(j48)}
 %------------------------------------------------
 \begin{frame}
 \frametitle{Arbol de decision(j48)}
-En el algoritmo C4.5 se genera un árbol utilizando la entropía de la información, en cada nodo del árbol de decisión el algoritmo utiliza el atributo que mejor divide el conjunto de entrenamiento en subconjuntos de clases diferentes. Finalmente para clasificar, sólo se debe seguir el árbol de decisión generado.
+En el algoritmo C4.5 se genera un \'{a}rbol utilizando la entrop\'{i}a de la informaci\'{o}n, en cada nodo del \'{a}rbol de decisi\'{o}n el algoritmo utiliza el atributo que mejor divide el conjunto de entrenamiento en subconjuntos de clases diferentes. Finalmente para clasificar, s\'{o}lo se debe seguir el \'{a}rbol de decisi\'{o}n generado.
 \end{frame}
 %------------------------------------------------
 \subsubsection{Convolution NN(Deep Learning)}
 %------------------------------------------------
 \begin{frame}
 \frametitle{Convolution NN(Deep Learning)}
-Este algoritmo funciona similar a una red neuronal donde alimenta datos a través de las capas y tiene como objetivo reducir el error del resultado calculado en la red a través de cada iteración, a diferencia de sus contrapartes las redes neuronales convolucionales tienen un arreglo distinto de las neuronas, donde las capas de neuronas se llaman campos receptivos donde distintas capas poseen trabajos diferentes, siendo una capa convolucional que se encarga de extraer las caracteristicas, otra que se ocupa de la reducción de muestreo que sirve para generalizar características de manera tal que haya una tolerancia a ruido en los datos y finalmente una capa de clasificación que se encarga de poner la muestra en su etiqueta correcta luego de la depuración de la información. Aunque este algoritmo tiene aplicaciones más que todo gráficas, se ha demostrado que tiene buenos resultados para el procesamiento de lenguaje natural, para el análisis de juego (Go), descubrimiento de drogas entre otras aplicaciones que se alejan del campo de imagenes.
+Este algoritmo funciona similar a una red neuronal donde alimenta datos a trav\'{e}s de las capas y tiene como objetivo reducir el error del resultado calculado en la red a trav\'{e}s de cada iteraci\'{o}n, a diferencia de sus contrapartes las redes neuronales convolucionales tienen un arreglo distinto de las neuronas, donde las capas de neuronas se llaman campos receptivos las cuales poseen trabajos diferentes:
+\end{frame}
+\begin{frame}
+\begin{itemize}
+ \item Neuronas convolucionales : que se encarga de extraer las caracteristicas. 
+ \item Neuronas de reduccion de muestreo : se ocupa de la reducci\'{o}n de muestreo que sirve para generalizar caracter\'{i}sticas de manera tal que haya una tolerancia a ruido en los datos 
+ \item Neuronas de clasificacion : se encarga de poner la muestra en su etiqueta correcta luego de la depuraci\'{o}n de la informaci\'{o}n.
+\end{itemize}
+  Aunque este algoritmo tiene aplicaciones m\'{a}s que todo gr\'{a}ficas, se ha demostrado que tiene buenos resultados para el procesamiento de lenguaje natural, para el an\'{a}lisis de juego (Go), descubrimiento de drogas entre otras aplicaciones que se alejan del campo de imagenes.
 \end{frame}
 %------------------------------------------------
-\subsection{Evaluacion}
-\subsubsection{Matriz de confusion}
+\subsection{Evaluaci\'{o}n}
+\subsubsection{Matriz de confusi\'{o}n}
 %------------------------------------------------
 \begin{frame}
-\frametitle{Matriz de confusion}
-\item KNN (IBK con Unigramas,Bigramas y Trigramas)
+\frametitle{Matriz de confusi\'{o}n}
+\Fontvi
+\begin{itemize}
+\item KNN (IBK con Unigramas,Bigramas y Trigramas) : 
 
 \begin{table}
 \begin{center}
@@ -288,7 +316,7 @@ Este algoritmo funciona similar a una red neuronal donde alimenta datos a travé
 \end{center}
 \end{table}
 
-\item C4.5 (J48 con Unigramas, Bigramas y Trigramas)
+\item C4.5 (J48 con Unigramas, Bigramas y Trigramas) : 
 
 \begin{table}
 \begin{center}
@@ -303,7 +331,7 @@ Este algoritmo funciona similar a una red neuronal donde alimenta datos a travé
 \end{center}
 \end{table}
 
-\item CNN (con Unigramas, Bigramas y Trigramas)
+\item CNN (con Unigramas, Bigramas y Trigramas) : 
 
 \begin{table}
 \begin{center}
@@ -318,33 +346,40 @@ Este algoritmo funciona similar a una red neuronal donde alimenta datos a travé
 \end{center}
 \end{table}
 
+\end{itemize}
 \end{frame}
 %------------------------------------------------
 \subsubsection{Sensibilidad(Recall)}
 %------------------------------------------------
 \begin{frame}
 \frametitle{Sensibilidad}
+\begin{itemize}
 \item KNN (IBK con Unigramas, Bigramas y Trigramas): 0.731
 \item C4.5 (J48 con Unigramas, Bigramas y Trigramas): 0.956
 \item CNN (con Unigramas, Bigramas y Trigramas): 0.949 
+\end{itemize}
 \end{frame}
 %------------------------------------------------
 \subsubsection{Especificidad}
 %------------------------------------------------
 \begin{frame}
 \frametitle{Especificidad}
+\begin{itemize}
 \item KNN (IBK con Unigramas, Bigramas y Trigramas): 0.787
 \item C4.5 (J48 con Unigramas, Bigramas y Trigramas): 0.957
 \item CNN (con Unigramas, Bigramas y Trigramas): 0.950
+\end{itemize}
 \end{frame}
 %------------------------------------------------
 \subsubsection{F-Score}
 %------------------------------------------------
 \begin{frame}
 \frametitle{F-Score}
+\begin{itemize}
 \item KNN (IBK con Unigramas,Bigramas y Trigramas): 0.717
 \item C4.5 (J48 con Unigramas, Bigramas y Trigramas): 0.956
 \item CNN (con Unigramas, Bigramas y Trigramas):0.949
+\end{itemize}
 \end{frame}
 %------------------------------------------------
 
@@ -357,14 +392,50 @@ Este algoritmo funciona similar a una red neuronal donde alimenta datos a travé
 %------------------------------------------------
 \begin{frame}
 \frametitle{Resultados del preprocesamiento}
+\Fontvi
+Consideramos los resultados del preprocesamiento como exitosos, pues nos permitieron obtener una lista de t\'{e}rminos y conceptos relevantes para la clasificaci\'{o}n de los tweets que no ten\'{i}amos y que adem\'{a}s pasar\'{a}n por un proceso de subclasificaci\'{o}n en pasos futuros, aunque debemos admitir que parte del proceso sigue siendo manual, y esto se debe a la gran cantidad de ruido en los datos, ya que las mismas fuentes de informaci\'{o}n de cr\'{i}menes en Twitter no hablan únicamente de nuestro tema particular, si no son mezcladas con otros temas de periodismo y noticias, lo cual es común. 
+Tambi\'{e}n pensamos que estas listas pueden y deben ser ampliadas, pues aún se escapan t\'{e}rminos que no se utilizan de forma tan común en los tweets que pueden indicar un crimen y sus subclasificaciones, pero indiferentemente consideramos que lo que tenemos es un buen comienzo.
 \end{frame}
+
+\begin{frame}
+\Fontvi
+\begin{table}
+\begin{center}
+\begin{tabular}{ | p{2 cm} | p{2 cm} | p{2 cm} | p{2 cm} | }
+\toprule
+\textbf{What} & \textbf{When} & \textbf{ Where } & \textbf{ How } \\
+\midrule
+ emergencia   & ayer & barlovento & arma\\ \hline 
+ enfrentamiento & domingo & bolivar & armados\\ \hline   
+ fallecidos & enero & caracas & armas\\ \hline 
+ falleci\'{o} & jueves & catia & cabeza\\ \hline   
+ golpe  & julio & chacao & dispararon\\ \hline  
+ homicidio & lunes & lara & disparos\\ \hline   
+ homicidios & martes & maracaibo & golpe\\ \hline
+ investigaci\'{o}n & manana & margarita & granada\\ \hline
+ lucha & noche & morgue & lucha\\ \hline
+ matan & septiembre & petare & policial\\ \hline
+ mataron & sabado & sucre & tiro\\ \hline
+
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+
+
+\end{frame}
+
 %------------------------------------------------
 
 
-\subsection{Resultados de la clasificacion}
+\subsection{Resultados de la clasificaci\'{o}n}
 %------------------------------------------------
 \begin{frame}
-\frametitle{Resultados de la clasificacion}
+\frametitle{Resultados de la clasificaci\'{o}n}
+\Fontvi
+De la lista de resultados anteriores 95.57\% de las instancias clasificadas correctamente fue el mejor resultado, proveniente de C4.5(J48 con unigramas,bigramas y trigramas) siendo adem\'{a}s este algoritmo ganador de manera casi consistente en la mayor\'{i}a de las distintas evaluaciones, se puede observar comparando cada matriz de confusi\'{o}n como C4.5 posee el menor número de evaluaciones incorrectas siendo cercana la red neuronal, pero esta última pierde siendo menos exacta al clasificar las instancias negativas produciendo menos clasificaciones positivas que se traduce en perdida de informacion para la futura aplicacion, adem\'{a}s observando la sensibilidad(95.6\%), especificidad(95.7\%) y F-Score(95.6\%) son mejores al ser comparadas con los \'{i}ndices de los otros algoritmos. 
+Este resultado siendo superior al 95\% se considera lo suficientemente consistente para ser utilizado para la aplicaci\'{o}n, ya que nos permite obtener nuevos tweets en tiempo real, evaluarlos y aumentar la cantidad de datos que puede mostrar la aplicaci\'{o}n. 
+
 \end{frame}
 %------------------------------------------------
 
@@ -376,9 +447,10 @@ Este algoritmo funciona similar a una red neuronal donde alimenta datos a travé
 %------------------------------------------------
 \begin{frame}
 \frametitle{Conclusiones}
-Concluimos que los resultados obtenidos son lo suficientemente buenos para ser utilizados en una aplicación de uso masivo, siendo estos consistentes desde el punto de vista de aprendizaje de máquina, y que estamos preparados para los siguientes pasos los cuales se discutirán en el siguiente punto de este documento, pero de forma general se pueden listar como el desarrollo de la aplicación, una definición de los usuarios, el trabajo de enlazar el modelo de inteligencia artificial en la aplicación, y la graficación de la data. 
-Es relevante recalcar que el proceso de aprendizaje de máquina aún no se ha terminado, pues la subclasificación de los crímenes por tipo, tipo de armas utilizadas, lugar del evento al igual como el momento del evento son objetivos futuros que se desean ampliar y trabajar para ser reflejados en una experiencia para el usuario más rica y enriquecedora. 
-También es bueno mencionar que nos sentimos satisfechos de lograr observar los frutos de esta subdisciplina de la ciencia de la computación, ya que trabajar con ideas, algoritmos, herramientas y personas en el campo nos hace apreciar de las capacidades del área, ayudándonos a comprender cómo podemos apoyar a la sociedad a tomar decisiones más inteligentes, estar mas protegidos, y utilizar la información de forma provechosa. 
+\Fontvi
+Concluimos que los resultados obtenidos son lo suficientemente buenos para ser utilizados en una aplicaci\'{o}n de uso masivo, siendo estos consistentes desde el punto de vista de aprendizaje de m\'{a}quina, y que estamos preparados para los siguientes pasos los cuales se discutir\'{a}n en el siguiente punto.
+Es relevante recalcar que el proceso de aprendizaje de m\'{a}quina aún no se ha terminado, pues la subclasificaci\'{o}n de los cr\'{i}menes por tipo, tipo de armas utilizadas, lugar del evento al igual como el momento del evento son objetivos futuros que se desean ampliar y trabajar para ser reflejados en una experiencia para el usuario m\'{a}s rica y enriquecedora. 
+Tambi\'{e}n es bueno mencionar que nos sentimos satisfechos de lograr observar los frutos de esta subdisciplina de la ciencia de la computaci\'{o}n, ya que trabajar con ideas, algoritmos, herramientas y personas en el campo nos hace apreciar de las capacidades del \'{a}rea, ayud\'{a}ndonos a comprender c\'{o}mo podemos apoyar a la sociedad a tomar decisiones m\'{a}s inteligentes, estar mas protegidos, y utilizar la informaci\'{o}n de forma provechosa. 
 \end{frame}
 %------------------------------------------------
 
@@ -390,13 +462,28 @@ También es bueno mencionar que nos sentimos satisfechos de lograr observar los 
 %------------------------------------------------
 \begin{frame}
 \frametitle{Trabajos Futuros}
+El trabajo a futuro se puede dividir en cuatro pasos relevantes : 
+\begin{itemize}
+\item Subclasificaci\'{o}n de los tweets:
+  En esta tarea, tenemos como objetivo la subclasificaci\'{o}n de los tweets de crimen en distintas categor\'{i}as, sean estas robos, asesinatos, peleas, enfrentamientos, u otros, pero a su vez tenemos como objetivo sub clasificarlos aún mas con tipos de armas utilizadas, el lugar del evento, y si es posible el momento en que sucedieron. 
+\item Modelado de los usuarios:
+  Aqu\'{i} buscamos describir los datos del usuario, sus tareas y posibles acciones dentro de la aplicaci\'{o}n, dependiendo del tiempo que se disponga esta tarea ser\'{a} mas o menos desarrollada.
+\end{itemize}
+\end{frame}
+\begin{frame}
+\begin{itemize}
+\item Diseno de la aplicaci\'{o}n:
+  Se plantea realizar una aplicaci\'{o}n android ya que es la que posee mayor rango de disponibilidad, adem\'{a}s de que los controles para publicar la aplicaci\'{o}n son mucho m\'{a}s estrictos para los productos Apple, de ser necesario en un futuro se podr\'{i}a cubrir esa idea tambi\'{e}n pero posiblemente escapa al alcance de este proyecto.
+\item Visualizaci\'{o}n de los datos: 
+  Es uno de nuestros objetivos principales que esta informacion textual se vea reflejada gr\'{a}ficamente de una forma agradable e intuitiva, adem\'{a}s de did\'{a}ctica para los usuarios, facilitandoles la toma de decisiones, se plantea utilizar mapas, pero no se descartan la visualizaci\'{o}n con otro tipos de gr\'{a}ficos que logre resaltar patrones o relaciones entre los lugares, fechas, tipos de eventos y otros datos mostrados. 
+\end{itemize}
 \end{frame}
 %------------------------------------------------
 % \begin{table}
 % \begin{center}
 % \begin{tabular}{ | p{2 cm} | p{2 cm} | p{2 cm} | p{2 cm} | p{2 cm} | }
 % \toprule
-% \textbf{M\'{e}todo} & \textbf{Predicci\'{o}n} & \textbf{ P / R } & \textbf{Precisi\'{o}n(P)} & \textbf{Recall(R)}\\
+% \textbf{M\\'{e}todo} & \textbf{Predicci\\'{o}n} & \textbf{ P / R } & \textbf{Precisi\\'{o}n(P)} & \textbf{Recall(R)}\\
 % \midrule
 % RF & 0.678 & 0.676 & 0.675 & 0.678\\ \hline
 % SVM & 0.722 & 0.730 & 0.783 & 0.722\\ \hline

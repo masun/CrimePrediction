@@ -21,10 +21,10 @@
 \headcommand {\beamer@subsectionentry {0}{3}{1}{6}{Objetivo General}}\headcommand {\beamer@subsectionpages {6}{5}}
 \headcommand {\slideentry {3}{1}{1}{6/6}{Objetivo General}{0}}
 \headcommand {\beamer@framepages {6}{6}}
-\headcommand {\beamer@subsectionentry {0}{3}{2}{7}{Objetivos Especificos}}\headcommand {\beamer@subsectionpages {6}{6}}
-\headcommand {\slideentry {3}{2}{1}{7/7}{Objetivos Especificos}{0}}
+\headcommand {\beamer@subsectionentry {0}{3}{2}{7}{Objetivos Espec\'{i}ficos}}\headcommand {\beamer@subsectionpages {6}{6}}
+\headcommand {\slideentry {3}{2}{1}{7/7}{Objetivos Espec\'{i}ficos}{0}}
 \headcommand {\beamer@framepages {7}{7}}
-\headcommand {\sectionentry {4}{Metodologia}{8}{Metodologia}{0}}
+\headcommand {\sectionentry {4}{Metodolog\'{i}a}{8}{Metodolog\'{i}a}{0}}
 \headcommand {\beamer@sectionpages {6}{7}}
 \headcommand {\beamer@subsectionpages {7}{7}}
 \headcommand {\beamer@subsectionentry {0}{4}{1}{8}{Obtencion de datos}}\headcommand {\beamer@subsectionpages {8}{7}}
@@ -33,64 +33,82 @@
 \headcommand {\beamer@subsectionentry {0}{4}{2}{9}{Preprocesamiento}}\headcommand {\beamer@subsectionpages {8}{8}}
 \headcommand {\slideentry {4}{2}{1}{9/9}{Preprocesamiento}{0}}
 \headcommand {\beamer@framepages {9}{9}}
-\headcommand {\beamer@subsubsectionentry {0}{4}{2}{1}{10}{Stopwords}}
 \headcommand {\slideentry {4}{2}{2}{10/10}{Preprocesamiento}{0}}
 \headcommand {\beamer@framepages {10}{10}}
-\headcommand {\beamer@subsubsectionentry {0}{4}{2}{2}{11}{N-Grams para determinar conceptos relevantes}}
+\headcommand {\beamer@subsubsectionentry {0}{4}{2}{1}{11}{Stopwords}}
 \headcommand {\slideentry {4}{2}{3}{11/11}{Preprocesamiento}{0}}
 \headcommand {\beamer@framepages {11}{11}}
-\headcommand {\beamer@subsubsectionentry {0}{4}{2}{3}{12}{Etiquetacion de tweets}}
+\headcommand {\beamer@subsubsectionentry {0}{4}{2}{2}{12}{N-Grams para determinar conceptos relevantes}}
 \headcommand {\slideentry {4}{2}{4}{12/12}{Preprocesamiento}{0}}
 \headcommand {\beamer@framepages {12}{12}}
-\headcommand {\beamer@subsubsectionentry {0}{4}{2}{4}{13}{TF-IDF}}
 \headcommand {\slideentry {4}{2}{5}{13/13}{Preprocesamiento}{0}}
 \headcommand {\beamer@framepages {13}{13}}
-\headcommand {\beamer@subsectionentry {0}{4}{3}{14}{Clasificacion de los tweets}}\headcommand {\beamer@subsectionpages {9}{13}}
-\headcommand {\beamer@subsubsectionentry {0}{4}{3}{1}{14}{KNN}}
-\headcommand {\slideentry {4}{3}{1}{14/14}{Clasificacion de los tweets}{0}}
+\headcommand {\slideentry {4}{2}{6}{14/14}{Preprocesamiento}{0}}
 \headcommand {\beamer@framepages {14}{14}}
-\headcommand {\beamer@subsubsectionentry {0}{4}{3}{2}{15}{Arbol de decision(j48)}}
-\headcommand {\slideentry {4}{3}{2}{15/15}{Clasificacion de los tweets}{0}}
+\headcommand {\slideentry {4}{2}{7}{15/15}{Preprocesamiento}{0}}
 \headcommand {\beamer@framepages {15}{15}}
-\headcommand {\beamer@subsubsectionentry {0}{4}{3}{3}{16}{Convolution NN(Deep Learning)}}
-\headcommand {\slideentry {4}{3}{3}{16/16}{Clasificacion de los tweets}{0}}
+\headcommand {\beamer@subsubsectionentry {0}{4}{2}{3}{16}{Etiquetacion de tweets}}
+\headcommand {\slideentry {4}{2}{8}{16/16}{Preprocesamiento}{0}}
 \headcommand {\beamer@framepages {16}{16}}
-\headcommand {\beamer@subsectionentry {0}{4}{4}{17}{Evaluacion}}\headcommand {\beamer@subsectionpages {14}{16}}
-\headcommand {\beamer@subsubsectionentry {0}{4}{4}{1}{17}{Matriz de confusion}}
-\headcommand {\slideentry {4}{4}{1}{17/17}{Evaluacion}{0}}
+\headcommand {\beamer@subsubsectionentry {0}{4}{2}{4}{17}{TF-IDF}}
+\headcommand {\slideentry {4}{2}{9}{17/17}{Preprocesamiento}{0}}
 \headcommand {\beamer@framepages {17}{17}}
-\headcommand {\beamer@subsubsectionentry {0}{4}{4}{2}{18}{Sensibilidad(Recall)}}
-\headcommand {\slideentry {4}{4}{2}{18/18}{Evaluacion}{0}}
+\headcommand {\slideentry {4}{2}{10}{18/18}{Preprocesamiento}{0}}
 \headcommand {\beamer@framepages {18}{18}}
-\headcommand {\beamer@subsubsectionentry {0}{4}{4}{3}{19}{Sepecificidad}}
-\headcommand {\slideentry {4}{4}{3}{19/19}{Evaluacion}{0}}
+\headcommand {\slideentry {4}{2}{11}{19/19}{Preprocesamiento}{0}}
 \headcommand {\beamer@framepages {19}{19}}
-\headcommand {\beamer@subsubsectionentry {0}{4}{4}{4}{20}{F-Score}}
-\headcommand {\slideentry {4}{4}{4}{20/20}{Evaluacion}{0}}
+\headcommand {\beamer@subsectionentry {0}{4}{3}{20}{Clasificaci\'{o}n de los tweets}}\headcommand {\beamer@subsectionpages {9}{19}}
+\headcommand {\beamer@subsubsectionentry {0}{4}{3}{1}{20}{KNN}}
+\headcommand {\slideentry {4}{3}{1}{20/20}{Clasificaci\'{o}n de los tweets}{0}}
 \headcommand {\beamer@framepages {20}{20}}
-\headcommand {\sectionentry {5}{Resultados}{21}{Resultados}{0}}
-\headcommand {\beamer@sectionpages {8}{20}}
-\headcommand {\beamer@subsectionpages {17}{20}}
-\headcommand {\beamer@subsectionentry {0}{5}{1}{21}{Resultados del preprocesamiento}}\headcommand {\beamer@subsectionpages {21}{20}}
-\headcommand {\slideentry {5}{1}{1}{21/21}{Resultados del preprocesamiento}{0}}
+\headcommand {\beamer@subsubsectionentry {0}{4}{3}{2}{21}{Arbol de decision(j48)}}
+\headcommand {\slideentry {4}{3}{2}{21/21}{Clasificaci\'{o}n de los tweets}{0}}
 \headcommand {\beamer@framepages {21}{21}}
-\headcommand {\beamer@subsectionentry {0}{5}{2}{22}{Resultados de la clasificacion}}\headcommand {\beamer@subsectionpages {21}{21}}
-\headcommand {\slideentry {5}{2}{1}{22/22}{Resultados de la clasificacion}{0}}
+\headcommand {\beamer@subsubsectionentry {0}{4}{3}{3}{22}{Convolution NN(Deep Learning)}}
+\headcommand {\slideentry {4}{3}{3}{22/22}{Clasificaci\'{o}n de los tweets}{0}}
 \headcommand {\beamer@framepages {22}{22}}
-\headcommand {\sectionentry {6}{Conclusiones}{23}{Conclusiones}{0}}
-\headcommand {\beamer@sectionpages {21}{22}}
-\headcommand {\beamer@subsectionpages {22}{22}}
-\headcommand {\slideentry {6}{0}{2}{23/23}{}{0}}
+\headcommand {\slideentry {4}{3}{4}{23/23}{Clasificaci\'{o}n de los tweets}{0}}
 \headcommand {\beamer@framepages {23}{23}}
-\headcommand {\sectionentry {7}{Trabajos Futuros}{24}{Trabajos Futuros}{0}}
-\headcommand {\beamer@sectionpages {23}{23}}
-\headcommand {\beamer@subsectionpages {23}{23}}
-\headcommand {\slideentry {7}{0}{3}{24/24}{}{0}}
+\headcommand {\beamer@subsectionentry {0}{4}{4}{24}{Evaluaci\'{o}n}}\headcommand {\beamer@subsectionpages {20}{23}}
+\headcommand {\beamer@subsubsectionentry {0}{4}{4}{1}{24}{Matriz de confusi\'{o}n}}
+\headcommand {\slideentry {4}{4}{1}{24/24}{Evaluaci\'{o}n}{0}}
 \headcommand {\beamer@framepages {24}{24}}
-\headcommand {\slideentry {7}{0}{4}{25/25}{}{0}}
+\headcommand {\beamer@subsubsectionentry {0}{4}{4}{2}{25}{Sensibilidad(Recall)}}
+\headcommand {\slideentry {4}{4}{2}{25/25}{Evaluaci\'{o}n}{0}}
 \headcommand {\beamer@framepages {25}{25}}
-\headcommand {\beamer@partpages {1}{25}}
-\headcommand {\beamer@subsectionpages {24}{25}}
-\headcommand {\beamer@sectionpages {24}{25}}
-\headcommand {\beamer@documentpages {25}}
-\headcommand {\def \inserttotalframenumber {25}}
+\headcommand {\beamer@subsubsectionentry {0}{4}{4}{3}{26}{Especificidad}}
+\headcommand {\slideentry {4}{4}{3}{26/26}{Evaluaci\'{o}n}{0}}
+\headcommand {\beamer@framepages {26}{26}}
+\headcommand {\beamer@subsubsectionentry {0}{4}{4}{4}{27}{F-Score}}
+\headcommand {\slideentry {4}{4}{4}{27/27}{Evaluaci\'{o}n}{0}}
+\headcommand {\beamer@framepages {27}{27}}
+\headcommand {\sectionentry {5}{Resultados}{28}{Resultados}{0}}
+\headcommand {\beamer@sectionpages {8}{27}}
+\headcommand {\beamer@subsectionpages {24}{27}}
+\headcommand {\beamer@subsectionentry {0}{5}{1}{28}{Resultados del preprocesamiento}}\headcommand {\beamer@subsectionpages {28}{27}}
+\headcommand {\slideentry {5}{1}{1}{28/28}{Resultados del preprocesamiento}{0}}
+\headcommand {\beamer@framepages {28}{28}}
+\headcommand {\slideentry {5}{1}{2}{29/29}{Resultados del preprocesamiento}{0}}
+\headcommand {\beamer@framepages {29}{29}}
+\headcommand {\beamer@subsectionentry {0}{5}{2}{30}{Resultados de la clasificaci\'{o}n}}\headcommand {\beamer@subsectionpages {28}{29}}
+\headcommand {\slideentry {5}{2}{1}{30/30}{Resultados de la clasificaci\'{o}n}{0}}
+\headcommand {\beamer@framepages {30}{30}}
+\headcommand {\sectionentry {6}{Conclusiones}{31}{Conclusiones}{0}}
+\headcommand {\beamer@sectionpages {28}{30}}
+\headcommand {\beamer@subsectionpages {30}{30}}
+\headcommand {\slideentry {6}{0}{2}{31/31}{}{0}}
+\headcommand {\beamer@framepages {31}{31}}
+\headcommand {\sectionentry {7}{Trabajos Futuros}{32}{Trabajos Futuros}{0}}
+\headcommand {\beamer@sectionpages {31}{31}}
+\headcommand {\beamer@subsectionpages {31}{31}}
+\headcommand {\slideentry {7}{0}{3}{32/32}{}{0}}
+\headcommand {\beamer@framepages {32}{32}}
+\headcommand {\slideentry {7}{0}{4}{33/33}{}{0}}
+\headcommand {\beamer@framepages {33}{33}}
+\headcommand {\slideentry {7}{0}{5}{34/34}{}{0}}
+\headcommand {\beamer@framepages {34}{34}}
+\headcommand {\beamer@partpages {1}{34}}
+\headcommand {\beamer@subsectionpages {32}{34}}
+\headcommand {\beamer@sectionpages {32}{34}}
+\headcommand {\beamer@documentpages {34}}
+\headcommand {\def \inserttotalframenumber {34}}
