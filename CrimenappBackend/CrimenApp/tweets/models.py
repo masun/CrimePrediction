@@ -23,12 +23,12 @@ class Tweets(models.Model):
     def toJSON(self):
         return jsonpickle.encode(self)      
 
-    @classmethod
-    def __unicode__(self):
-        # s = "cuando:" + self.cuando + "\n"
-        # s += "donde:" + self.donde + "\n"
-        # s += "como:" + self.como + "\n"
-        # s += "que:" + self.que + "\n"
-        # s += "texto:" + self.texto + "\n"
-        # s += "fecha:" + self.fecha + "\n" 
-        return u'%s' % self.texto
+    # @classmethod
+    # def __unicode__(self):
+    #     # s = "cuando:" + self.cuando + "\n"
+    #     # s += "donde:" + self.donde + "\n"
+    #     # s += "como:" + self.como + "\n"
+    #     # s += "que:" + self.que + "\n"
+    #     # s += "texto:" + self.texto + "\n"
+    #     # s += "fecha:" + self.fecha + "\n" 
+    #     return u'%s' % self.texto

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'usuarios.apps.UsuariosConfig',
     'tweets.apps.TweetsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -99,6 +100,11 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+#Auth custom backend
+# AUTHENTICATION_BACKENDS=['usuarios.backends.customBackend']
+
 
 
 # Internationalization
