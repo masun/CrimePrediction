@@ -1,0 +1,28 @@
+<ion-content padding style="background: #C5BC8E;">
+
+  <div id="logo" style="margin-top: 85px;">
+    <img style="border-radius: 50%;" src="img/logo.jpg">
+    <form [ngFormModel]="authForm" (ngSubmit)="onSubmit(authForm.value)">
+      <div *ngIf="username.hasError('required') && username.touched" class="error-box">* username is required!</div>
+      <div *ngIf="username.hasError('minlength') && username.touched" class="error-box">* Minimum username length is 8!</div>
+      <ion-item class="username" [class.error]="!username.valid && username.touched" no-lines>
+        <ion-input placeholder="username" type="text" value="" [ngFormControl]="username"></ion-input>
+      </ion-item>
+      <ion-item class="password" [class.error]="!password.valid && password.touched" no-lines>
+        <ion-input placeholder="Password" type="password" value="" [ngFormControl]="password" round></ion-input>
+      </ion-item>
+      <div *ngIf="password.hasError('required') && password.touched" class="error-box">* Password is required</div>    
+      <div *ngIf="password.hasError('minlength') && password.touched" class="error-box">* Minimum password length is 8!</div>
+      <div text-center padding>
+        <button type="submit" round [disabled]="!authForm.valid" style="background: #36393B;">Login</button>
+      </div>
+    </form>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar dark>
+    <ion-title> FOOTER </ion-title>
+  </ion-toolbar>
+</ion-footer>
