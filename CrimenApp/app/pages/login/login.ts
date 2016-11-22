@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController, MenuController, Loading, Alert} from 'ionic-angular';
 import {FORM_DIRECTIVES, FormBuilder,  ControlGroup, Validators, AbstractControl} from '@angular/common';
+import {Home} from '../home/home';
 
 @Component({
   templateUrl: 'build/pages/login/login.html',
@@ -35,10 +36,16 @@ export class Login {
     });
   }
 
-  onSubmit(value: string): void { 
+  onSubmit(value) { 
+    console.log("VALUE: ", value);
     if (this.authForm.valid) {
-      this.nav.present(this.loading);
-
+      // this.nav.present(this.loading);
+      console.log("USERANEM: ", value['username']);
+      console.log("PASSWORD: ", value['password']);
+      this.nav.setRoot(Home);
+      // if (value['username'] == "123" && value['password'] == "123") {
+      //   this.nav.push(Home);
+      // }
     }
   }
 }
