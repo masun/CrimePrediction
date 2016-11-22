@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {Platform, ionicBootstrap, MenuController, Nav} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {MovieListPage} from './pages/movie-list/movie-list';
@@ -13,9 +13,10 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = Login;
-  pages: Array<{title: string, component: any}>;
+  pages: any[];
 
   constructor(private platform: Platform, public menu: MenuController) {
+    this.menu = menu;
     this.pages = [
       { title: 'Home', component: Home }
     ];
