@@ -1,12 +1,13 @@
 import {Component, ViewChild} from '@angular/core';
 import {Platform, ionicBootstrap, MenuController, Nav} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
-import {MovieListPage} from './pages/movie-list/movie-list';
 import {Login} from './pages/login/login';
 import {Home} from './pages/home/home';
+import {APIService} from './providers/API.service';
 
 @Component({
   templateUrl: 'build/app.html',
+  providers: [APIService]
 })
 
 export class MyApp {
@@ -15,7 +16,7 @@ export class MyApp {
   rootPage: any = Login;
   pages: any[];
 
-  constructor(private platform: Platform, public menu: MenuController) {
+  constructor(private platform: Platform, public menu: MenuController, public API: APIService) {
     this.menu = menu;
     this.pages = [
       { title: 'Home', component: Home }

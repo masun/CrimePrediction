@@ -2,7 +2,7 @@
 
 from django.conf import settings
 from django.contrib.auth.hashers import check_password
-from django.contrib.auth.models import User
+from usuarios.models import MyUser as User
 from django.contrib.auth.backends import ModelBackend
 
 

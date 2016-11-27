@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NavController, MenuController, Loading, Alert} from 'ionic-angular';
 import {FORM_DIRECTIVES, FormBuilder,  ControlGroup, Validators, AbstractControl} from '@angular/common';
 import {Home} from '../home/home';
+import {APIService} from '../../providers/API.service';
 
 @Component({
   templateUrl: 'build/pages/login/login.html',
@@ -18,7 +19,7 @@ export class Login {
   loading: Loading;
   alert: Alert;
 
-  constructor(private menuCtrl: MenuController, private navController: NavController, private fb: FormBuilder) {
+  constructor(private menuCtrl: MenuController, private navController: NavController, private fb: FormBuilder, private API: APIService) {
     this.authForm = fb.group({  
       'username': ['', Validators.compose([Validators.required])],
       'password': ['', Validators.compose([Validators.required])]
@@ -40,8 +41,21 @@ export class Login {
     console.log("VALUE: ", value);
     if (this.authForm.valid) {
       // this.nav.present(this.loading);
-      console.log("USERANEM: ", value['username']);
+      console.log("USERNAME: ", value['username']);
       console.log("PASSWORD: ", value['password']);
+      this.API.createUser(value['username'].toLowerCase(),value['password'])
+      .subscribe(
+        res => {
+          // this.loading.dismiss().then(()=>{
+          // });
+          console.log(res);
+        },
+        error => {
+          console.error(error);
+        }
+      );
+
+
       this.nav.setRoot(Home);
       // if (value['username'] == "123" && value['password'] == "123") {
       //   this.nav.push(Home);
