@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'tweets.apps.TweetsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
+    'corsheaders', #CrossSite requests
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -50,7 +51,19 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #crossSite Middleware
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+
+
+CORS_ORIGIN_WHITELIST = (
+    # 'google.com',
+    # 'hostname.example.com',
+    # 'localhost:8000',
+    # '127.0.0.1:9000'
+)
+
 
 ROOT_URLCONF = 'CrimenApp.urls'
 
