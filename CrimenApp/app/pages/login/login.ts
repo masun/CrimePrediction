@@ -43,17 +43,17 @@ export class Login {
       // this.nav.present(this.loading);
       console.log("USERNAME: ", value['username']);
       console.log("PASSWORD: ", value['password']);
-      this.API.createUser(value['username'].toLowerCase(),value['password'])
-      .subscribe(
-        res => {
-          // this.loading.dismiss().then(()=>{
-          // });
-          console.log(res);
-        },
-        error => {
-          console.error(error);
-        }
-      );
+      // this.API.createUser(value['username'].toLowerCase(),value['password'])
+      // .subscribe(
+      //   res => {
+      //     // this.loading.dismiss().then(()=>{
+      //     // });
+      //     console.log(res);
+      //   },
+      //   error => {
+      //     console.error(error);
+      //   }
+      // );
 
 
       this.nav.setRoot(Home);
