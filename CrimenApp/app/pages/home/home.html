@@ -1,17 +1,13 @@
 <ion-header>
-  <ion-navbar>
-
+  <ion-navbar dark>
     <button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
-
     <ion-title>CrimenApp</ion-title>
-
   </ion-navbar>
 </ion-header>
 
 <ion-content padding style="background: #C5BC8E;">
-
   <ion-item>
     <ion-label>Graphs</ion-label>
     <ion-select [(ngModel)]="selectedGraph" (ngModelChange)="drawChart()">
@@ -21,7 +17,6 @@
   <br><br>
   <div id="chart">
   </div>
-
 </ion-content>
 
 <ion-footer>

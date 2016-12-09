@@ -1,7 +1,11 @@
 circle {
-  fill: #ccc !important;
+  fill: #45484B !important;
+}
+
+text {
+  fill: #EEE6AB !important;
 }
 
 .node:hover circle {
-  fill: orange;
+  fill: orange !important;
 }
