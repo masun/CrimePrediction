@@ -1,4 +1,5 @@
 import codecs
+import sys
 
 def read_weka_res(name):
   try:

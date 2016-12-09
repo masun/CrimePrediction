@@ -280,7 +280,7 @@ if __name__ == "__main__":
 
       #Write csv   
       # if random.random() > 0.5:
-      spamwriter.writerow([tweet['text'],tweet['crime']])
+      # spamwriter.writerow([tweet['text'],tweet['crime']])
       # else:
         # spamwriter.writerow([tweet['text'],tweet['crime']])
       # print tweet['text']
