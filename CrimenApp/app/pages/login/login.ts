@@ -32,7 +32,7 @@ export class Login {
     this.loading = Loading.create({content:'Loading'});
     this.alert = Alert.create({
       title: 'Authentication error!',
-      subTitle: 'Wrong username or password',
+      subTitle: 'Wrong email or password',
       buttons: ['OK']
     });
   }
@@ -40,23 +40,23 @@ export class Login {
   onSubmit(value) { 
     console.log("VALUE: ", value);
     if (this.authForm.valid) {
-      // this.nav.present(this.loading);
+      this.nav.present(this.loading);
       console.log("USERNAME: ", value['username']);
       console.log("PASSWORD: ", value['password']);
-      this.API.createUser(value['username'].toLowerCase(),value['password'])
+      this.API.loginUser(value['username'].toLowerCase(),value['password'])
       .subscribe(
         res => {
-          // this.loading.dismiss().then(()=>{
-          // });
-          console.log(res);
+          this.loading.dismiss().then(()=>{
+            console.log(res);
+            this.nav.setRoot(Home);
+          });
         },
         error => {
           console.error(error);
+          this.nav.present(this.alert);
         }
       );
 
-
-      this.nav.setRoot(Home);
       // if (value['username'] == "123" && value['password'] == "123") {
       //   this.nav.push(Home);
       // }

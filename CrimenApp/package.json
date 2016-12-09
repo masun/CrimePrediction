@@ -15,6 +15,7 @@
     "zone.js": "^0.6.12"
   },
   "devDependencies": {
+    "@types/jquery": "^2.0.34",
     "del": "2.2.0",
     "gulp": "3.9.1",
     "gulp-watch": "4.3.5",

@@ -23,7 +23,22 @@ export class APIService {
     createUser(username, password) {
         var service = '/usuarios/';
         var authCredentials = {
-            'username': username,
+            'email': username,
+            'password': password
+        };
+
+        var headers:any = new Headers();
+            headers.append('Content-Type', 'application/json');
+        return this.http.post(this.serverURL+service, JSON.stringify(authCredentials), {headers: headers})
+                        .map((res:Response) => res.json())
+                        .catch(this.handleError);
+
+    }
+
+    loginUser(username, password) {
+        var service = '/usuarios/login';
+        var authCredentials = {
+            'email': username,
             'password': password
         };
 

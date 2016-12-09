@@ -12,8 +12,14 @@
 
 <ion-content padding style="background: #C5BC8E;">
 
-  <div id="logo" style="margin-top: 85px;">
-    <img style="border-radius: 50%;" src="img/logo.jpg">
+  <ion-item>
+    <ion-label>Graphs</ion-label>
+    <ion-select [(ngModel)]="selectedGraph" (ngModelChange)="drawChart()">
+      <ion-option *ngFor="let graph of graphs" [value]=graph>{{graph}}</ion-option>
+    </ion-select>
+  </ion-item>
+  <br><br>
+  <div id="chart">
   </div>
 
 </ion-content>
