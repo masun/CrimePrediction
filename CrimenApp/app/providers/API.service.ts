@@ -50,6 +50,17 @@ export class APIService {
 
     }
 
+    getTextSize(){
+        var service = '/tweets/textSize';
+
+        var headers:any = new Headers();
+            headers.append('Content-Type', 'application/json');
+        return this.http.get(this.serverURL+service, {headers: headers})
+                        .map((res:Response) => res.json())
+                        .catch(this.handleError);
+    }
+
+
     getHeader(){
         var headers:any = new Headers();
         headers.append('Content-Type', 'application/json');

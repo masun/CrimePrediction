@@ -16,7 +16,8 @@ import codecs
 import os
 
 from datetime import datetime
-
+from tweets.models import Tweets
+import json
 
 
 # Create your views here.
@@ -149,6 +150,7 @@ def textSize(request):
   module_dir = os.path.dirname(__file__)  # get current directory
    
   file_path_keywords = os.path.join(module_dir, 'gram_lists/')
+  file_path_tweets = os.path.join(module_dir, 'raw_datasets/tweets.txt')
   tweets = read_tweets(file_path_tweets)
  
   # file_path = os.path.join(module_dir, 'raw_datasets/tweets_cleaned.arff')
@@ -180,12 +182,27 @@ def textSize(request):
   res = {"children":[]}
   word_set = []
 
+  print what
+  print when
+  print how
 
-  # for w in what:
-  #   Tweets.objects.find()
+  l = what + how
+  tweets = Tweets.objects.values_list('texto')
+  i = 0
+  for w in l:
+    freq = 0
+    res["children"].append({})
+    res["children"][i]["name"] = w
+    for tweet in tweets:
+      if w in tweet[0]: 
+        freq += 1
+    res["children"][i]["freq"] = freq
+    i += 1
 
+  print res
 
-  # for w in how:
+  if request.method == 'GET':
+    return HttpResponse(json.dumps(res))
 
 
 def read_weka_res(name):

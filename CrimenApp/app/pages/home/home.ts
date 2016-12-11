@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {NavController, MenuController, Loading, Alert, Toast} from 'ionic-angular';
 import {FORM_DIRECTIVES, FormBuilder,  ControlGroup, Validators, AbstractControl} from '@angular/common';
+import {APIService} from '../../providers/API.service';
+
 declare var d3: any;
 
 @Component({
@@ -17,10 +19,9 @@ export class Home {
   selectedGraph: string;
   messages: {};
 
-  constructor(private menuCtrl: MenuController, private navController: NavController, private fb: FormBuilder) {
+  constructor(private menuCtrl: MenuController, private navController: NavController, private fb: FormBuilder, private API: APIService) {
     this.nav = navController;
     this.menu = menuCtrl;
-    this.loading = Loading.create({content:'Loading'});
     this.graphs = ["Concept Map", "Automatic Text Sizing", "Time Series Chart", "Heat Map"];
     this.selectedGraph = "Pie Chart";
     this.messages = {
@@ -185,166 +186,74 @@ export class Home {
   }
 
   createAutomaticTextSizing() {
-    var dataset = {
-        "children": [{
-            "facilityId": "FAC0001",
-            "responseCount": 2
-        }, {
-            "facilityId": "FAC0006",
-            "responseCount": 2
-        }, {
-            "facilityId": "FAC0002",
-            "responseCount": 1
-        }, {
-            "facilityId": "FAC0003",
-            "responseCount": 2
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 100
-        }, {
-            "facilityId": "FAC0005",
-            "responseCount": 1
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 3
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 3
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 8
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 3
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 2
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 3
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 3
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 3
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 1
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 3
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 3
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 3
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 3
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 2
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 3
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 2
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 3
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 2
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 2
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 1
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 3
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 1
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 3
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 1
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 6
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 3
-        }, {
-            "facilityId": "FAC0004",
-            "responseCount": 5
-        }]
-    };
+    this.loading = Loading.create({content:'Loading'});
+    this.nav.present(this.loading);
+    this.API.getTextSize()
+      .subscribe(
+        res => {
+          this.loading.dismiss().then(()=>{
+            var dataset = res;
+            var diameter = 375;
+            var color = d3.scaleOrdinal(d3.schemeCategory20);
+            var bubble = d3.pack(dataset)
+                    .size([diameter, diameter])
+                    .padding(1.5);
+            var svg = d3.select("#chart")
+                    .append("svg")
+                    .attr("width", diameter)
+                    .attr("height", diameter + 100)
+                    .attr("class", "bubble");
 
-    var diameter = 350;
-    var color = d3.scaleOrdinal(d3.schemeCategory20);
+            var nodes = d3.hierarchy(dataset)
+                    .sum(function(d) { return d.freq; });
 
+            var node = svg.selectAll(".node")
+                    .data(bubble(nodes).descendants())
+                    .enter()
+                    .filter(function(d){
+                        return  !d.children
+                    })
+                    .append("g")
+                    .attr("class", "node")
+                    .attr("transform", function(d) {
+                        return "translate(" + d.x + "," + d.y + ")";
+                    });
 
-    var bubble = d3.pack(dataset)
-            .size([diameter, diameter])
-            .padding(1.5);
-    var svg = d3.select("#chart")
-            .append("svg")
-            .attr("width", diameter)
-            .attr("height", diameter + 100)
-            .attr("class", "bubble");
+            node.append("title")
+                    .text(function(d) {
+                        return d.data.name + ": " + d.data.freq;
+                    });
 
-    var nodes = d3.hierarchy(dataset)
-            .sum(function(d) { return d.responseCount; });
+            node.append("circle")
+                    .attr("r", function(d) {
+                        return d.r;
+                    })
+                    .style("fill", function(d) {
+                        return color(d.name);
+                    });
 
-    var node = svg.selectAll(".node")
-            .data(bubble(nodes).descendants())
-            .enter()
-            .filter(function(d){
-                return  !d.children
-            })
-            .append("g")
-            .attr("class", "node")
-            .attr("transform", function(d) {
-                return "translate(" + d.x + "," + d.y + ")";
-            });
+            node.append("text")
+                    .attr("dy", ".3em")
+                    .style("text-anchor", "middle")
+                    .text(function(d) {
+                        return d.data.name.substring(0, d.r / 3) + ": " + d.data.freq;
+                    })
+                    .each(getSize)
+                    .style("font-size", function(d) { return d.scale + "px"; });
 
-    node.append("title")
-            .text(function(d) {
-                return d.data.facilityId + ": " + d.data.responseCount;
-            });
+            function getSize(d) {
+              var bbox = this.getBBox(),
+                  scale = bbox.width*0.1;
+              d.scale = scale;
+            }
 
-    node.append("circle")
-            .attr("r", function(d) {
-                return d.r;
-            })
-            .style("fill", function(d) {
-                return color(d.facilityId);
-            });
-
-    node.append("text")
-            .attr("dy", ".3em")
-            .style("text-anchor", "middle")
-            .text(function(d) {
-                return d.data.facilityId.substring(0, d.r / 3) + ": " + d.data.responseCount;
-            })
-            .each(getSize)
-            .style("font-size", function(d) { return d.scale + "px"; });
-
-    function getSize(d) {
-      var bbox = this.getBBox(),
-          scale = bbox.width*0.1;
-      d.scale = scale;
-    }
-
-    this.presentToast(this.messages['automaticTextSizing']);
+            this.presentToast(this.messages['automaticTextSizing']);
+          });
+        },
+        error => {
+          console.error(error);
+        }
+    );
 
   }
 
