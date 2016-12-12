@@ -194,7 +194,6 @@ export class Home {
           this.loading.dismiss().then(()=>{
             var dataset = res;
             var diameter = 375;
-            var color = d3.scaleOrdinal(d3.schemeCategory20);
             var bubble = d3.pack(dataset)
                     .size([diameter, diameter])
                     .padding(1.5);
@@ -229,21 +228,22 @@ export class Home {
                         return d.r;
                     })
                     .style("fill", function(d) {
-                        return color(d.name);
+                        return (d.data.type == "how" ? "#ff0202" : "#5998ff");
                     });
 
             node.append("text")
                     .attr("dy", ".3em")
                     .style("text-anchor", "middle")
+                    .style("font-family", "Impact")
                     .text(function(d) {
-                        return d.data.name.substring(0, d.r / 3) + ": " + d.data.freq;
+                        return d.data.name.substring(0, d.r / 3);
                     })
                     .each(getSize)
                     .style("font-size", function(d) { return d.scale + "px"; });
 
             function getSize(d) {
               var bbox = this.getBBox(),
-                  scale = bbox.width*0.1;
+                  scale = bbox.width*0.2;
               d.scale = scale;
             }
 

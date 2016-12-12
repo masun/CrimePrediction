@@ -186,10 +186,9 @@ def textSize(request):
   print when
   print how
 
-  l = what + how
   tweets = Tweets.objects.values_list('texto')
   i = 0
-  for w in l:
+  for w in what:
     freq = 0
     res["children"].append({})
     res["children"][i]["name"] = w
@@ -197,6 +196,17 @@ def textSize(request):
       if w in tweet[0]: 
         freq += 1
     res["children"][i]["freq"] = freq
+    res["children"][i]["type"] = "what"
+    i += 1
+  for w in how:
+    freq = 0
+    res["children"].append({})
+    res["children"][i]["name"] = w
+    for tweet in tweets:
+      if w in tweet[0]: 
+        freq += 1
+    res["children"][i]["freq"] = freq
+    res["children"][i]["type"] = "how"
     i += 1
 
   print res
