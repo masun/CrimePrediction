@@ -5,5 +5,6 @@ from . import views
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^load$', views.load, name='load'),
-    url(r'^textSize$', views.textSize, name="textSize")
+    url(r'^textSize$', views.textSize, name="textSize"),
+    url(r'^heatMap$', views.heatMap, name="heatMap")
 ]
