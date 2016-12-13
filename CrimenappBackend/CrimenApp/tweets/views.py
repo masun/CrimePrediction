@@ -5,6 +5,7 @@ from django.http import  HttpResponse
 from tweets.models import Tweets
 from django.core import serializers
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 #raw data tweet imports
 import re
@@ -145,7 +146,7 @@ def load(request):
 
     return JsonResponse({"created":created, "failed": failed})
 
-
+@csrf_exempt
 def textSize(request):
   module_dir = os.path.dirname(__file__)  # get current directory
    
@@ -183,20 +184,28 @@ def textSize(request):
   res = {"children":[]}
   word_set = []
 
-  print what
-  print when
-  print how, "\n"
+  # print what
+  # print when
+  # print how, "\n"
 
-  tweets = Tweets.objects.values_list('texto')
-  print tweets, "\n"
+  body_unicode = request.body.decode('utf-8')
+  body = json.loads(body_unicode)
+  zona = body['zona']
+
+  tweets = Tweets.objects.all()
+  # print tweets, "\n"
   i = 0
   for w in what:
     freq = 0
     res["children"].append({})
     res["children"][i]["name"] = w
     for tweet in tweets:
-      if w in tweet[0]: 
-        freq += 1
+      if zona !="Todas":
+        if w in tweet.texto and zona in tweet.texto: 
+          freq += 1
+      else:
+        if w in tweet.texto: 
+          freq += 1
     res["children"][i]["freq"] = freq
     res["children"][i]["type"] = "what"
     i += 1
@@ -205,18 +214,22 @@ def textSize(request):
     res["children"].append({})
     res["children"][i]["name"] = w
     for tweet in tweets:
-      if w in tweet[0]: 
-        freq += 1
+      if zona !="Todas":
+        if w in tweet.texto: 
+          freq += 1
+      else:
+        if w in tweet.texto: 
+          freq += 1
     res["children"][i]["freq"] = freq
     res["children"][i]["type"] = "how"
     i += 1
 
   print res, "\n"
 
-  if request.method == 'GET':
-    return HttpResponse(json.dumps(res))
 
+  return HttpResponse(json.dumps(res))
 
+@csrf_exempt
 def heatMap(request):
   #data format:
   #word day value 
@@ -255,47 +268,85 @@ def heatMap(request):
 
   res = {"como":[], "que":[]}
 
+  body_unicode = request.body.decode('utf-8')
+  body = json.loads(body_unicode)
+  zona = body['zona']
+
   comos = Tweets.objects.exclude(como__isnull=True).exclude(como__exact='')
   ques = Tweets.objects.exclude(que__isnull=True).exclude(que__exact='')
 
   for w in what:
     l = [[w,1,0],[w,2,0],[w,3,0],[w,4,0],[w,5,0],[w,6,0],[w,7,0]]
     for tweet in ques:
-      if w in tweet.texto: 
-        if tweet.fecha.weekday() == 0: 
-          l[0][2] +=1 
-        elif  tweet.fecha.weekday() == 1:
-          l[1][2] +=1 
-        elif  tweet.fecha.weekday() == 2: 
-          l[2][2] +=1
-        elif  tweet.fecha.weekday() == 3: 
-          l[3][2] +=1
-        elif  tweet.fecha.weekday() == 4: 
-          l[4][2] +=1
-        elif  tweet.fecha.weekday() == 5: 
-          l[5][2] +=1
-        elif  tweet.fecha.weekday() == 6: 
-          l[6][2] +=1
+      if zona !="Todas":
+        if w in tweet.texto and zona in tweet.texto: 
+          if tweet.fecha.weekday() == 0: 
+            l[0][2] +=1 
+          elif  tweet.fecha.weekday() == 1:
+            l[1][2] +=1 
+          elif  tweet.fecha.weekday() == 2: 
+            l[2][2] +=1
+          elif  tweet.fecha.weekday() == 3: 
+            l[3][2] +=1
+          elif  tweet.fecha.weekday() == 4: 
+            l[4][2] +=1
+          elif  tweet.fecha.weekday() == 5: 
+            l[5][2] +=1
+          elif  tweet.fecha.weekday() == 6: 
+            l[6][2] +=1
+      else:
+        if w in tweet.texto: 
+          if tweet.fecha.weekday() == 0: 
+            l[0][2] +=1 
+          elif  tweet.fecha.weekday() == 1:
+            l[1][2] +=1 
+          elif  tweet.fecha.weekday() == 2: 
+            l[2][2] +=1
+          elif  tweet.fecha.weekday() == 3: 
+            l[3][2] +=1
+          elif  tweet.fecha.weekday() == 4: 
+            l[4][2] +=1
+          elif  tweet.fecha.weekday() == 5: 
+            l[5][2] +=1
+          elif  tweet.fecha.weekday() == 6: 
+            l[6][2] +=1
     res["que"] += l  
 
   for w in how:
     l = [[w,1,0],[w,2,0],[w,3,0],[w,4,0],[w,5,0],[w,6,0],[w,7,0]]
     for tweet in comos:
-      if w in tweet.texto: 
-        if tweet.fecha.weekday() == 0: 
-          l[0][2] +=1 
-        elif  tweet.fecha.weekday() == 1:
-          l[1][2] +=1 
-        elif  tweet.fecha.weekday() == 2: 
-          l[2][2] +=1
-        elif  tweet.fecha.weekday() == 3: 
-          l[3][2] +=1
-        elif  tweet.fecha.weekday() == 4: 
-          l[4][2] +=1
-        elif  tweet.fecha.weekday() == 5: 
-          l[5][2] +=1
-        elif  tweet.fecha.weekday() == 6: 
-          l[6][2] +=1
+      if zona != "Todas":
+        if w in tweet.texto and zona in tweet.texto:
+          if tweet.fecha.weekday() == 0: 
+            l[0][2] +=1 
+          elif  tweet.fecha.weekday() == 1:
+            l[1][2] +=1 
+          elif  tweet.fecha.weekday() == 2: 
+            l[2][2] +=1
+          elif  tweet.fecha.weekday() == 3: 
+            l[3][2] +=1
+          elif  tweet.fecha.weekday() == 4: 
+            l[4][2] +=1
+          elif  tweet.fecha.weekday() == 5: 
+            l[5][2] +=1
+          elif  tweet.fecha.weekday() == 6: 
+            l[6][2] +=1
+      else:     
+        if w in tweet.texto: 
+          if tweet.fecha.weekday() == 0: 
+            l[0][2] +=1 
+          elif  tweet.fecha.weekday() == 1:
+            l[1][2] +=1 
+          elif  tweet.fecha.weekday() == 2: 
+            l[2][2] +=1
+          elif  tweet.fecha.weekday() == 3: 
+            l[3][2] +=1
+          elif  tweet.fecha.weekday() == 4: 
+            l[4][2] +=1
+          elif  tweet.fecha.weekday() == 5: 
+            l[5][2] +=1
+          elif  tweet.fecha.weekday() == 6: 
+            l[6][2] +=1
     res["como"] += l  
 
 
