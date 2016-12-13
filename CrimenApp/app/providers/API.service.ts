@@ -50,24 +50,42 @@ export class APIService {
 
     }
 
-    getTextSizeData(){
+    getTextSizeData(selectedZone){
         var service = '/tweets/textSize';
 
         var headers:any = new Headers();
             headers.append('Content-Type', 'application/json');
-        return this.http.get(this.serverURL+service, {headers: headers})
-                        .map((res:Response) => res.json())
-                        .catch(this.handleError);
+        if (selectedZone == "Todas") {
+            return this.http.get(this.serverURL+service, {headers: headers})
+                            .map((res:Response) => res.json())
+                            .catch(this.handleError);
+        } else {
+            var body = {
+                "zona": selectedZone
+            };
+            return this.http.post(this.serverURL+service, JSON.stringify(body), {headers: headers})
+                            .map((res:Response) => res.json())
+                            .catch(this.handleError);
+        }
     }
 
-    getHeatMapData(){
+    getHeatMapData(selectedZone){
         var service = '/tweets/heatMap';
 
         var headers:any = new Headers();
             headers.append('Content-Type', 'application/json');
-        return this.http.get(this.serverURL+service, {headers: headers})
-                        .map((res:Response) => res.json())
-                        .catch(this.handleError);
+        if (selectedZone == "Todas") {
+            return this.http.get(this.serverURL+service, {headers: headers})
+                            .map((res:Response) => res.json())
+                            .catch(this.handleError);
+        } else {
+            var body = {
+                "zona": selectedZone
+            };
+            return this.http.post(this.serverURL+service, JSON.stringify(body), {headers: headers})
+                            .map((res:Response) => res.json())
+                            .catch(this.handleError);
+        }
     }
 
 

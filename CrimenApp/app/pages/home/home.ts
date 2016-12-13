@@ -28,11 +28,11 @@ export class Home {
     this.nav = navController;
     this.menu = menuCtrl;
     this.graphs = ["Concept Map", "Automatic Text Sizing", "Time Series Chart", "Heat Map"];
-    this.zones = ["Todas", "Petare", "Valles del Tuy", "Catia", "Bello Monte", "Cota 905"];
-    this.types = ["que", "como"];
+    this.zones = ["Todas", "Petare", "Valles del Tuy", "Catia", "Bello Monte"];
+    this.types = ["Qué", "Cómo"];
     this.selectedGraph = "Automatic Text Sizing";
     this.selectedZone = "Todas";
-    this.selectedType = "que";
+    this.selectedType = "Qué";
     this.messages = {
       'automaticTextSizing': 'El tamaño de los círculos indica la popularidad del término en los eventos de crimen.',
       'heatMap': 'Los colores representan la popularidad del término en los eventos de crímenes a lo largo de los 7 días de la semana, mientras más oscuro el color más frecuente es el término.'
@@ -96,10 +96,15 @@ export class Home {
     isAccepted = false,
     data = [],
     aux = [],
-    filter = this.selectedType == "que" ? 50 : 20;
+    filter = 0;
+    
+    if (this.selectedZone == "Todas") this.selectedType == "que" ? 50 : 20;
 
     this.words = [];
     for (var i in list) {
+      if (j > 7) {
+        return data;
+      }
       var d = {
         "word": j,
         "day": list[i][1],
@@ -129,20 +134,20 @@ export class Home {
     this.loading = Loading.create({content:'Loading'});
     this.nav.present(this.loading);
 
-    this.API.getHeatMapData()
+    this.API.getHeatMapData(this.selectedZone)
       .subscribe(
         res => {
           this.loading.dismiss().then(()=>{
-
+           
             var margin = { top: 30, right: 0, bottom: 100, left: 30 },
             width = 960 - margin.left - margin.right,
-            height = 600 - margin.top - margin.bottom,
+            height = 430 - margin.top - margin.bottom,
             gridSize = Math.floor(width / 24),
             legendElementWidth = 30,
             buckets = 9,
             colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"],
             days = ["Lu", "Ma", "Mi", "Ju", "Vi", "Sa", "Do"],
-            data = this.filterData(res[this.selectedType]);
+            data = this.filterData(res[this.selectedType == "Qué" ? "que" : "como"]);
 
             var svg = d3.select("#chart").append("svg")
                 .attr("width", width + margin.left + margin.right)
@@ -219,7 +224,9 @@ export class Home {
           }); 
         },
         error => {
-          console.error(error);
+          this.loading.dismiss().then(()=>{
+            console.error(error);
+          });
         }
       );
         
@@ -228,7 +235,7 @@ export class Home {
   createAutomaticTextSizing() {
     this.loading = Loading.create({content:'Loading'});
     this.nav.present(this.loading);
-    this.API.getTextSizeData()
+    this.API.getTextSizeData(this.selectedZone)
       .subscribe(
         res => {
           this.loading.dismiss().then(()=>{
@@ -290,7 +297,9 @@ export class Home {
           });
         },
         error => {
-          console.error(error);
+          this.loading.dismiss().then(()=>{
+            console.error(error);
+          });
         }
     );
 
