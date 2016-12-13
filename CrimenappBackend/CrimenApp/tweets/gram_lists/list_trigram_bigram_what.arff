@@ -1,55 +1,55 @@
-@relation 'tweets-weka.filters.unsupervised.attribute.StringToWordVector-R1-W1000-prune-rate-1.0-I-N0-L-stemmerweka.core.stemmers.NullStemmer-stopwords-handlerweka.core.stopwords.Null-M25-tokenizerweka.core.tokenizers.NGramTokenizer -max 3 -min 2 -delimiters \" \\r\\n\\t.,;:\\\'\\\"()?!\"-weka.filters.unsupervised.attribute.Remove-R2-5,7,9,12,15-29,33-34,40,42,46,49-58,61-64,66-67,70-72,74-75,78-79,81-82,85-92,95-96,98-100,102-109,112-119,121-124,126-130,132-136,138,141-147,149-151,153,155-159,163-167,169-170,175-180,185-186,188-198,200,202-208,211-212,217-219,221-228,231-234,236,238-240,242,248,250,252,255,257-258,262,264-268,271,273-276,281-282,284-287,290-292,294,296-297,305-323,325-352,354-369,371-384,387-388,390-421,423-424,426-430,432,439-443,445,448,450-457,459-weka.filters.unsupervised.attribute.Remove-R2'
+@relation-'tweets-weka.filters.unsupervised.attribute.StringToWordVector-R1-W1000-prune-rate-1.0-I-N0-L-stemmerweka.core.stemmers.NullStemmer-stopwords-handlerweka.core.stopwords.Null-M25-tokenizerweka.core.tokenizers.NGramTokenizer -max 3 -min 2 -delimiters \" \\r\\n\\t.,;:\\\'\\\"()?!\"-weka.filters.unsupervised.attribute.Remove-R2-5,7,9,12,15-29,33-34,40,42,46,49-58,61-64,66-67,70-72,74-75,78-79,81-82,85-92,95-96,98-100,102-109,112-119,121-124,126-130,132-136,138,141-147,149-151,153,155-159,163-167,169-170,175-180,185-186,188-198,200,202-208,211-212,217-219,221-228,231-234,236,238-240,242,248,250,252,255,257-258,262,264-268,271,273-276,281-282,284-287,290-292,294,296-297,305-323,325-352,354-369,371-384,387-388,390-421,423-424,426-430,432,439-443,445,448,450-457,459-weka.filters.unsupervised.attribute.Remove-R2'
 
-@attribute ' class' {no,yes}
-@attribute 'asesinado en' numeric
-@attribute 'asesinados en' numeric
-@attribute 'asesinan a' numeric
-@attribute 'asesinaron a' numeric
-@attribute 'asesinato de' numeric
-@attribute 'cicpc en' numeric
-@attribute 'de seguridad' numeric
-@attribute 'de violencia' numeric
-@attribute 'detenidos en' numeric
-@attribute 'el caso' numeric
-@attribute 'el funcionario' numeric
-@attribute 'el hampa' numeric
-@attribute 'el homicidio' numeric
-@attribute 'el sebin' numeric
-@attribute 'en crímenes' numeric
-@attribute 'en crímenes sin' numeric
-@attribute 'en enfrentamiento' numeric
-@attribute 'en la cabeza' numeric
-@attribute 'fue asesinado' numeric
-@attribute 'funcionario de' numeric
-@attribute 'funcionarios de' numeric
-@attribute 'funcionarios de la' numeric
-@attribute 'funcionarios del' numeric
-@attribute 'homicidio de' numeric
-@attribute 'homicidio en' numeric
-@attribute 'informan que' numeric
-@attribute 'intento de' numeric
-@attribute 'la cabeza' numeric
-@attribute 'la muerte' numeric
-@attribute 'la pnb' numeric
-@attribute 'la policía' numeric
-@attribute 'la violencia' numeric
-@attribute 'la víctima' numeric
-@attribute 'lo mataron' numeric
-@attribute 'los delincuentes' numeric
-@attribute 'los funcionarios' numeric
-@attribute 'luego de' numeric
-@attribute 'matan a' numeric
-@attribute 'mataron a' numeric
-@attribute 'muerte de' numeric
-@attribute 'muertes violentas' numeric
-@attribute 'muertos en' numeric
-@attribute 'policía de' numeric
-@attribute 'robo de' numeric
-@attribute 'un funcionario' numeric
-@attribute 'un hombre' numeric
-@attribute 'una mujer' numeric
-@attribute 'enfrentamiento con' numeric
-@attribute 'las víctimas' numeric
-@attribute 'le robaron' numeric
-@attribute 'murió en' numeric
-@attribute 'víctimas de' numeric
+@attribute-'-class'-{no,yes}
+@attribute-'asesinado en'-numeric
+@attribute-'asesinados en'-numeric
+@attribute-'asesinan a'-numeric
+@attribute-'asesinaron a'-numeric
+@attribute-'asesinato de'-numeric
+@attribute-'cicpc en'-numeric
+@attribute-'de seguridad'-numeric
+@attribute-'de violencia'-numeric
+@attribute-'detenidos en'-numeric
+@attribute-'el caso'-numeric
+@attribute-'el funcionario'-numeric
+@attribute-'el hampa'-numeric
+@attribute-'el homicidio'-numeric
+@attribute-'el sebin'-numeric
+@attribute-'en crímenes'-numeric
+@attribute-'en crímenes sin'-numeric
+@attribute-'en enfrentamiento'-numeric
+@attribute-'en la cabeza'-numeric
+@attribute-'fue asesinado'-numeric
+@attribute-'funcionario de'-numeric
+@attribute-'funcionarios de'-numeric
+@attribute-'funcionarios de la'-numeric
+@attribute-'funcionarios del'-numeric
+@attribute-'homicidio de'-numeric
+@attribute-'homicidio en'-numeric
+@attribute-'informan que'-numeric
+@attribute-'intento de'-numeric
+@attribute-'la cabeza'-numeric
+@attribute-'la muerte'-numeric
+@attribute-'la pnb'-numeric
+@attribute-'la policía'-numeric
+@attribute-'la violencia'-numeric
+@attribute-'la víctima'-numeric
+@attribute-'lo mataron'-numeric
+@attribute-'los delincuentes'-numeric
+@attribute-'los funcionarios'-numeric
+@attribute-'luego de'-numeric
+@attribute-'matan a'-numeric
+@attribute-'mataron a'-numeric
+@attribute-'muerte de'-numeric
+@attribute-'muertes violentas'-numeric
+@attribute-'muertos en'-numeric
+@attribute-'policía de'-numeric
+@attribute-'robo de'-numeric
+@attribute-'un funcionario'-numeric
+@attribute-'un hombre'-numeric
+@attribute-'una mujer'-numeric
+@attribute-'enfrentamiento con'-numeric
+@attribute-'las víctimas'-numeric
+@attribute-'le robaron'-numeric
+@attribute-'murió en'-numeric
+@attribute-'víctimas de'-numeric

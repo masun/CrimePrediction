@@ -172,6 +172,7 @@ def textSize(request):
   "arma blanca","arma de fuego","acuchillado","explosión","cuchilladas","armados","gasolina","incendio"
   ]
 
+
   what += read_weka_res(file_path_keywords + 'list_trigram_bigram_what.arff') + read_weka_res(file_path_keywords + 'list_unigram_what.arff')
   when += read_weka_res(file_path_keywords + 'list_trigram_bigram_when.arff') + read_weka_res(file_path_keywords + 'list_unigram_when.arff')
   how += read_weka_res(file_path_keywords + 'list_trigram_bigram_how.arff') + read_weka_res(file_path_keywords +  'list_unigram_how.arff')
@@ -184,9 +185,10 @@ def textSize(request):
 
   print what
   print when
-  print how
+  print how, "\n"
 
   tweets = Tweets.objects.values_list('texto')
+  print tweets, "\n"
   i = 0
   for w in what:
     freq = 0
@@ -209,10 +211,95 @@ def textSize(request):
     res["children"][i]["type"] = "how"
     i += 1
 
-  print res
+  print res, "\n"
 
   if request.method == 'GET':
     return HttpResponse(json.dumps(res))
+
+
+def heatMap(request):
+  #data format:
+  #word day value 
+
+  module_dir = os.path.dirname(__file__)  # get current directory
+   
+  file_path_keywords = os.path.join(module_dir, 'gram_lists/')
+  file_path_tweets = os.path.join(module_dir, 'raw_datasets/tweets.txt')
+  tweets = read_tweets(file_path_tweets)
+ 
+  # file_path = os.path.join(module_dir, 'raw_datasets/tweets_cleaned.arff')
+  # tweets = read_weka_res(file_path)
+ 
+
+  what = [
+  "secuestro","secuestrar","secuestraron","asesinar","asesino","asesinaron","asesinó","violación","violaron","robo","robaron","secuestró","asesinato","extorsión","violación",
+  "violaron","mataron","mató"]
+
+  when = [
+  "madrugada","noche","día","mañana","tarde","mediodía","noche"
+  ]
+
+  how = [
+  "quemado","quemaron","quemo","armados","golpes","golpe","golpearon","golpeó","droga","drogas","bombas","tiro","tiros","tiroteado","tiroteados","tirotearon","tiroteo","revolver",
+  "puñaladas","puñaladas","pistola","pistolas","plomo","lacrimógenas","lacrimógena","escopeta","escopetas","dispara","disparan","disparando","disparó","dispararon","disparos","cuchillo",
+  "cocaína","bomba","bala","balas","armamento","armado","armas","tiroteo","fusil","cuchillo","cuchillos","disparo","fusiles","granada","navaja","ametralladora","bisturí","proyectil",
+  "arma blanca","arma de fuego","acuchillado","explosión","cuchilladas","armados","gasolina","incendio"
+  ]
+
+
+  what += read_weka_res(file_path_keywords + 'list_trigram_bigram_what.arff') + read_weka_res(file_path_keywords + 'list_unigram_what.arff')
+  how += read_weka_res(file_path_keywords + 'list_trigram_bigram_how.arff') + read_weka_res(file_path_keywords +  'list_unigram_how.arff')
+
+  reload(sys)
+  sys.setdefaultencoding("utf-8")
+
+  res = {"como":[], "que":[]}
+
+  comos = Tweets.objects.exclude(como__isnull=True).exclude(como__exact='')
+  ques = Tweets.objects.exclude(que__isnull=True).exclude(que__exact='')
+
+  for w in what:
+    l = [[w,1,0],[w,2,0],[w,3,0],[w,4,0],[w,5,0],[w,6,0],[w,7,0]]
+    for tweet in ques:
+      if w in tweet.texto: 
+        if tweet.fecha.weekday() == 0: 
+          l[0][2] +=1 
+        elif  tweet.fecha.weekday() == 1:
+          l[1][2] +=1 
+        elif  tweet.fecha.weekday() == 2: 
+          l[2][2] +=1
+        elif  tweet.fecha.weekday() == 3: 
+          l[3][2] +=1
+        elif  tweet.fecha.weekday() == 4: 
+          l[4][2] +=1
+        elif  tweet.fecha.weekday() == 5: 
+          l[5][2] +=1
+        elif  tweet.fecha.weekday() == 6: 
+          l[6][2] +=1
+    res["que"] += l  
+
+  for w in how:
+    l = [[w,1,0],[w,2,0],[w,3,0],[w,4,0],[w,5,0],[w,6,0],[w,7,0]]
+    for tweet in comos:
+      if w in tweet.texto: 
+        if tweet.fecha.weekday() == 0: 
+          l[0][2] +=1 
+        elif  tweet.fecha.weekday() == 1:
+          l[1][2] +=1 
+        elif  tweet.fecha.weekday() == 2: 
+          l[2][2] +=1
+        elif  tweet.fecha.weekday() == 3: 
+          l[3][2] +=1
+        elif  tweet.fecha.weekday() == 4: 
+          l[4][2] +=1
+        elif  tweet.fecha.weekday() == 5: 
+          l[5][2] +=1
+        elif  tweet.fecha.weekday() == 6: 
+          l[6][2] +=1
+    res["como"] += l  
+
+
+  return HttpResponse(json.dumps(res))
 
 
 def read_weka_res(name):
@@ -225,7 +312,7 @@ def read_weka_res(name):
     for line in data:
       if i > 2:
         if line[0] == "@":
-          l = line.split(" ")
+          l = line.split("-")
           if len(l) > 1:
             res.append(l[1])
       i += 1

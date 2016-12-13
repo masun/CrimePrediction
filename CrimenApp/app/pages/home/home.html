@@ -9,11 +9,26 @@
 
 <ion-content padding style="background: #C5BC8E;">
   <ion-item>
-    <ion-label>Graphs</ion-label>
-    <ion-select [(ngModel)]="selectedGraph" (ngModelChange)="drawChart()">
+    <ion-label>Tipos de Visualizaciones</ion-label>
+    <ion-select [(ngModel)]="selectedGraph">
       <ion-option *ngFor="let graph of graphs" [value]=graph>{{graph}}</ion-option>
     </ion-select>
   </ion-item>
+  <ion-item>
+    <ion-label>Lugar</ion-label>
+    <ion-select [(ngModel)]="selectedZone">
+      <ion-option *ngFor="let zone of zones" [value]=zone>{{zone}}</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item *ngIf="selectedGraph=='Heat Map'">
+    <ion-label>Tipo</ion-label>
+    <ion-select [(ngModel)]="selectedType">
+      <ion-option *ngFor="let type of types" [value]=type>{{type}}</ion-option>
+    </ion-select>
+  </ion-item>
+  <div text-center padding>
+    <button ion-button outline light center (click)="drawChart()">Visualizar</button>
+  </div>
   <br><br>
   <div id="chart">
   </div>

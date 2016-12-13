@@ -1,58 +1,58 @@
 @relation 'tweets-weka.filters.unsupervised.attribute.StringToWordVector-R1-W1000-prune-rate-1.0-I-N0-L-stemmerweka.core.stemmers.NullStemmer-stopwords-handlerweka.core.stopwords.WordsFromFile -stopwords /home/francisco/Documents/MiniProyectoInteligencia/stopwords-M30-tokenizerweka.core.tokenizers.NGramTokenizer -max 1 -min 1 -delimiters \" \\r\\n\\t.,;:\\\'\\\"()?!\"-weka.filters.unsupervised.attribute.Remove-R2,5-6,9-12,14-15,17-26,30-33,35-43,46-56,60-63,69,71-72,78-81,85-87,89-93,95,98,100-103,105-107,110,112-113,115,117,119-122,124-140,142-143,146-153,156,160,162-163,167-174,177,179-183,185,187-188,191-198,201-204,206-217,219,223-226,228,230-232,234-245,247,250-257,260-272,275,277-281,284-286,288-290,292-295,297,299,301-304,306,309-310,314-326,329-337,340,345-348,351-357,359-384,386-389,391-395,397,405-434,439-447,454-455,457-458,460,463-475,477,479-481,483-485,489-500,503,506-511,513-524,526,528,532-534,537,540-542,544-548,550-554,559-561,563-565,567-594,596,598-609,611-613,615-620-weka.filters.unsupervised.attribute.Remove-R2-8,11-16,23-32,35-43,52,56-59,61,65-70,72-75,78-79,81-84,86-90,93-97,102,104-114,119-122,125-136,138-141,144,147-154,157-158'
 
 @attribute ' class' {no,yes}
-@attribute abatido numeric
-@attribute abatidos numeric
-@attribute asesinado numeric
-@attribute asesinados numeric
-@attribute asesinan numeric
-@attribute asesinaron numeric
-@attribute asesinato numeric
-@attribute ataque numeric
-@attribute cadáver numeric
-@attribute cadáveres numeric
-@attribute crímenes numeric
-@attribute cuerpo numeric
-@attribute cuerpos numeric
-@attribute delincuente numeric
-@attribute delincuentes numeric
-@attribute denuncia numeric
-@attribute denuncian numeric
-@attribute denunció numeric
-@attribute detención numeric
-@attribute detenido numeric
-@attribute detenidos numeric
-@attribute emergencia numeric
-@attribute enfrentamiento numeric
-@attribute fallecidos numeric
-@attribute falleció numeric
-@attribute golpe numeric
-@attribute homicidio numeric
-@attribute homicidios numeric
-@attribute investigación numeric
-@attribute lucha numeric
-@attribute matan numeric
-@attribute mataron numeric
-@attribute muerte numeric
-@attribute muertes numeric
-@attribute muerto numeric
-@attribute muertos numeric
-@attribute murió numeric
-@attribute robar numeric
-@attribute robarle numeric
-@attribute robaron numeric
-@attribute robo numeric
-@attribute secuestrado numeric
-@attribute secuestro numeric
-@attribute urgencia numeric
-@attribute violencia numeric
-@attribute violentas numeric
-@attribute víctima numeric
-@attribute víctimas numeric
-@attribute crimen numeric
-@attribute delito numeric
-@attribute rehenes numeric
-@attribute secuestros numeric
+@attribute-abatido-numeric
+@attribute-abatidos-numeric
+@attribute-asesinado-numeric
+@attribute-asesinados-numeric
+@attribute-asesinan-numeric
+@attribute-asesinaron-numeric
+@attribute-asesinato-numeric
+@attribute-ataque-numeric
+@attribute-cadáver-numeric
+@attribute-cadáveres-numeric
+@attribute-crímenes-numeric
+@attribute-cuerpo-numeric
+@attribute-cuerpos-numeric
+@attribute-delincuente-numeric
+@attribute-delincuentes-numeric
+@attribute-denuncia-numeric
+@attribute-denuncian-numeric
+@attribute-denunció-numeric
+@attribute-detención-numeric
+@attribute-detenido-numeric
+@attribute-detenidos-numeric
+@attribute-emergencia-numeric
+@attribute-enfrentamiento-numeric
+@attribute-fallecidos-numeric
+@attribute-falleció-numeric
+@attribute-golpe-numeric
+@attribute-homicidio-numeric
+@attribute-homicidios-numeric
+@attribute-investigación-numeric
+@attribute-lucha-numeric
+@attribute-matan-numeric
+@attribute-mataron-numeric
+@attribute-muerte-numeric
+@attribute-muertes-numeric
+@attribute-muerto-numeric
+@attribute-muertos-numeric
+@attribute-murió-numeric
+@attribute-robar-numeric
+@attribute-robarle-numeric
+@attribute-robaron-numeric
+@attribute-robo-numeric
+@attribute-secuestrado-numeric
+@attribute-secuestro-numeric
+@attribute-urgencia-numeric
+@attribute-violencia-numeric
+@attribute-violentas-numeric
+@attribute-víctima-numeric
+@attribute-víctimas-numeric
+@attribute-crimen-numeric
+@attribute-delito-numeric
+@attribute-rehenes-numeric
+@attribute-secuestros-numeric
 
 @data
 {2 6.378002,23 5.056246,43 5.1469}

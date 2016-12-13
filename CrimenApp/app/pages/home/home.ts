@@ -16,17 +16,28 @@ export class Home {
   loading: Loading;
   alert: Alert;
   graphs: Array<any>;
+  zones: Array<any>;
+  types: Array<any>;
   selectedGraph: string;
+  selectedZone: string;
+  selectedType: string;
   messages: {};
+  words: Array<any>;
 
   constructor(private menuCtrl: MenuController, private navController: NavController, private fb: FormBuilder, private API: APIService) {
     this.nav = navController;
     this.menu = menuCtrl;
     this.graphs = ["Concept Map", "Automatic Text Sizing", "Time Series Chart", "Heat Map"];
-    this.selectedGraph = "Pie Chart";
+    this.zones = ["Todas", "Petare", "Valles del Tuy", "Catia", "Bello Monte", "Cota 905"];
+    this.types = ["que", "como"];
+    this.selectedGraph = "Automatic Text Sizing";
+    this.selectedZone = "Todas";
+    this.selectedType = "que";
     this.messages = {
-      'automaticTextSizing': 'El tamaño de los círculos indica la popularidad del término en los eventos de crimen.'
+      'automaticTextSizing': 'El tamaño de los círculos indica la popularidad del término en los eventos de crimen.',
+      'heatMap': 'Los colores representan la popularidad del término en los eventos de crímenes a lo largo de los 7 días de la semana, mientras más oscuro el color más frecuente es el término.'
     }
+    this.words = [];
   }
 
   presentToast(message) {  
@@ -58,8 +69,7 @@ export class Home {
         this.createHeatMap();
         break; 
       default:
-        this.destroyChart();  
-        this.createPieChart();  
+        this.destroyChart();
     }  
   }
 
@@ -71,124 +81,154 @@ export class Home {
 
   }
 
+  contains(elem,list) {
+    for (var i in list) {
+      if (list[i] == elem) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  filterData(list) {
+    var c = 1,
+    j = 1,
+    isAccepted = false,
+    data = [],
+    aux = [],
+    filter = this.selectedType == "que" ? 50 : 20;
+
+    this.words = [];
+    for (var i in list) {
+      var d = {
+        "word": j,
+        "day": list[i][1],
+        "freq": list[i][2]
+      };
+      aux.push(d);
+      if (filter <= list[i][2]) {
+        isAccepted = true;
+      }
+      if (c == 7) {
+        if ((isAccepted) && (!(this.contains(list[i][0],this.words)))) {
+          this.words.push(list[i][0]);
+          data = data.concat(aux);
+          j += 1;
+        }
+        c = 0;
+        isAccepted = false;
+        aux = [];
+      } else {
+        c += 1; 
+      }
+    }
+    return data;
+  }
+
   createHeatMap() {
-    var margin = { top: 50, right: 0, bottom: 100, left: 30 },
-        width = 960 - margin.left - margin.right,
-        height = 430 - margin.top - margin.bottom,
-        gridSize = Math.floor(width / 24),
-        legendElementWidth = gridSize*2,
-        buckets = 9,
-        colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
-        days = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"],
-        times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"],
-        datasets = ["data.tsv", "data2.tsv"];
+    this.loading = Loading.create({content:'Loading'});
+    this.nav.present(this.loading);
 
-    var svg = d3.select("#chart").append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    this.API.getHeatMapData()
+      .subscribe(
+        res => {
+          this.loading.dismiss().then(()=>{
 
-    var dayLabels = svg.selectAll(".dayLabel")
-        .data(days)
-        .enter().append("text")
-          .text(function (d) { return d; })
-          .attr("x", 0)
-          .attr("y", function (d, i) { return i * gridSize; })
-          .style("text-anchor", "end")
-          .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
-          .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+            var margin = { top: 30, right: 0, bottom: 100, left: 30 },
+            width = 960 - margin.left - margin.right,
+            height = 600 - margin.top - margin.bottom,
+            gridSize = Math.floor(width / 24),
+            legendElementWidth = 30,
+            buckets = 9,
+            colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"],
+            days = ["Lu", "Ma", "Mi", "Ju", "Vi", "Sa", "Do"],
+            data = this.filterData(res[this.selectedType]);
 
-    var timeLabels = svg.selectAll(".timeLabel")
-        .data(times)
-        .enter().append("text")
-          .text(function(d) { return d; })
-          .attr("x", function(d, i) { return i * gridSize; })
-          .attr("y", 0)
-          .style("text-anchor", "middle")
-          .attr("transform", "translate(" + gridSize / 2 + ", -6)")
-          .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+            var svg = d3.select("#chart").append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    var heatmapChart = function(tsvFile) {
-      d3.tsv(tsvFile,
-      function(d) {
-        return {
-          day: +d.day,
-          hour: +d.hour,
-          value: +d.value
-        };
-      },
-      function(error, data) {
-        var colorScale = d3.scale.quantile()
-            .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
-            .range(colors);
+            var wordLabels = svg.selectAll(".wordLabel")
+                .data(this.words)
+                .enter().append("text")
+                  .text(function (d) { return d; })
+                  .attr("x", 0)
+                  .attr("y", function (d, i) { return i * gridSize; })
+                  .style("text-anchor", "end")
+                  .style("font-size", "10px")
+                  .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+                  .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "wordLabel mono axis axis-workweek" : "wordLabel mono axis"); });
 
-        var cards = svg.selectAll(".hour")
-            .data(data, function(d) {return d.day+':'+d.hour;});
+            var dayLabels = svg.selectAll(".dayLabel")
+                .data(days)
+                .enter().append("text")
+                  .text(function(d) { return d; })
+                  .attr("x", function(d, i) { return i * gridSize; })
+                  .attr("y", 0)
+                  .style("text-anchor", "middle")
+                  .style("font-size", "10px")
+                  .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+                  .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "dayLabel mono axis axis-worktime" : "dayLabel mono axis"); });
 
-        cards.append("title");
+            var cards = svg.selectAll(".hour")
+                .data(data, function(d) {return d.word+':'+d.day;});
 
-        cards.enter().append("rect")
-            .attr("x", function(d) { return (d.hour - 1) * gridSize; })
-            .attr("y", function(d) { return (d.day - 1) * gridSize; })
-            .attr("rx", 4)
-            .attr("ry", 4)
-            .attr("class", "hour bordered")
-            .attr("width", gridSize)
-            .attr("height", gridSize)
-            .style("fill", colors[0]);
+            var colorScale = d3.scaleQuantile()
+                .domain([0, buckets - 1, d3.max(data, function (d) { return d.freq; })])
+                .range(colors);
 
-        cards.transition().duration(1000)
-            .style("fill", function(d) { return colorScale(d.value); });
+            cards.enter()
+              .append("rect")
+                .attr("x", function(d) { return (d.day - 1) * gridSize; })
+                .attr("y", function(d) { return (d.word - 1) * gridSize; })
+                .attr("rx", 4)
+                .attr("ry", 4)
+                .attr("class", "hour bordered")
+                .attr("width", gridSize)
+                .attr("height", gridSize)
+                .style("fill", colors[0])
+                .transition().duration(1000)
+                .style("fill", function(d) { return colorScale(d.freq); });
 
-        cards.select("title").text(function(d) { return d.value; });
+            cards.exit().remove();
+
+            var legend = svg.selectAll(".legend")
+                .data([0].concat(colorScale.quantiles()), function(d) { return d; })
+                .enter()
+                .append("g")
+                  .attr("class", "legend")
+                  .append("rect")
+                    .attr("x", function(d, i) { return legendElementWidth * i; })
+                    .attr("y", height)
+                    .attr("width", legendElementWidth)
+                    .attr("height", gridSize / 2)
+                    .style("fill", function(d, i) { return colors[i]; });
+            
+            var legend = svg.selectAll(".legend")
+                  .append("text")
+                    .attr("class", "mono")
+                    .text(function(d) { return "≥ " + Math.round(d); })
+                    .attr("x", function(d, i) { return legendElementWidth * i; })
+                    .attr("y", height + gridSize)
+                    .style("font-size", "10px")
+                    .exit().remove();
+
+            this.presentToast(this.messages['heatMap']);
+          }); 
+        },
+        error => {
+          console.error(error);
+        }
+      );
         
-        cards.exit().remove();
-
-        var legend = svg.selectAll(".legend")
-            .data([0].concat(colorScale.quantiles()), function(d) { return d; });
-
-        legend.enter().append("g")
-            .attr("class", "legend");
-
-        legend.append("rect")
-          .attr("x", function(d, i) { return legendElementWidth * i; })
-          .attr("y", height)
-          .attr("width", legendElementWidth)
-          .attr("height", gridSize / 2)
-          .style("fill", function(d, i) { return colors[i]; });
-
-        legend.append("text")
-          .attr("class", "mono")
-          .text(function(d) { return "≥ " + Math.round(d); })
-          .attr("x", function(d, i) { return legendElementWidth * i; })
-          .attr("y", height + gridSize);
-
-        legend.exit().remove();
-
-      });  
-    };
-
-    heatmapChart(datasets[0]);
-    
-    var datasetpicker = d3.select("#dataset-picker").selectAll(".dataset-button")
-      .data(datasets);
-
-    datasetpicker.enter()
-      .append("input")
-      .attr("value", function(d){ return "Dataset " + d })
-      .attr("type", "button")
-      .attr("class", "dataset-button")
-      .on("click", function(d) {
-        heatmapChart(d);
-      });
-
   }
 
   createAutomaticTextSizing() {
     this.loading = Loading.create({content:'Loading'});
     this.nav.present(this.loading);
-    this.API.getTextSize()
+    this.API.getTextSizeData()
       .subscribe(
         res => {
           this.loading.dismiss().then(()=>{
@@ -246,7 +286,6 @@ export class Home {
                   scale = bbox.width*0.2;
               d.scale = scale;
             }
-
             this.presentToast(this.messages['automaticTextSizing']);
           });
         },
@@ -257,43 +296,8 @@ export class Home {
 
   }
 
-
   createTimeSeriesChart() {
    
   }
 
-  // Pruebas con la libreria svg.
-  createPieChart() {
-    var dataset = [
-      { label: 'Abulia', count: 10 },
-      { label: 'Betelgeuse', count: 20 },
-      { label: 'Cantaloupe', count: 30 },
-      { label: 'Dijkstra', count: 40 }
-    ];
-    var width = 360;
-    var height = 360;
-    var radius = Math.min(width, height) / 2;
-    var color = d3.scaleOrdinal(d3.schemeCategory20b);
-    var svg = d3.select('#chart')
-      .append('svg')
-      .attr('width', width)
-      .attr('height', height)
-      .append('g')
-      .attr('transform', 'translate(' + (width / 2) +  ',' + (height / 2) + ')');
-    var arc = d3.arc()
-      .innerRadius(0)
-      .outerRadius(radius);
-    var pie = d3.pie()
-      .value(function(d) { return d.count; })
-      .sort(null);
-    var path = svg.selectAll('path')
-      .data(pie(dataset))
-      .enter()
-      .append('path')
-      .attr('d', arc)
-      .attr('fill', function(d, i) {
-        return color(d.data.label);
-      });
-  }
-  
 }
