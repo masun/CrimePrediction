@@ -1,0 +1,5 @@
+'arma' 389
+'#caracas' 434
+'crímenes' 453
+'caracas' 924
+'am' 6279

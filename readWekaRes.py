@@ -13,7 +13,13 @@ def read_weka_res(name):
         if line[0] == "@":
           l = line.split(" ")
           if len(l) > 1:
-            res.append(l[1])
+            if (l[1][0] == "'"):
+              if (l[2][-1] == "'"):
+                res.append(l[1] + " " + l[2])
+              else:
+                res.append(l[1] + " " + l[2] + " " + l[3])
+            else:
+              res.append(l[1])
       i += 1
     f.close()
     return res

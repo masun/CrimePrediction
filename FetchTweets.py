@@ -75,7 +75,7 @@ def limits(l):
     maxId = l[0].id
     minId = l[0].id
     for status in l:
-        print(status.id)
+        # print(status.id)
         if status.id > maxId:
             maxId = status.id
         if status.id < minId:
@@ -88,21 +88,24 @@ for user in usersList:
     print(user)
     print("\n")
     tweets = []
+    
     tl = api.user_timeline(screen_name=user, count=20)
+    # print (str(tl[0].created_at))
+    # print (str(tl[19].created_at))
     tweets = tweets + tl
     l = limits(tl) 
-    print("Se lograron obtener 20 tweets del usuario")
+
     i = 0
     while(i < 50):
         try :
             #Arreglar esta llamada para retornar twwts diferents, posiblemente con max_id y since_id
             tl = api.user_timeline(screen_name=user, count=20, max_id= l[0])
             # time.sleep(5)
-            # print("Se hizo el request correctamente..")
-            print (len(tl))
+            # print (str(tl[0].created_at))
+            # print (str(tl[19].created_at))
             i += 1
             l = limits(tl)
-            print(l)
+            # print(l)
             tweets = tweets + tl 
             print("Se lograron obtener 20 tweets del usuario")
         except:
@@ -119,9 +122,6 @@ for user in usersList:
         f.write("]")
         f.write("[")
         f.write(tweet.text.encode('utf-8'))
-        f.write("]")
-        f.write("[")
-        f.write(str(tweet.retweet_count))
         f.write("]")
         f.write("\n")
     f.write("-\n")

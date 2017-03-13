@@ -1,0 +1,109 @@
+'emil friedman' 2
+'de armas de' 5
+'las am' 6
+'armas de fuego' 16
+'ciudad guayana' 17
+'de octubre' 18
+'en la morgue' 19
+'homicidio en' 20
+'informan que' 22
+'intento de' 23
+'este sábado' 23
+'los delincuentes' 24
+'murió en' 25
+'armas de' 26
+'en la avenida' 26
+'en enfrentamiento' 27
+'muertos en' 27
+'en santa' 27
+'de petare' 28
+'le robaron' 30
+'de armas' 30
+'de miranda' 30
+'en maracaibo' 30
+'lo mataron' 31
+'en petare' 31
+'de violencia' 33
+'muertes violentas' 33
+'la avenida' 35
+'detenidos en' 36
+'arma de' 37
+'el funcionario' 38
+'un funcionario' 39
+'los teques' 39
+'funcionarios de la' 40
+'esta mañana' 41
+'enfrentamiento con' 42
+'los funcionarios' 46
+'caracas en' 46
+'en la cabeza' 47
+'la zona' 47
+'cicpc en' 48
+'una mujer' 48
+'la mañana' 48
+'a la altura' 49
+'el valle' 49
+'el homicidio' 50
+'matan a' 50
+'en #caracas' 50
+'en la autopista' 50
+'la altura' 50
+'este domingo' 51
+'en tiempo real' 52
+'la tarde' 52
+'funcionarios del' 53
+'la gran caracas' 53
+'asesinado en' 54
+'la cabeza' 54
+'robo de' 55
+'este lunes' 58
+'las víctimas' 61
+'la víctima' 62
+'un hombre' 62
+'homicidio de' 64
+'víctimas de' 65
+'la cota' 65
+'a esta hora' 66
+'esta hora' 67
+'asesinados en' 72
+'asesinan a' 72
+'del tuy' 72
+'asesinaron a' 76
+'fue asesinado' 78
+'gran caracas' 78
+'en la av' 82
+'la autopista' 84
+'de caracas' 88
+'frente a' 89
+'la muerte' 90
+'la pnb' 91
+'el caso' 93
+'fin de semana' 94
+'policía de' 95
+'el hampa' 96
+'de hoy' 98
+'funcionario de' 99
+'mataron a' 99
+'el sebin' 103
+'a la morgue' 104
+'la calle' 104
+'en san' 111
+'la av' 115
+'de seguridad' 116
+'la violencia' 122
+'de enero' 123
+'muerte de' 129
+'la policía' 131
+'en caracas' 132
+'asesinato de' 136
+'la morgue de' 137
+'funcionarios de' 142
+'morgue de bello' 142
+'luego de' 146
+'luego de' 146
+'de bello monte' 147
+'morgue de' 150
+'la morgue' 158
+'bello monte' 195
+'en crímenes sin' 366
+'en crímenes' 369

@@ -13,7 +13,8 @@ import nltk
 from nltk.collocations import *
 from operator import itemgetter
 from readWekaRes import read_weka_res
-
+from datetime import datetime
+import dateutil.relativedelta
 
 from nltk.corpus import cess_esp as cess
 from nltk import UnigramTagger as ut
@@ -56,18 +57,18 @@ def read_tweets(name):
         info = line.split("][")
         info.append(account)
         info[0] = info[0][1:] # Removing "["
+        info[0] = datetime.strptime(info[0], '%Y-%m-%d %H:%M:%S')
         info[1] = info[1].decode("utf-8")
-        info[2] = info[2][:-1] # Removing "\n"
-        info[2] = info[2][:-1] # Removing "]"
+        info[2] = info[1][:-1] # Removing "\n"
+        info[2] = info[1][:-1] # Removing "]"
         elem = {
           'owner':account,
           'date':info[0],
-          'text':info[1],
-          'retweets':info[2]
+          'text':info[1]
         }
         tweets.append(elem)
     f.close()
-    return tweets
+    return sorted(tweets, key=lambda x: x['date'])
   except IOError as e:
     print "I/O error({0}): {1}".format(e.errno, e.strerror)
     sys.exit(1)
@@ -80,12 +81,6 @@ def preprocess(s, lowercase=False):
     if lowercase:
         tokens = [token if emoticon_re.search(token) else token.lower() for token in tokens]
     return tokens
-
-def dump_csv(tweets):
-  with open('data.csv', 'wb') as csvfile:
-    spamwriter = csv.writer(csvfile, delimiter=':',)
-    for tweet in tweets:
-      spamwriter.writerow([tweet.owner, tweet.date, tweet.text, tweet.retweets, tweet.tokens])
 
 def freqCount(ngram, tweets):
   freq_list = []
@@ -108,7 +103,7 @@ def ngramFreq(ngram):
 if __name__ == "__main__":
   reload(sys)
   sys.setdefaultencoding('utf8')
-  # for elem in read_tweets("prueba.txt"):
+  # for elem in read_tweets("prueba.txt"): 
   #   print elem[1].encode('utf-8')
   tokens_re = re.compile(r'('+'|'.join(regex_str)+')', re.VERBOSE | re.IGNORECASE | re.UNICODE )
   emoticon_re = re.compile(r'^'+emoticons_str+'$', re.VERBOSE | re.IGNORECASE | re.UNICODE)
@@ -212,77 +207,135 @@ if __name__ == "__main__":
   "incendio"
   ]
 
-  what += read_weka_res('list_trigram_bigram_what.arff') + read_weka_res('list_unigram_what.arff')
-  when += read_weka_res('list_trigram_bigram_when.arff') + read_weka_res('list_unigram_when.arff')
-  how += read_weka_res('list_trigram_bigram_how.arff') + read_weka_res('list_unigram_how.arff')
+  what += read_weka_res('gram_lists/list_trigram_bigram_what.arff') + read_weka_res('gram_lists/list_unigram_what.arff')
+  when += read_weka_res('gram_lists/list_trigram_bigram_when.arff') + read_weka_res('gram_lists/list_unigram_when.arff')
+  how += read_weka_res('gram_lists/list_trigram_bigram_how.arff') + read_weka_res('gram_lists/list_unigram_how.arff')
+  where = read_weka_res('gram_lists/list_trigram_bigram_where.arff') + read_weka_res('gram_lists/list_unigram_where.arff')
+
+
+  multigrams = read_weka_res('gram_lists/list_trigram_bigram_what.arff') + read_weka_res('gram_lists/list_trigram_bigram_when.arff') + read_weka_res('gram_lists/list_trigram_bigram_how.arff') + read_weka_res('gram_lists/list_trigram_bigram_where.arff')
+
+  print multigrams
+  unigrams = read_weka_res('gram_lists/list_unigram_what.arff') + read_weka_res('gram_lists/list_unigram_when.arff')  + read_weka_res('gram_lists/list_unigram_how.arff') + read_weka_res('gram_lists/list_unigram_where.arff')
+
+  print len(multigrams)
+  print len(unigrams)
 
   num_yes = 0
   num_no = 0
   tweets = read_tweets("tweets.txt")
-  with open('tweets.csv', 'wb') as csvfile:
+
+  ngrams = read_weka_res('tweetsNew.arff')
+  
+  try:
+    l1=[]
+    f = open('unigrams.txt', 'w')
+    for gram in unigrams:
+      c = 0
+      for tweet in tweets:
+        if gram.lower() in tweet['text'].lower():
+           c+=1
+      gram = "'" + gram + "'"
+      if c > 0:
+        l1.append( {"gram":gram , "freq":c} ) 
+
+    for item in sorted(l1, key=lambda x: x['freq'])[-5:]:
+      f.write(item['gram'] + " " +str(item['freq'])+"\n") 
+
+    f.close()
+    l1=[]
+    f = open('multigrams.txt', 'w')
+    for gram in multigrams:
+      c = 0
+      for tweet in tweets:
+        if gram.lower()[1:-1] in tweet['text'].lower():
+           c+=1
+      if c > 0:
+        l1.append({"gram":gram , "freq":c}) 
+
+    for item in sorted(l1, key=lambda x: x['freq'])[-5:]:
+      f.write(item['gram'] + " " +str(item['freq'])+"\n") 
+
+    f.close()
+
+  except IOError as e:
+    print "I/O error({0}): {1}".format(e.errno, e.strerror)
+    sys.exit(1)
+
+
+  with open('tweetsNew.csv', 'wb') as csvfile:
     spamwriter = csv.writer(csvfile, delimiter=',',
                             quotechar="'", quoting=csv.QUOTE_ALL)
 
+    total_usados = 0
     all_tokens = []
     all_tokens_wstops = []
-    for tweet in tweets:
+    maxDate = tweets[-1]['date']
+    print maxDate
+    i=len(tweets) - 1
+    while (maxDate - dateutil.relativedelta.relativedelta(months=3) <  tweets[i]['date'] ):
+      tweets[i]['text'] = tweets[i]['text'].lower()
+      tweets[i]['text'] = re.sub(r'(?:(?:\d+,?)+(?:\.?\d+)?)', "",tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r'http[s]?://(?:[a-z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-f][0-9a-f]))+', "", tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r"http\n",' ',tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r"\n",' ',tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r"\.",' ',tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r"-",' ',tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r":",' ',tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r";",' ',tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r'\&',' ',tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r"\"", '\'', tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r',',' ',tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r'\[',' ',tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r'\]',' ',tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r"'",' ',tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r"\(",' ',tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r"\)",' ',tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r"\'\'",' ',tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r"`",' ',tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r"_",' ',tweets[i]['text']) 
+      tweets[i]['text'] = re.sub(r"\?",' ',tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r"¿",' ',tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r"!",' ',tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r"¡",' ',tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r"\"",' ',tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r"‘",' ',tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r"\.",' ',tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r"/",' ',tweets[i]['text'])
       
-      tweet['text'] = tweet['text'].lower()
-      tweet['text'] = re.sub(r'(?:(?:\d+,?)+(?:\.?\d+)?)', "",tweet['text'])
-      tweet['text'] = re.sub(r'http[s]?://(?:[a-z]|[0-9]|[$-_@.&amp;+]|[!*\(\),]|(?:%[0-9a-f][0-9a-f]))+', "", tweet['text'])
-      tweet['text'] = re.sub(r"\n",' ',tweet['text'])
-      tweet['text'] = re.sub(r"\.",' ',tweet['text'])
-      tweet['text'] = re.sub(r"-",' ',tweet['text'])
-      tweet['text'] = re.sub(r":",' ',tweet['text'])
-      tweet['text'] = re.sub(r";",' ',tweet['text'])
-      tweet['text'] = re.sub(r'\&',' ',tweet['text'])
-      tweet['text'] = re.sub(r"\"", '\'', tweet['text'])
-      tweet['text'] = re.sub(r',',' ',tweet['text'])
-      tweet['text'] = re.sub(r'\[',' ',tweet['text'])
-      tweet['text'] = re.sub(r'\]',' ',tweet['text'])
-      tweet['text'] = re.sub(r"'",' ',tweet['text'])
-      tweet['text'] = re.sub(r"\(",' ',tweet['text'])
-      tweet['text'] = re.sub(r"\)",' ',tweet['text'])
-      tweet['text'] = re.sub(r"\'\'",' ',tweet['text'])
-      tweet['text'] = re.sub(r"`",' ',tweet['text'])
-      tweet['text'] = re.sub(r"_",' ',tweet['text']) 
-      tweet['text'] = re.sub(r"\?",' ',tweet['text'])
-      tweet['text'] = re.sub(r"¿",' ',tweet['text'])
-      tweet['text'] = re.sub(r"!",' ',tweet['text'])
-      tweet['text'] = re.sub(r"¡",' ',tweet['text'])
-      tweet['text'] = re.sub(r"\"",' ',tweet['text'])
-      tweet['text'] = re.sub(r"‘",' ',tweet['text'])
-      tweet['text'] = re.sub(r"\.",' ',tweet['text'])
-      tweet['text'] = re.sub(r"/",' ',tweet['text'])
-      
-      tweet['text'] = re.sub(r"\.\.\.",' ',tweet['text'])      
-      tweet['text'] = re.sub(r"\+",' ',tweet['text'])
-      tweet['text'] = re.sub(r"\$",' ',tweet['text'])
-      tweet['text'] = re.sub(r"%",' ',tweet['text'])
-      tweet['text'] = re.sub(r"\|",' ',tweet['text'])
-      tweet['text'] = re.sub(r"@\w*",' ',tweet['text'])
+      tweets[i]['text'] = re.sub(r"\.\.\.",' ',tweets[i]['text'])      
+      tweets[i]['text'] = re.sub(r"\+",' ',tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r"\$",' ',tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r"%",' ',tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r"\|",' ',tweets[i]['text'])
+      tweets[i]['text'] = re.sub(r"@\w*",' ',tweets[i]['text'])
 
       yes = False
       for w in what:
-        if w in tweet['text']:
+        if w in tweets[i]['text']:
           yes = True
           break
       for w in how:
-        if w in tweet['text']:
+        if w in tweets[i]['text']:
           yes = True
           break
       if yes:
-        tweet['crime'] = 'yes'
+        tweets[i]['crime'] = 'yes'
+        spamwriter.writerow([tweets[i]['text'],tweets[i]['crime']])
         num_yes += 1
       else:
-        tweet['crime'] = 'no'
+        tweets[i]['crime'] = 'no'
+        spamwriter.writerow([tweets[i]['text'],tweets[i]['crime']])
         num_no += 1
 
-      #Write csv   
+      i-=1
+      total_usados+=1
+
+      # Write csv   
       # if random.random() > 0.5:
       # spamwriter.writerow([tweet['text'],tweet['crime']])
       # else:
-        # spamwriter.writerow([tweet['text'],tweet['crime']])
+      #   spamwriter.writerow([tweet['text'],tweet['crime']])
       # print tweet['text']
 
       #Text clean up 
@@ -355,5 +408,5 @@ if __name__ == "__main__":
 
 # Esto clasifica los tweets en base a las palabras obtenidas con la herramienta de WEKA.
 
-print "% de yes: ", (num_yes/float(len(tweets)))*100
-print "% de no: ", (num_no/float(len(tweets)))*100
+print "% de yes: ", (num_yes/float(total_usados))*100
+print "% de no: ", (num_no/float(total_usados))*100

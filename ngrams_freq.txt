@@ -1,0 +1,1248 @@
+NGRAMS FREQ
+'#' 7298
+'#ahora' 122
+'#alaire' 43
+'#arte' 46
+'#caracas' 434
+'#dic' 3
+'#e' 410
+'#economía' 29
+'#eeuu' 42
+'#elpitazoradio' 64
+'#ene' 2
+'#envivo' 44
+'#f' 360
+'#feb' 1
+'#fútbol' 85
+'#gran' 45
+'#impunidadentumeremo' 112
+'#internacional' 223
+'#maracaibo' 35
+'#miranda' 190
+'#nacional' 216
+'#odebrecht' 54
+'#opinión' 100
+'#panama' 78
+'#panamá' 58
+'#paréntesis' 37
+'#rostrosdlc' 917
+'#sucesos' 182
+'#venezuela' 546
+'a dos' 146
+'a el' 917
+'a esta' 317
+'a esta hora' 66
+'a la' 2178
+'a la altura' 49
+'a las' 428
+'a los' 570
+'a mi' 479
+'a partir' 46
+'a su' 608
+'a sus' 127
+'a todos' 77
+'a través' 38
+'a un' 962
+'a una' 284
+'a venezuela' 145
+'abandono' 67
+'abogados' 265
+'abogados ccs' 247
+'abrazo' 79
+'accidente' 80
+'acuerdo' 63
+'aeropuerto' 62
+'agencia' 45
+'agua' 386
+'agua en' 39
+'ahora' 418
+'aire' 178
+'aissami' 105
+'al cne' 37
+'al gobierno' 78
+'al país' 54
+'alba' 109
+'alerta' 100
+'alguien' 56
+'alimentos' 66
+'allup' 87
+'almagro' 58
+'altura' 97
+'am' 6279
+'amazonas' 71
+'amigo' 155
+'amigos' 71
+'amor' 201
+'amén' 87
+'an' 13178
+'ante el' 101
+'ante la' 116
+'antonio' 73
+'anuncia' 82
+'anuncio' 280
+'apoyo' 83
+'aqui' 96
+'aqui las' 30
+'aquí' 227
+'aragua' 153
+'asamblea' 123
+'asamblea nacional' 48
+'asegura' 107
+'asegura que' 41
+'así' 305
+'atención' 64
+'aumento' 68
+'autopista' 118
+'autoridades' 64
+'av' 2232
+'avanzada' 46
+'avanzada progresista' 44
+'ayer' 159
+'ayuda' 162
+'año' 948
+'año de' 76
+'años' 535
+'años de' 83
+'aún' 60
+'a…' 443
+'baduel' 51
+'bajo' 259
+'banco' 105
+'bancos' 31
+'barrio' 134
+'bcv' 63
+'bebé' 82
+'bello' 309
+'bello monte' 195
+'bien' 248
+'billete' 236
+'billetes' 184
+'billetes de' 102
+'billetes de bs' 40
+'bolsas' 42
+'bolívar' 335
+'bolívares' 74
+'borges' 82
+'brasil' 107
+'bs' 496
+'buen' 404
+'buena' 163
+'buenas' 84
+'bueno' 172
+'buenos' 98
+'busca' 198
+'béisbol' 58
+'búsqueda' 30
+'cabello' 77
+'cada' 463
+'cadena' 54
+'calabozos' 96
+'calendario' 31
+'calle' 209
+'cambio' 91
+'campaña' 78
+'canciller' 56
+'capriles' 157
+'cara' 1435
+'carabobo' 84
+'caracas' 924
+'cargo' 85
+'carlos' 162
+'carnaval' 67
+'carnet' 47
+'carnet de' 37
+'carnet de la' 35
+'carretera' 76
+'carta' 78
+'casa' 279
+'casi' 87
+'caso' 450
+'casos' 155
+'causa' 97
+'ccs' 323
+'centro' 136
+'centro de' 54
+'chapecoense' 169
+'chávez' 141
+'cicpc' 433
+'cierre' 50
+'cierto' 119
+'cinco' 89
+'ciudad' 319
+'ciudad bolívar' 42
+'ciudadanos' 56
+'civil' 74
+'clap' 91
+'claro' 64
+'clásico' 98
+'clásico mundial' 59
+'clásico mundial de' 33
+'cne' 230
+'cnn' 141
+'cola' 283
+'colombia' 197
+'com' 2551
+'comenzó' 36
+'comida' 114
+'comunicado' 76
+'con el' 258
+'con la' 257
+'con las' 75
+'con los' 118
+'con otros' 30
+'con por' 2
+'con su' 100
+'con un' 166
+'concejal' 43
+'condiciones' 51
+'conoce' 178
+'consejo' 78
+'consejos' 30
+'consular' 143
+'consulares' 113
+'contacto' 94
+'contra el' 79
+'control' 133
+'convocatoria' 28
+'corazón' 53
+'corrupción' 77
+'cosas' 82
+'cosas que' 41
+'creo' 154
+'crisis' 178
+'cuatro' 119
+'cuba' 63
+'cuenta' 170
+'cuentas' 30
+'cárcel' 102
+'cómo' 190
+'d' 21409
+'da' 8119
+'dar' 716
+'de #caracas' 59
+'de #venezuela' 28
+'de a' 1029
+'de agua' 61
+'de años' 1
+'de billetes' 36
+'de bs' 62
+'de béisbol' 33
+'de caracas' 88
+'de chapecoense' 37
+'de chávez' 66
+'de dos' 76
+'de ee' 71
+'de ee uu' 11
+'de eeuu' 39
+'de el' 271
+'de en' 196
+'de enero' 123
+'de este' 119
+'de febrero' 71
+'de hoy' 98
+'de la' 2734
+'de la an' 55
+'de la masacre' 84
+'de la mud' 73
+'de la patria' 50
+'de la policía' 83
+'de la prensa' 53
+'de las' 362
+'de libertad' 58
+'de lo' 943
+'de los' 831
+'de los partidos' 36
+'de maduro' 55
+'de marzo' 76
+'de mil' 23
+'de mineros' 19
+'de partidos' 87
+'de personas' 46
+'de prensa' 47
+'de que' 138
+'de renovación' 47
+'de renovación de' 38
+'de san' 115
+'de seguridad' 116
+'de semana' 102
+'de su' 395
+'de sus' 69
+'de transporte' 73
+'de trump' 42
+'de tu' 140
+'de tumeremo' 78
+'de un' 584
+'de una' 212
+'de validación' 46
+'de venezuela' 148
+'de y' 59
+'debe' 332
+'deben' 84
+'debes' 39
+'decir' 63
+'decisión' 33
+'decreto' 73
+'defensa' 47
+'deja' 209
+'del cicpc' 134
+'del clásico' 31
+'del clásico mundial' 26
+'del cne' 55
+'del estado' 86
+'del gobierno' 66
+'del país' 113
+'del pueblo' 46
+'del sebin' 57
+'delcy' 54
+'democracia' 54
+'demujer' 108
+'dentro' 158
+'dentro de' 140
+'deportación' 81
+'deportación o' 80
+'derecho' 283
+'derechos' 67
+'desde el' 84
+'desde hace' 50
+'desde la' 74
+'después' 100
+'después de' 67
+'de…' 88
+'dice' 271
+'dice que' 70
+'dicen' 61
+'diciembre' 71
+'difícil' 43
+'dijo' 161
+'dijo que' 38
+'dinero' 105
+'dio' 1224
+'dio a' 50
+'dios' 426
+'dip' 254
+'diputado' 161
+'diputados' 62
+'director' 86
+'director de' 58
+'diálogo' 164
+'domingo' 129
+'dos' 3415
+'día' 715
+'día de' 88
+'días' 238
+'dólares' 53
+'económica' 65
+'ee' 846
+'ee uu' 44
+'eeuu' 164
+'efectivo' 108
+'ejecutivo' 43
+'el aissami' 100
+'el caso' 93
+'el centro' 61
+'el clásico' 77
+'el cne' 113
+'el consejo' 31
+'el de' 305
+'el día' 87
+'el estado' 170
+'el gobierno' 223
+'el hampa' 96
+'el mejor' 76
+'el nuevo' 95
+'el partido' 39
+'el país' 260
+'el presidente' 71
+'el proceso' 51
+'el programa' 71
+'el pueblo' 89
+'el que' 72
+'el sector' 140
+'el tsj' 76
+'elecciones' 127
+'elecciones regionales' 29
+'electoral' 47
+'empresa' 146
+'empresas' 75
+'en #venezuela' 104
+'en amazonas' 38
+'en caracas' 132
+'en ciudad' 71
+'en el' 1619
+'en el clásico' 37
+'en el estado' 38
+'en el país' 77
+'en estados' 9
+'en este' 59
+'en la' 1839
+'en la autopista' 50
+'en las' 198
+'en los' 268
+'en que' 167
+'en san' 111
+'en su' 220
+'en un' 448
+'en una' 196
+'en venezuela' 271
+'enero' 209
+'entonces' 42
+'entrega' 82
+'entrevista' 71
+'equipo' 100
+'es de' 1834
+'es el' 292
+'es la' 262
+'es que' 368
+'es un' 295
+'es una' 109
+'escucha' 119
+'eso es' 56
+'especial' 90
+'espectáculos' 49
+'espera' 228
+'espero' 41
+'esta hora' 67
+'estados unidos' 31
+'este año' 80
+'este domingo' 51
+'este es' 71
+'este es el' 46
+'este lunes' 58
+'este martes' 55
+'este miércoles' 34
+'estudiantes' 69
+'está en' 71
+'eua' 66
+'evitar' 53
+'ex' 1982
+'excelente' 169
+'exigen' 57
+'exigir' 57
+'f' 12629
+'fajardo' 49
+'falta' 216
+'falta de' 143
+'familia' 361
+'familiar' 158
+'familiares' 118
+'familias' 67
+'favor' 129
+'fc' 205
+'febrero' 109
+'feliz' 195
+'fin' 375
+'fin de' 107
+'fin de semana' 94
+'final' 119
+'fiscalía' 67
+'foro' 71
+'foto' 297
+'fotos' 159
+'francisco' 80
+'frente' 117
+'frente a' 89
+'frontera' 68
+'fuerte' 87
+'funcionario' 500
+'funcionarios' 321
+'general' 110
+'gente' 468
+'gn' 556
+'gnb' 123
+'gobernador' 53
+'gobierno' 493
+'gobierno de' 75
+'gonzález' 86
+'gracias' 547
+'gracias a' 77
+'gracias por' 106
+'gran' 542
+'grandes' 60
+'grave' 61
+'grupo' 111
+'gt' 236
+'guarenas' 105
+'guerra' 119
+'guevara' 71
+'gómez' 51
+'h' 17857
+'haber' 62
+'habla' 209
+'hace' 555
+'hacen' 56
+'hacer' 246
+'hacia' 73
+'hambre' 117
+'hampa' 126
+'hasta el' 80
+'hay que' 86
+'hecho' 145
+'helicóptero' 85
+'heridos' 105
+'hija' 55
+'hijo' 264
+'hijos' 115
+'historia' 135
+'historias' 50
+'hizo' 51
+'hola' 74
+'hombre' 279
+'hombres' 100
+'hora' 722
+'horas' 128
+'hospital' 139
+'hoy' 515
+'hoy en' 63
+'https' 12170
+'https…' 55
+'htt…' 45
+'iba' 200
+'igual' 86
+'importante' 72
+'impunidad' 170
+'inflación' 47
+'información' 187
+'informan' 53
+'informe' 83
+'inicia' 114
+'inicio' 40
+'inseguridad' 79
+'internacional' 323
+'investigaciones' 41
+'ir' 3994
+'jesús' 62
+'jorge' 116
+'jornada' 89
+'jornada de' 45
+'josé' 172
+'joven' 135
+'juan' 194
+'jubilados' 31
+'jueves' 75
+'julio' 113
+'julio borges' 23
+'junto' 99
+'junto a' 76
+'justicia' 206
+'jóvenes' 64
+'la altura' 50
+'la an' 144
+'la asamblea' 37
+'la autopista' 84
+'la av' 115
+'la calle' 104
+'la carretera' 44
+'la casa' 61
+'la crisis' 78
+'la democracia' 39
+'la frontera' 38
+'la gente' 120
+'la historia' 39
+'la libertad' 55
+'la masacre' 143
+'la masacre de' 109
+'la mud' 163
+'la nueva' 59
+'la oposición' 74
+'la orden' 45
+'la patria' 71
+'la policía' 131
+'la prensa' 80
+'la unidad' 48
+'la vida' 76
+'laboral' 77
+'las am' 6
+'las elecciones' 40
+'las personas' 35
+'las portadas' 31
+'las portadas de' 30
+'le dio' 41
+'lea' 353
+'leer' 49
+'legales' 129
+'leo' 419
+'leopoldo' 84
+'leopoldo lópez' 45
+'lesionados' 40
+'ley' 95
+'libertad' 357
+'libertad de' 47
+'libertador' 107
+'libre' 93
+'lista' 325
+'lista de' 93
+'llamado' 40
+'llega' 267
+'llegó' 87
+'lleva' 250
+'lo que' 530
+'los billetes' 56
+'los clap' 32
+'los niños' 34
+'los partidos' 49
+'los presos' 40
+'los que' 106
+'los venezolanos' 69
+'luego' 229
+'luego de' 146
+'luis' 539
+'lunes' 154
+'luz' 93
+'lópez' 106
+'machado' 30
+'madre' 127
+'madrid' 34
+'maduro' 599
+'mal' 425
+'manera' 60
+'mano' 299
+'manos' 149
+'manuel' 178
+'maracaibo' 210
+'marcha' 142
+'margarita' 41
+'martes' 112
+'marzo' 85
+'maría' 59
+'mas' 1038
+'masacre' 204
+'masacre de' 135
+'masacre de tumeremo' 67
+'maternidad' 65
+'mayor' 207
+'mañana' 167
+'medicamentos' 66
+'medicinas' 60
+'medida' 82
+'medidas' 43
+'medios' 105
+'mejor' 241
+'memoria' 48
+'memoria y' 30
+'memoria y cuenta' 30
+'menos' 154
+'mensaje' 70
+'mes' 437
+'meses' 146
+'messi' 36
+'metro' 182
+'mg' 197
+'mia' 358
+'miedo' 75
+'mientras' 118
+'mil' 1181
+'militar' 247
+'militares' 137
+'millones' 110
+'millones de' 72
+'minero' 177
+'mineros' 103
+'ministerio' 79
+'ministro' 95
+'minutos' 84
+'miranda' 343
+'mismo' 97
+'miércoles' 101
+'momento' 122
+'monte' 219
+'mora' 199
+'muchas' 62
+'mud' 279
+'muere' 81
+'mujer' 450
+'mujeres' 143
+'mundial' 110
+'mundial de' 46
+'mundial de béisbol' 32
+'mundo' 185
+'municipio' 91
+'murieron' 47
+'más de' 199
+'méxico' 60
+'nacional' 924
+'nacional de' 80
+'nadie' 80
+'necesita' 256
+'nicolás' 66
+'nicolás maduro' 60
+'niño' 236
+'niños' 120
+'no es' 310
+'no hay' 164
+'no lo' 97
+'no se' 261
+'no tiene' 109
+'noche' 203
+'nombre' 108
+'norte' 53
+'noticia' 985
+'nueva' 230
+'nueva vida' 23
+'nuevas' 44
+'nuevo' 337
+'nuevos' 71
+'nunca' 88
+'número' 59
+'o visas' 96
+'o visas rechazadas' 67
+'obama' 72
+'odebrecht' 136
+'oficial' 368
+'oficiales' 54
+'opiniones' 131
+'opinión' 203
+'oposición' 115
+'opositores' 60
+'orden' 196
+'oro' 741
+'padre' 84
+'pago' 66
+'panamá' 120
+'papel' 47
+'para el' 162
+'para exigir' 33
+'para la' 148
+'para los' 63
+'para que' 126
+'para su' 72
+'parlamento' 34
+'paro' 263
+'paro de' 45
+'paro de transporte' 35
+'parte' 180
+'parte de' 110
+'participarán' 29
+'participarán en' 27
+'participarán en el' 26
+'partido' 264
+'partidos' 190
+'partidos políticos' 42
+'partir' 100
+'pasado' 62
+'pasaje' 85
+'paso' 97
+'patria' 129
+'paz' 178
+'país' 516
+'países' 77
+'pdte' 67
+'penal' 79
+'peor' 58
+'periodista' 315
+'periodistas' 139
+'pero no' 67
+'persecución' 43
+'persona' 431
+'personas' 320
+'perú' 61
+'petare' 110
+'pide' 179
+'piden' 71
+'pidió' 38
+'plan' 226
+'plaza' 107
+'pm' 428
+'pnb' 262
+'poder' 145
+'policía' 387
+'policía de' 95
+'policías' 147
+'política' 137
+'político' 217
+'políticos' 160
+'popular' 58
+'por el' 291
+'por en' 29
+'por falta' 62
+'por falta de' 62
+'por favor' 65
+'por la' 342
+'por los' 56
+'por qué' 61
+'por su' 137
+'por un' 112
+'portadas' 42
+'portadas de' 38
+'portadas de la' 37
+'posible' 127
+'prensa' 178
+'prensa de' 47
+'presidente' 329
+'presidente de' 120
+'preso' 334
+'presos' 249
+'presos políticos' 79
+'primer' 307
+'primera' 107
+'primero' 87
+'principal' 78
+'prisión' 39
+'privados' 36
+'problema' 84
+'proceso' 141
+'proceso de' 79
+'programa' 239
+'progresista' 50
+'protección' 30
+'protesta' 245
+'protestas' 49
+'psuv' 129
+'pueblo' 180
+'puede' 242
+'pueden' 54
+'puente' 87
+'puerto' 124
+'pues' 334
+'puntos' 55
+'público' 217
+'q' 10706
+'que debes' 26
+'que el' 275
+'que el gobierno' 45
+'que en' 146
+'que es' 364
+'que hay' 72
+'que la' 255
+'que le' 143
+'que lo' 224
+'que los' 140
+'que me' 126
+'que no' 403
+'que se' 351
+'que son' 37
+'quedó' 77
+'quiere' 176
+'quiero' 55
+'ramos' 210
+'rangel' 88
+'rechazadas' 86
+'records' 61
+'regionales' 43
+'renovación' 80
+'renovación de' 67
+'renovación de partidos' 48
+'reportan' 92
+'representantes' 41
+'república' 37
+'requiere' 52
+'residencias' 76
+'respuesta' 71
+'retweeted' 44
+'reunión' 48
+'revocadas' 89
+'rodríguez' 160
+'rojas' 150
+'rt' 9701
+'rt el' 1
+'rt en' 1
+'rt gracias' 1
+'rt la' 6
+'rt por' 3
+'rt se' 10
+'régimen' 45
+'s' 22308
+'saber' 55
+'salida' 59
+'salir' 75
+'salud' 212
+'saludos' 104
+'samark' 27
+'san' 1011
+'scarano' 32
+'se ha' 158
+'se necesita' 59
+'se puede' 41
+'sebin' 170
+'secretario' 31
+'sector' 248
+'sede' 63
+'seguidores' 52
+'seguridad' 336
+'seguro' 61
+'según' 151
+'seis' 79
+'semana' 268
+'ser' 1134
+'servicio' 265
+'servicio de' 46
+'servicio público' 43
+'sesión' 49
+'señor' 131
+'si' 7370
+'si no' 48
+'sido' 127
+'siempre' 137
+'siendo' 40
+'sigue' 162
+'sino' 98
+'sistema' 63
+'situación' 121
+'sobre el' 87
+'sobre la' 107
+'social' 213
+'sociedad' 52
+'solo' 270
+'son los' 84
+'sub' 148
+'sucre' 206
+'sur' 346
+'sábado' 64
+'sólo' 47
+'tan' 1340
+'tarde' 120
+'tareck' 85
+'tareck el' 29
+'tareck el aissami' 25
+'tema' 220
+'tener' 162
+'tiempo' 193
+'tips' 38
+'tips para' 26
+'toda' 161
+'todas' 57
+'todos los' 108
+'trabajadores' 80
+'trabajo' 161
+'transporte' 97
+'transportistas' 72
+'tras' 662
+'través' 39
+'tres' 307
+'triste' 75
+'trump' 215
+'tsj' 135
+'tumeremo' 198
+'u' 20752
+'ucv' 57
+'un abrazo' 56
+'un año' 85
+'un año de' 56
+'un país' 33
+'unidad' 384
+'unidades' 51
+'unidos' 41
+'uno de' 108
+'urgente' 183
+'usa' 519
+'usa visas' 183
+'usted' 160
+'ustedes' 50
+'uu' 416
+'va' 4234
+'va a' 105
+'valencia' 96
+'validación' 80
+'validación de' 37
+'vamos' 106
+'van' 437
+'van a' 73
+'varela' 52
+'vargas' 161
+'varios' 70
+'ve' 7078
+'veces' 54
+'vecinos' 99
+'vehículo' 130
+'venezolana' 136
+'venezolano' 498
+'venezolanos' 318
+'venezolanos que' 25
+'venezuela' 1501
+'venezuela en' 47
+'venezuela y' 52
+'venezuela …' 1
+'ver' 1565
+'verdad' 134
+'verde' 57
+'vez' 280
+'via' 395
+'vicepresidente' 60
+'vida' 388
+'vida del' 29
+'video' 207
+'viernes' 113
+'visa' 352
+'visas' 252
+'visas rechazadas' 86
+'visas revocadas' 89
+'viven' 66
+'vivo' 100
+'voluntad' 83
+'vuelta' 50
+'vzla' 310
+'vía' 738
+'vídeo' 56
+'wilmito' 38
+'x' 6167
+'y a' 610
+'y cuenta' 31
+'y de' 304
+'y el' 229
+'y en' 217
+'y la' 262
+'y los' 110
+'y no' 166
+'y se' 186
+'y un' 187
+'ya no' 40
+'zona' 192
+'zulia' 212
+'zulia fc' 64
+'¡míralo' 27
+'¿qué' 65
+'última' 92
+'único' 66
+'“el' 62
+'“la' 45
+'…' 4572
+'👉' 61
+'#cicpc' 37
+'#denuncia' 41
+'#homicidio' 41
+'#seguridad' 58
+'a la morgue' 104
+'abatido' 90
+'abatidos' 57
+'adolescente' 114
+'adolescentes' 42
+'agentes' 35
+'albornoz' 76
+'anoche' 64
+'ante un' 67
+'arco' 168
+'arco minero' 64
+'arma' 389
+'arma de' 37
+'armados' 65
+'armas' 101
+'arnaldo' 80
+'arnaldo albornoz' 63
+'asesinado' 302
+'asesinado en' 54
+'asesinados' 127
+'asesinados en' 72
+'asesinan' 83
+'asesinan a' 72
+'asesinaron' 107
+'asesinaron a' 76
+'asesinaron a dos' 19
+'asesinato' 191
+'asesinato de' 136
+'año en' 37
+'bala' 144
+'banda' 180
+'bandas' 89
+'breve' 305
+'breve en' 243
+'breve en crímenes' 234
+'cabeza' 99
+'cadáver' 157
+'cadáveres' 101
+'camioneta' 61
+'caricuao' 59
+'carro' 114
+'castigo' 458
+'castigo en' 45
+'castigo en la' 44
+'cerca' 166
+'colectivo' 131
+'colectivos' 69
+'comerciante' 72
+'cota' 91
+'cpnb' 74
+'crimen' 151
+'crímenes' 453
+'crímenes sin' 426
+'crímenes sin castigo' 423
+'cuerpo' 117
+'cuerpos' 67
+'de armas' 30
+'de bala' 48
+'de bello' 149
+'de bello monte' 147
+'de crímenes' 40
+'de crímenes sin' 38
+'de fuego' 45
+'de homicidios' 27
+'de la pnb' 60
+'del cpnb' 24
+'del tuy' 72
+'delincuente' 253
+'delincuentes' 195
+'delito' 100
+'delitos' 46
+'denuncia' 309
+'denuncian' 68
+'denuncian que' 25
+'denunció' 51
+'denunció que' 21
+'detención' 94
+'detenido' 274
+'detenido por' 26
+'detenidos' 173
+'detenidos en' 36
+'detenidos por' 42
+'dispararon' 76
+'disparo' 153
+'disparo en' 39
+'disparos' 90
+'drogas' 33
+'durante el' 52
+'el asesinato' 65
+'el asesinato de' 59
+'el homicidio' 50
+'el junquito' 56
+'en #caracas' 50
+'en crímenes' 369
+'en crímenes sin' 366
+'en el sector' 88
+'en la cabeza' 47
+'en la calle' 68
+'en la gran' 85
+'en la radio' 42
+'en vargas' 35
+'enfrentamiento' 112
+'enfrentamiento con' 42
+'escolta' 64
+'escuche' 47
+'escuche este' 38
+'escuche este micro' 38
+'este año en' 26
+'este micro' 69
+'este micro de' 38
+'estudiante' 121
+'express' 37
+'extorsión' 37
+'fallecidos' 45
+'falleció' 59
+'fan' 218
+'fiscal' 145
+'fue asesinado' 78
+'fuego' 61
+'funcionario de' 99
+'funcionarios de' 142
+'funcionarios del' 53
+'futbolista' 35
+'gran #caracas' 35
+'hacer ante' 30
+'han sido' 51
+'hechos' 52
+'herido' 216
+'herido de' 34
+'hijo de' 64
+'homicidio' 247
+'homicidio de' 64
+'homicidios' 89
+'homicidios en' 23
+'iban' 45
+'incendio' 32
+'indígenas' 39
+'investigación' 75
+'jefe' 63
+'junquito' 57
+'la cabeza' 54
+'la cota' 65
+'la fan' 73
+'la gran' 116
+'la gran #caracas' 34
+'la lista' 54
+'la morgue' 158
+'la morgue de' 137
+'la muerte' 90
+'la muerte de' 70
+'la pnb' 91
+'la policía de' 68
+'la radio' 47
+'la violencia' 122
+'la víctima' 62
+'las víctimas' 61
+'le dispararon' 40
+'le robaron' 30
+'llevaron' 65
+'lo último' 25
+'lo último en' 22
+'lucha' 68
+'manaure' 55
+'margen' 83
+'margen derecho' 80
+'matan' 71
+'matan a' 50
+'mataron' 145
+'mataron a' 99
+'mató' 50
+'mató a' 39
+'micro' 90
+'micro de' 38
+'micro de crímenes' 38
+'micro en' 31
+'micro en crímenes' 31
+'ministerio público' 40
+'morgue' 173
+'morgue de' 150
+'morgue de bello' 142
+'moto' 212
+'muerte' 266
+'muerte de' 129
+'muertes' 51
+'muertes violentas' 33
+'muerto' 229
+'muertos' 142
+'murió' 144
+'ocho' 58
+'ocurrido' 52
+'ocurrió' 61
+'para robarle' 53
+'policial' 245
+'policiales' 92
+'polinacional' 43
+'por asesinato' 32
+'por el asesinato' 27
+'por robo' 35
+'presuntamente' 65
+'presunto' 75
+'radio' 298
+'rafael' 107
+'recibir' 64
+'recibió' 80
+'redes' 69
+'redes sociales' 41
+'robar' 324
+'robarle' 67
+'robaron' 102
+'robo' 207
+'robo de' 55
+'robo en' 24
+'salió' 58
+'santa' 100
+'secuestro' 149
+'secuestro express' 25
+'sin castigo' 439
+'sin castigo en' 44
+'sociales' 90
+'su casa' 66
+'sujetos' 152
+'sup' 308
+'tiro' 184
+'tiro en' 33
+'tiros' 55
+'tiroteo' 67
+'tuy' 111
+'un disparo' 29
+'un hombre' 62
+'uno de los' 83
+'urgencia' 47
+'uso' 155
+'uso de' 45
+'versión' 88
+'versión policial' 38
+'violación' 29
+'violencia' 256
+'violentas' 34
+'vivienda' 83
+'víctima' 253
+'víctima de' 41
+'víctimas' 142
+'víctimas de' 65
+'último' 84
+'último en' 23
+'último en crímenes' 21
