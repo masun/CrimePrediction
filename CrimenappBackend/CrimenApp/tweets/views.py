@@ -154,13 +154,9 @@ def textSize(request):
   file_path_tweets = os.path.join(module_dir, 'raw_datasets/tweets.txt')
   tweets = read_tweets(file_path_tweets)
  
-  # file_path = os.path.join(module_dir, 'raw_datasets/tweets_cleaned.arff')
-  # tweets = read_weka_res(file_path)
- 
-
   what = [
   "secuestro","secuestrar","secuestraron","asesinar","asesino","asesinaron","asesinó","violación","violaron","robo","robaron","secuestró","asesinato","extorsión","violación",
-  "violaron","mataron","mató"]
+  "violaron","mataron","mató", "golpearon", "tirotearon", "carbonizaron", "lincharon", "violador"]
 
   when = [
   "madrugada","noche","día","mañana","tarde","mediodía","noche"
@@ -170,9 +166,8 @@ def textSize(request):
   "quemado","quemaron","quemo","armados","golpes","golpe","golpearon","golpeó","droga","drogas","bombas","tiro","tiros","tiroteado","tiroteados","tirotearon","tiroteo","revolver",
   "puñaladas","puñaladas","pistola","pistolas","plomo","lacrimógenas","lacrimógena","escopeta","escopetas","dispara","disparan","disparando","disparó","dispararon","disparos","cuchillo",
   "cocaína","bomba","bala","balas","armamento","armado","armas","tiroteo","fusil","cuchillo","cuchillos","disparo","fusiles","granada","navaja","ametralladora","bisturí","proyectil",
-  "arma blanca","arma de fuego","acuchillado","explosión","cuchilladas","armados","gasolina","incendio"
+  "arma blanca","arma de fuego","acuchillado","explosión","cuchilladas","armados","gasolina","incendio", "linchamiento",
   ]
-
 
   what += read_weka_res(file_path_keywords + 'list_trigram_bigram_what.arff') + read_weka_res(file_path_keywords + 'list_unigram_what.arff')
   when += read_weka_res(file_path_keywords + 'list_trigram_bigram_when.arff') + read_weka_res(file_path_keywords + 'list_unigram_when.arff')
@@ -184,50 +179,54 @@ def textSize(request):
   res = {"children":[]}
   word_set = []
 
-  # print what
-  # print when
-  # print how, "\n"
-
-  body_unicode = request.body.decode('utf-8')
-  body = json.loads(body_unicode)
-  zona = body['zona']
+  if request.method == 'POST':
+    body_unicode = request.body.decode('utf-8')
+    body = json.loads(body_unicode)
+    zona = body['zona'].lower()
+  elif request.method == 'GET':
+    zona = "Todas"
 
   tweets = Tweets.objects.all()
-  # print tweets, "\n"
+  
   i = 0
   for w in what:
     freq = 0
-    res["children"].append({})
-    res["children"][i]["name"] = w
     for tweet in tweets:
       if zona !="Todas":
-        if w in tweet.texto and zona in tweet.texto: 
+        if w in tweet.texto and zona in tweet.texto:
           freq += 1
       else:
         if w in tweet.texto: 
           freq += 1
-    res["children"][i]["freq"] = freq
-    res["children"][i]["type"] = "what"
-    i += 1
+    if freq > 0:
+      res["children"].append({})
+      res["children"][i]["name"] = w
+      res["children"][i]["freq"] = freq
+      res["children"][i]["type"] = "what"
+      i += 1
   for w in how:
     freq = 0
-    res["children"].append({})
-    res["children"][i]["name"] = w
     for tweet in tweets:
       if zona !="Todas":
-        if w in tweet.texto: 
+        if w in tweet.texto and zona in tweet.texto:
           freq += 1
       else:
         if w in tweet.texto: 
           freq += 1
-    res["children"][i]["freq"] = freq
-    res["children"][i]["type"] = "how"
-    i += 1
-
-  print res, "\n"
-
+    if freq > 0:
+      res["children"].append({})
+      res["children"][i]["name"] = w
+      res["children"][i]["freq"] = freq
+      res["children"][i]["type"] = "how"
+      i += 1
 
   return HttpResponse(json.dumps(res))
+
+def freqIsZero(lst):
+  for e in lst:
+    if e[2] != 0:
+      return False
+  return True
 
 @csrf_exempt
 def heatMap(request):
@@ -242,11 +241,10 @@ def heatMap(request):
  
   # file_path = os.path.join(module_dir, 'raw_datasets/tweets_cleaned.arff')
   # tweets = read_weka_res(file_path)
- 
 
   what = [
   "secuestro","secuestrar","secuestraron","asesinar","asesino","asesinaron","asesinó","violación","violaron","robo","robaron","secuestró","asesinato","extorsión","violación",
-  "violaron","mataron","mató"]
+  "violaron","mataron","mató", "golpearon", "tirotearon", "carbonizaron", "lincharon", "violador"]
 
   when = [
   "madrugada","noche","día","mañana","tarde","mediodía","noche"
@@ -256,9 +254,8 @@ def heatMap(request):
   "quemado","quemaron","quemo","armados","golpes","golpe","golpearon","golpeó","droga","drogas","bombas","tiro","tiros","tiroteado","tiroteados","tirotearon","tiroteo","revolver",
   "puñaladas","puñaladas","pistola","pistolas","plomo","lacrimógenas","lacrimógena","escopeta","escopetas","dispara","disparan","disparando","disparó","dispararon","disparos","cuchillo",
   "cocaína","bomba","bala","balas","armamento","armado","armas","tiroteo","fusil","cuchillo","cuchillos","disparo","fusiles","granada","navaja","ametralladora","bisturí","proyectil",
-  "arma blanca","arma de fuego","acuchillado","explosión","cuchilladas","armados","gasolina","incendio"
+  "arma blanca","arma de fuego","acuchillado","explosión","cuchilladas","armados","gasolina","incendio", "linchamiento",
   ]
-
 
   what += read_weka_res(file_path_keywords + 'list_trigram_bigram_what.arff') + read_weka_res(file_path_keywords + 'list_unigram_what.arff')
   how += read_weka_res(file_path_keywords + 'list_trigram_bigram_how.arff') + read_weka_res(file_path_keywords +  'list_unigram_how.arff')
@@ -268,9 +265,12 @@ def heatMap(request):
 
   res = {"como":[], "que":[]}
 
-  body_unicode = request.body.decode('utf-8')
-  body = json.loads(body_unicode)
-  zona = body['zona']
+  if request.method == 'POST':
+    body_unicode = request.body.decode('utf-8')
+    body = json.loads(body_unicode)
+    zona = body['zona'].lower()
+  elif request.method == 'GET':
+    zona = "Todas"
 
   comos = Tweets.objects.exclude(como__isnull=True).exclude(como__exact='')
   ques = Tweets.objects.exclude(que__isnull=True).exclude(que__exact='')
@@ -281,36 +281,39 @@ def heatMap(request):
       if zona !="Todas":
         if w in tweet.texto and zona in tweet.texto: 
           if tweet.fecha.weekday() == 0: 
-            l[0][2] +=1 
+            l[0][2] += 1 
           elif  tweet.fecha.weekday() == 1:
-            l[1][2] +=1 
+            l[1][2] += 1 
           elif  tweet.fecha.weekday() == 2: 
-            l[2][2] +=1
+            l[2][2] += 1
           elif  tweet.fecha.weekday() == 3: 
-            l[3][2] +=1
+            l[3][2] += 1
           elif  tweet.fecha.weekday() == 4: 
-            l[4][2] +=1
+            l[4][2] += 1
           elif  tweet.fecha.weekday() == 5: 
-            l[5][2] +=1
+            l[5][2] += 1
           elif  tweet.fecha.weekday() == 6: 
-            l[6][2] +=1
+            l[6][2] += 1
       else:
         if w in tweet.texto: 
           if tweet.fecha.weekday() == 0: 
-            l[0][2] +=1 
+            l[0][2] += 1 
           elif  tweet.fecha.weekday() == 1:
-            l[1][2] +=1 
+            l[1][2] += 1 
           elif  tweet.fecha.weekday() == 2: 
-            l[2][2] +=1
+            l[2][2] += 1
           elif  tweet.fecha.weekday() == 3: 
-            l[3][2] +=1
+            l[3][2] += 1
           elif  tweet.fecha.weekday() == 4: 
-            l[4][2] +=1
+            l[4][2] += 1
           elif  tweet.fecha.weekday() == 5: 
-            l[5][2] +=1
+            l[5][2] += 1
           elif  tweet.fecha.weekday() == 6: 
-            l[6][2] +=1
-    res["que"] += l  
+            l[6][2] += 1
+    if not freqIsZero(l) and zona != "Todas":
+      res["que"] += l
+    if zona == "Todas":
+      res["que"] += l
 
   for w in how:
     l = [[w,1,0],[w,2,0],[w,3,0],[w,4,0],[w,5,0],[w,6,0],[w,7,0]]
@@ -318,37 +321,39 @@ def heatMap(request):
       if zona != "Todas":
         if w in tweet.texto and zona in tweet.texto:
           if tweet.fecha.weekday() == 0: 
-            l[0][2] +=1 
+            l[0][2] += 1 
           elif  tweet.fecha.weekday() == 1:
-            l[1][2] +=1 
+            l[1][2] += 1 
           elif  tweet.fecha.weekday() == 2: 
-            l[2][2] +=1
+            l[2][2] += 1
           elif  tweet.fecha.weekday() == 3: 
-            l[3][2] +=1
+            l[3][2] += 1
           elif  tweet.fecha.weekday() == 4: 
-            l[4][2] +=1
+            l[4][2] += 1
           elif  tweet.fecha.weekday() == 5: 
-            l[5][2] +=1
+            l[5][2] += 1
           elif  tweet.fecha.weekday() == 6: 
-            l[6][2] +=1
+            l[6][2] += 1
       else:     
         if w in tweet.texto: 
           if tweet.fecha.weekday() == 0: 
-            l[0][2] +=1 
+            l[0][2] += 1 
           elif  tweet.fecha.weekday() == 1:
-            l[1][2] +=1 
+            l[1][2] += 1 
           elif  tweet.fecha.weekday() == 2: 
-            l[2][2] +=1
+            l[2][2] += 1
           elif  tweet.fecha.weekday() == 3: 
-            l[3][2] +=1
+            l[3][2] += 1
           elif  tweet.fecha.weekday() == 4: 
-            l[4][2] +=1
+            l[4][2] += 1
           elif  tweet.fecha.weekday() == 5: 
-            l[5][2] +=1
+            l[5][2] += 1
           elif  tweet.fecha.weekday() == 6: 
-            l[6][2] +=1
-    res["como"] += l  
-
+            l[6][2] += 1
+    if not freqIsZero(l) and zona != "Todas":
+      res["como"] += l
+    if zona == "Todas":
+      res["como"] += l
 
   return HttpResponse(json.dumps(res))
 
